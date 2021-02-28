@@ -9,4 +9,8 @@ export interface AppTheme extends DefaultTheme {
   textColor: string;
   backgroundApp: string;
   backgroundInsideBlocks: string;
+  backgroundIcon: string;
+  colorIcon: string;
+  colorIconActive: string;
+  backgroundIconActive: string;
 }

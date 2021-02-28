@@ -9,6 +9,10 @@ const theme: AppTheme = {
   backgroundInsideBlocks: '#F2F6FE',
   secondary: '#263238',
   textColor: '#f0f0f0',
+  backgroundIcon: '#F4F4F4',
+  colorIcon: '#DBDBDB',
+  backgroundIconActive: '#FFDD6A',
+  colorIconActive: '#3A3A3A',
 };
 
 export default theme;
