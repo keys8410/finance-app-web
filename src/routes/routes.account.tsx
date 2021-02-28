@@ -24,15 +24,7 @@ export default function ModulesRoutes({ onlyAuthenticated = false }: Props) {
       <Route exact path="*" render={(props: any) => <Login {...props} />} />
     );
   }
-  if (user && user.role === 'COMMON') {
-    return (
-      <Route
-        exact
-        path="*"
-        render={(props: any) => <UnauthorizedAccess {...props} />}
-      />
-    );
-  }
+
   return (
     <ThemeProvider theme={scheme === 'light' ? light : dark}>
       <GlobalStyles />
