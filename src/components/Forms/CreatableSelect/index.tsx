@@ -7,7 +7,7 @@ import Select, {
   OptionTypeBase,
 } from 'react-select';
 import ReactTooltip from 'react-tooltip';
-import { debounce } from '../../../@types/utils/debounce';
+import { debounce } from '../../../utils/debounce';
 import { DirectionalContainer } from '../../../styles/DirectionalContainer';
 import { ErrorLabel, InputGroup } from '../styles';
 

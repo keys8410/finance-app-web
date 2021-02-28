@@ -12,13 +12,11 @@ import { GlobalStyles } from '../styles/globalStyles';
 import dark from '../styles/theme.dark';
 import light from '../styles/theme.light';
 
-type ModulesRoutesProps = {
+type Props = {
   onlyAuthenticated?: boolean;
 };
 
-export default function ModulesRoutes({
-  onlyAuthenticated = false,
-}: ModulesRoutesProps) {
+export default function ModulesRoutes({ onlyAuthenticated = false }: Props) {
   const { scheme } = useThemeToggle();
   const { hydrating, loading, authenticated, user } = useAuth();
   if (onlyAuthenticated && (!hydrating || !loading) && !authenticated) {
