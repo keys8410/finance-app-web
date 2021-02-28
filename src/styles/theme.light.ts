@@ -1,10 +1,14 @@
-import { AppTheme } from './theme';
+import { AppTheme } from '../@types/appTheme';
 
 const theme: AppTheme = {
-  background: '#f0f0f0',
-  main: '#1976d2',
-  secondary: '#ffa726',
-  textColor: '#212121',
+  background: '#CFE7FE',
+  backgroundApp: '#D2E8FE',
+  backgroundBlocks: '#fff',
+  backgroundInsideBlocks: '#F2F6FE',
+  main: '#51beff',
+  primary: '#FF698A',
+  secondary: '#FFDD6A',
+  textColor: '#3A3A3A',
 };
 
 export default theme;

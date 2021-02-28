@@ -1,8 +1,8 @@
 import styled, { createGlobalStyle, css } from 'styled-components';
-import { AppTheme } from './theme';
 import { Form } from '@unform/web';
 import { ButtonStyled } from '../components/Button';
 import { ColTypes } from '../@types/directionalContainer';
+import { AppTheme } from '../@types/appTheme';
 
 export const GlobalStyles = createGlobalStyle<{ theme: AppTheme }>`
     body {
