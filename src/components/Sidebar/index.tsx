@@ -1,7 +1,11 @@
 import { Composition } from 'atomic-layout';
 import React from 'react';
-import { FiArrowDown, FiCircle } from 'react-icons/fi';
-import { CompositionContainer, ContainerSidebar } from './styles';
+import { FcDoughnutChart } from 'react-icons/fc';
+import { DirectionalContainer } from '../../styles/DirectionalContainer';
+import ListIconSidebar from './IconSidebar/List';
+
+import { CompositionContainer } from './styles';
+
 const areasMobile = `
 logo icons`;
 const areasDesktop = `
@@ -14,21 +18,20 @@ const Sidebar = () => {
       template={areasMobile}
       templateMd={areasDesktop}
       templateCols="1fr"
-      templateRowsMd=".4fr 1fr"
+      templateRowsMd="auto 1fr"
       as={CompositionContainer}
     >
       {(Areas) => (
         <>
           <Areas.Logo>
-            <FiCircle />
+            <DirectionalContainer>
+              <FcDoughnutChart size="4rem" />
+            </DirectionalContainer>
           </Areas.Logo>
           <Areas.Icons>
-            <ContainerSidebar>
-              <FiArrowDown />
-              <FiArrowDown />
-              <FiArrowDown />
-              <FiArrowDown />
-            </ContainerSidebar>
+            <DirectionalContainer>
+              <ListIconSidebar />
+            </DirectionalContainer>
           </Areas.Icons>
         </>
       )}
