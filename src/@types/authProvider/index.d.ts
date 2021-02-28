@@ -1,8 +1,7 @@
 export interface AuthProviderUser {
-  username: string;
+  id: string;
+  nome: string;
   email: string;
-  phoneNumber: Date;
-  role: string;
 }
 
 export type AuthContextType = {

@@ -74,7 +74,6 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
       nomeUsuario,
       senha,
       (data) => {
-        console.log('data =>', data);
         setUsuario(data.usuario as AuthProviderUser);
         setToken(data.token);
         setIsLoading(false);
