@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import React from 'react';
+import { isOptionDisabled } from 'react-select/src/builtins';
 import { TransacaoType } from '../../../../@types/transacoes';
 import { DirectionalContainer } from '../../../../styles/DirectionalContainer';
 import Icon from '../../../Utils/Icon';

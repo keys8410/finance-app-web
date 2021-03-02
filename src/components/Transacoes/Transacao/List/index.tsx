@@ -7,22 +7,25 @@ import {
   useScroll,
   useDragToScroll,
 } from 'react-snaplist-carousel';
-import { all } from 'redux-saga/effects';
 import { PagedList } from '../../../../@types/requests/paged-list';
 import { TransacaoType } from '../../../../@types/transacoes';
 import { useFetch } from '../../../../hooks/useFetch';
+import { usePaginateFetch } from '../../../../hooks/usePaginateFetch';
+import { DirectionalContainer } from '../../../../styles/DirectionalContainer';
+import { debounce } from '../../../../utils/debounce';
 import TransacaoItem from '../Item';
 
-const setMargin = (index: number, length: number) => {
+const PAGE_SIZE = 4;
+
+const setMargin = (index: number) => {
   if (index === 0) return { top: '1%', bottom: '15px' };
-  if (index === length) return { top: '15px', bottom: '2.5rem' };
+
   return { top: '15px', bottom: '15px' };
 };
 
 const TransacaoList = () => {
-  const [allItems, setAllItems] = useState<TransacaoType[] | null>(null);
+  const [allItems, setAllItems] = useState<TransacaoType[]>([]);
   const [page, setPage] = useState(1);
-  const [hasPreviousPage, setHasPreviousPage] = useState<boolean | null>(null);
   const [hasNextPage, setHasNextPage] = useState<boolean | null>(null);
 
   const snapList = useRef(null);
@@ -34,32 +37,25 @@ const TransacaoList = () => {
   const goToChildren = useScroll({ ref: snapList });
   useDragToScroll({ ref: snapList });
 
-  const { response: transacoes, isLoading } = useFetch<
-    PagedList<TransacaoType>
-  >(`/usuario/lancamentos?page=${page}&pageSize=4&categoriaNome`);
+  const {
+    response,
+    error,
+    isLoadingMore,
+    size,
+    setSize,
+    isReachingEnd,
+  } = usePaginateFetch<TransacaoType>('/usuario/lancamentos', PAGE_SIZE);
 
-  useEffect(() => {
-    if (!isLoading && transacoes) {
-      setAllItems(allItems);
-
-      setHasPreviousPage(transacoes.hasPreviousPage);
-      setHasNextPage(transacoes.hasNextPage);
-    }
-  }, [transacoes, isLoading]);
-
-  useEffect(() => {
-    if (allItems && visible === allItems!.length - 2 && hasNextPage) {
-      setPage(page + 1);
-    }
-  }, [visible, allItems]);
+  if (error) return <h1>Something went wrong!</h1>;
+  if (!response) return <h1>Loading...</h1>;
 
   return (
-    <SnapList ref={snapList} direction="vertical" height="8rem">
-      {allItems &&
-        allItems?.map((transacao, index) => (
+    <div>
+      <SnapList ref={snapList} direction="vertical" height="8rem">
+        {response?.map((transacao, index) => (
           <SnapItem
             key={`transacao-${transacao.id}`}
-            margin={setMargin(index, allItems.length - 1)}
+            margin={setMargin(index)}
             height="2.5rem"
             snapAlign="center"
           >
@@ -70,7 +66,32 @@ const TransacaoList = () => {
             />
           </SnapItem>
         ))}
-    </SnapList>
+        <SnapItem
+          margin={{ top: '15px', bottom: '.5rem' }}
+          height="2.5rem"
+          snapAlign="center"
+        >
+          <DirectionalContainer height align="center" justify="center">
+            <button
+              disabled={isLoadingMore || isReachingEnd}
+              onClick={() => {
+                goToChildren(size * PAGE_SIZE - 2);
+
+                setTimeout(() => {
+                  setSize(size + 1);
+                }, 300);
+              }}
+            >
+              {isLoadingMore
+                ? 'Carregando...'
+                : isReachingEnd
+                ? 'Sem lançamentos 😞'
+                : 'Carregar mais'}
+            </button>
+          </DirectionalContainer>
+        </SnapItem>
+      </SnapList>
+    </div>
   );
 };
 export default TransacaoList;
