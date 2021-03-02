@@ -94,3 +94,13 @@ export const Forms = styled(Form)<{ marginT?: number }>`
     margin-right: 0rem;
   }
 `;
+
+export const CardBordered = styled.div<{ theme: AppTheme }>`
+  border-radius: 1.3rem;
+  width: 100%;
+  height: 100%;
+  transition: height 0.3s ease-in-out;
+  background: ${({ theme }) => theme.backgroundBlocks};
+  padding: 1.3rem;
+  padding-bottom: 1rem;
+`;

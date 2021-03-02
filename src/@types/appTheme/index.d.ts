@@ -13,4 +13,6 @@ export interface AppTheme extends DefaultTheme {
   colorIcon: string;
   colorIconActive: string;
   backgroundIconActive: string;
+  colorSubtitleTransacao: string;
+  colorTitleTransacao: string;
 }

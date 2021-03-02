@@ -1,10 +1,10 @@
 export type PagedList<T> = {
-  indexFrom: number;
-  pageIndex: number;
-  pageSize: number;
-  totalCount: number;
-  totalPages: number;
   items: T[];
+  totalItems: number;
+  itemCount: number;
+  itemsPerPage: number;
+  totalPages: number;
+  currentPage: number;
   hasPreviousPage: boolean;
   hasNextPage: boolean;
 };

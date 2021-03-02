@@ -7,11 +7,12 @@ type Props = {
   bold?: boolean;
   capitalize?: boolean;
   marginBottom?: number;
+  isTitle?: boolean;
 };
 export const DefaultTitle = styled.p<Props>`
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: ${({ color, theme }) => color ?? theme.textColor};
-  font-weight: ${({ bold }) => (bold ? 'normal' : 600)};
+  font-weight: ${({ bold }) => (bold ? 'normal' : 580)};
 
   line-height: 1.2;
 
@@ -26,5 +27,13 @@ export const DefaultTitle = styled.p<Props>`
     css`
       margin-bottom: ${marginBottom} + 'rem';
       text-transform: capitalize;
+    `}
+
+    
+  ${({ isTitle }) =>
+    isTitle &&
+    css`
+      font-size: 1.25rem;
+      font-weight: 600;
     `}
 `;

@@ -13,6 +13,8 @@ const theme: AppTheme = {
   colorIcon: '#DBDBDB',
   backgroundIconActive: '#FFDD6A',
   colorIconActive: '#3A3A3A',
+  colorSubtitleTransacao: '#C7C7C7',
+  colorTitleTransacao: '#1b1b1b',
 };
 
 export default theme;

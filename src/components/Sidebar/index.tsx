@@ -29,7 +29,7 @@ const Sidebar = () => {
             </DirectionalContainer>
           </Areas.Logo>
           <Areas.Icons>
-            <DirectionalContainer>
+            <DirectionalContainer height align="center" justify="center">
               <ListIconSidebar />
             </DirectionalContainer>
           </Areas.Icons>

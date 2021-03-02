@@ -19,4 +19,6 @@ export const CompositionContainer = styled.div<{ theme: AppTheme }>`
   border-radius: 2.75rem;
   border: 0.55rem solid ${({ theme }) => theme.backgroundBlocks};
   padding: 1.8rem 1.5rem;
+
+  background: ${({ theme }) => theme.backgroundApp};
 `;

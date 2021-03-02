@@ -1,7 +1,7 @@
 import { AppTheme } from '../@types/appTheme';
 
 const theme: AppTheme = {
-  background: '#CFE7FE',
+  background: '#333', // white
   backgroundApp: '#D2E8FE',
   backgroundBlocks: '#fff',
   backgroundInsideBlocks: '#F2F6FE',
@@ -13,6 +13,8 @@ const theme: AppTheme = {
   colorIcon: '#dbdbda',
   backgroundIconActive: '#FFDD6A',
   colorIconActive: '#3A3A3A',
+  colorTitleTransacao: '#1b1b1b',
+  colorSubtitleTransacao: '#848484',
 };
 
 export default theme;

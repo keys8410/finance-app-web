@@ -6,6 +6,7 @@ type Props = {
   bold?: boolean;
   capitalize?: boolean;
   marginBottom?: number;
+  isTitle?: boolean;
   children: string | React.ReactNode;
 };
 
@@ -19,6 +20,7 @@ const Title: React.FC<Props> = ({
   capitalize,
   children,
   marginBottom,
+  isTitle,
 }) => {
   return (
     <DefaultTitle
@@ -26,6 +28,7 @@ const Title: React.FC<Props> = ({
       color={color}
       bold={bold}
       marginBottom={marginBottom}
+      isTitle={isTitle}
     >
       {children}
     </DefaultTitle>

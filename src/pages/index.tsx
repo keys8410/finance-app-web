@@ -43,13 +43,14 @@ const Pages = () => {
         template={areasMobile}
         templateMd={areasDesktop}
         gap={10}
-        gapMd={20}
+        gapMd={25}
         templateCols="1fr"
         templateColsMd="auto 1fr auto"
         templateRowsMd="auto 1fr"
         maxWidth="98%"
-        maxWidthMd="90%"
-        minWidthMd="90%"
+        minHeightMd="20rem"
+        maxWidthMd="75%"
+        minWidthMd="75%"
         as={CompositionContainer}
       >
         {(Areas) => (
@@ -64,7 +65,7 @@ const Pages = () => {
                 direction="row"
                 height
               >
-                <Title>{titulo}</Title>
+                <Title isTitle>{titulo}</Title>
               </DirectionalContainer>
             </Areas.Titulo>
             <Areas.Usuario>{user?.nome}</Areas.Usuario>

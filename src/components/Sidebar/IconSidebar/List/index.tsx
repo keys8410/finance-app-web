@@ -25,7 +25,7 @@ const ListIconSidebar = () => {
   );
 
   return (
-    <>
+    <div>
       {navigation.map((nav) => (
         <ContainerListIconSidebar
           key={`icon-to-${nav.to}`}
@@ -37,7 +37,7 @@ const ListIconSidebar = () => {
           <IconSidebar icon={nav.icon} active={actuallyUrl === nav.to} />
         </ContainerListIconSidebar>
       ))}
-    </>
+    </div>
   );
 };
 

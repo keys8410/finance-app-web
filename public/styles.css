@@ -462,4 +462,21 @@ textarea {
   font-family: 'Work Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+}
+
+.simplebar-track.simplebar-vertical .simplebar-scrollbar:before,
+.simplebar-track.simplebar-horizontal .simplebar-scrollbar:before {
+  background: #ffdd6a;
+  opacity: 0.9;
+}
+
+.simplebar-track.simplebar-vertical,
+.simplebar-track.simplebar-horizontal {
+  background: rgba(1, 1, 1, 0.03);
+  border-radius: 2rem;
+}
+
+.simplebar-track.simplebar-vertical {
+  width: 0.65rem !important;
 }
