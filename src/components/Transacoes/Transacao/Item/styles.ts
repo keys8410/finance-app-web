@@ -1,5 +1,21 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { AppTheme } from '../../../../@types/appTheme';
+
+const bounceInLeft = keyframes`
+  0% {
+      opacity: 0;
+      transform: translateX(-80px);
+  }
+  60% {
+      opacity: 1;
+      transform: translateX(3px);
+  }
+  75% {
+      transform: translateX(-3px);
+  }
+  100% {
+      transform: translateX(0);
+  }`;
 
 export const ContainerTransacaoItem = styled.div<{ visible: boolean }>`
   height: 100%;
@@ -11,6 +27,7 @@ export const ContainerTransacaoItem = styled.div<{ visible: boolean }>`
 `;
 
 export const TitleTransacao = styled.p<{ theme: AppTheme }>`
+  margin-left: 1rem;
   font-weight: 700;
   color: ${({ theme }) => theme.colorTitleTransacao};
 
@@ -34,9 +51,14 @@ export const TransacaoContainer = styled.section`
   grid-gap: 0.8rem;
   height: 100%;
 
+  animation: ${bounceInLeft} 1.2s;
+  animation-fill-mode: both;
+
   & > div {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 `;
+
+export const TransacaoContent = styled.div``;

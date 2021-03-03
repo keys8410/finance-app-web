@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-
 import {
   SnapList,
   SnapItem,
@@ -7,26 +6,21 @@ import {
   useScroll,
   useDragToScroll,
 } from 'react-snaplist-carousel';
-import { PagedList } from '../../../../@types/requests/paged-list';
 import { TransacaoType } from '../../../../@types/transacoes';
-import { useFetch } from '../../../../hooks/useFetch';
 import { usePaginateFetch } from '../../../../hooks/usePaginateFetch';
 import { DirectionalContainer } from '../../../../styles/DirectionalContainer';
-import { debounce } from '../../../../utils/debounce';
 import TransacaoItem from '../Item';
 
 const PAGE_SIZE = 4;
 
 const setMargin = (index: number) => {
-  if (index === 0) return { top: '1%', bottom: '15px' };
+  if (index === 0) return { top: '1%', bottom: '10px' };
 
-  return { top: '15px', bottom: '15px' };
+  return { top: '10px', bottom: '10px' };
 };
 
 const TransacaoList = () => {
-  const [allItems, setAllItems] = useState<TransacaoType[]>([]);
-  const [page, setPage] = useState(1);
-  const [hasNextPage, setHasNextPage] = useState<boolean | null>(null);
+  const [first, setFirst] = useState(false);
 
   const snapList = useRef(null);
   const visible = useVisibleElements(
@@ -44,54 +38,72 @@ const TransacaoList = () => {
     size,
     setSize,
     isReachingEnd,
-  } = usePaginateFetch<TransacaoType>('/usuario/lancamentos', PAGE_SIZE);
+  } = usePaginateFetch<TransacaoType>(`/usuario/lancamentos`, 3, false);
 
-  if (error) return <h1>Something went wrong!</h1>;
-  if (!response) return <h1>Loading...</h1>;
+  useEffect(() => {
+    if (!isLoadingMore && size === 1 && !first) {
+      setFirst(true);
 
-  return (
-    <div>
-      <SnapList ref={snapList} direction="vertical" height="8rem">
-        {response?.map((transacao, index) => (
+      goToChildren(0);
+    }
+  }, [response, size]);
+
+  if (error)
+    return (
+      <DirectionalContainer height align="center" justify="center">
+        <h1>Erro ao carregar os lançamentos do usuário.</h1>
+      </DirectionalContainer>
+    );
+  else
+    return (
+      <div>
+        <SnapList ref={snapList} direction="vertical" height="8rem">
+          {response?.map((transacao, index) => (
+            <SnapItem
+              key={`transacao-${transacao.id}`}
+              margin={setMargin(index)}
+              height="2.5rem"
+              snapAlign="center"
+            >
+              <TransacaoItem
+                onClick={() => goToChildren(index)}
+                visible={visible === index}
+                transacao={transacao}
+              />
+            </SnapItem>
+          ))}
           <SnapItem
-            key={`transacao-${transacao.id}`}
-            margin={setMargin(index)}
+            margin={{ top: '5px', bottom: '.5rem' }}
             height="2.5rem"
             snapAlign="center"
           >
-            <TransacaoItem
-              onClick={() => goToChildren(index)}
-              visible={visible === index}
-              transacao={transacao}
-            />
-          </SnapItem>
-        ))}
-        <SnapItem
-          margin={{ top: '15px', bottom: '.5rem' }}
-          height="2.5rem"
-          snapAlign="center"
-        >
-          <DirectionalContainer height align="center" justify="center">
-            <button
-              disabled={isLoadingMore || isReachingEnd}
-              onClick={() => {
-                goToChildren(size * PAGE_SIZE - 2);
+            <DirectionalContainer height align="center" justify="center">
+              {isLoadingMore ? (
+                'Carregando...'
+              ) : (
+                <>
+                  {isReachingEnd ? (
+                    'Sem mais lançamentos 😞'
+                  ) : (
+                    <button
+                      disabled={isLoadingMore || isReachingEnd}
+                      onClick={() => {
+                        setSize(size + 1);
 
-                setTimeout(() => {
-                  setSize(size + 1);
-                }, 300);
-              }}
-            >
-              {isLoadingMore
-                ? 'Carregando...'
-                : isReachingEnd
-                ? 'Sem lançamentos 😞'
-                : 'Carregar mais'}
-            </button>
-          </DirectionalContainer>
-        </SnapItem>
-      </SnapList>
-    </div>
-  );
+                        setTimeout(() => {
+                          goToChildren(size * PAGE_SIZE);
+                        }, 250);
+                      }}
+                    >
+                      Carregar mais
+                    </button>
+                  )}
+                </>
+              )}
+            </DirectionalContainer>
+          </SnapItem>
+        </SnapList>
+      </div>
+    );
 };
 export default TransacaoList;

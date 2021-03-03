@@ -7,7 +7,7 @@ import TransacaoList from './Transacao/List';
 
 const Transacoes = () => {
   return (
-    <CardBordered>
+    <CardBordered maxHeight={13.5}>
       <DirectionalContainer
         direction="row"
         justify="space-between"
