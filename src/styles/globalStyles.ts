@@ -95,7 +95,7 @@ export const Forms = styled(Form)<{ marginT?: number }>`
   }
 `;
 
-export const CardBordered = styled.div<{ theme: AppTheme }>`
+export const CardBordered = styled.div<{ theme: AppTheme; maxHeight?: number }>`
   border-radius: 1.3rem;
   width: 100%;
   height: 100%;
@@ -103,4 +103,5 @@ export const CardBordered = styled.div<{ theme: AppTheme }>`
   background: ${({ theme }) => theme.backgroundBlocks};
   padding: 1.3rem;
   padding-bottom: 1rem;
+  max-height: ${({ maxHeight }) => (maxHeight ? maxHeight + 'rem' : '100%')};
 `;
