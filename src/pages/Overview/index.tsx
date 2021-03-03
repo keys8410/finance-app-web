@@ -3,6 +3,7 @@ import React from 'react';
 import Transacoes from '../../components/Transacoes';
 import Title from '../../components/Utils/Title';
 import { CardBordered } from '../../styles/globalStyles';
+import { Grafico } from './Grafico';
 
 const areasMobile = `
 entrada
@@ -30,6 +31,7 @@ const Overview = () => {
         templateCols="1fr"
         templateColsMd="repeat(1fr)"
         heightMd="100%"
+        alignItems="end"
       >
         {(Areas) => (
           <>
@@ -52,6 +54,8 @@ const Overview = () => {
             <Areas.Estatisticas>
               <CardBordered>
                 <Title>Estatísticas por Categoria</Title>
+
+                <Grafico />
               </CardBordered>
             </Areas.Estatisticas>
           </>
