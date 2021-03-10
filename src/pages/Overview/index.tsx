@@ -6,12 +6,12 @@ import { CardBordered } from '../../styles/globalStyles';
 import { Grafico } from './Grafico';
 
 const areasMobile = `
+transacoes
 entrada
 saida
 cartoes
 noticias
 estatisticas
-transacoes
 `;
 
 const areasDesktop = `
@@ -29,7 +29,7 @@ const Overview = () => {
         gap={15}
         gapMd={25}
         templateCols="1fr"
-        templateColsMd="repeat(1fr)"
+        templateColsMd="repeat(3, 1fr)"
         heightMd="100%"
         alignItems="end"
       >
@@ -38,12 +38,15 @@ const Overview = () => {
             <Areas.Entrada>
               <CardBordered>Entradas</CardBordered>
             </Areas.Entrada>
+
             <Areas.Saida>
               <CardBordered>Saidas</CardBordered>
             </Areas.Saida>
+
             <Areas.Cartoes>
               <CardBordered>Cartões</CardBordered>
             </Areas.Cartoes>
+
             <Areas.Transacoes>
               <Transacoes />
             </Areas.Transacoes>
@@ -51,6 +54,7 @@ const Overview = () => {
             <Areas.Noticias>
               <CardBordered>Noticias</CardBordered>
             </Areas.Noticias>
+
             <Areas.Estatisticas>
               <CardBordered>
                 <Title>Estatísticas por Categoria</Title>

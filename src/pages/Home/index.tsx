@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSWRInfinite } from 'swr';
+import { TransacaoType } from '../../@types/transacoes';
 import { usePaginateFetch } from '../../hooks/usePaginateFetch';
 
+const PAGE_SIZE = 3;
 type PostType = { post: { title: string; body: any; id: number } };
 function Post({ post }: PostType) {
   const { title, body, id } = post;
@@ -14,36 +17,20 @@ function Post({ post }: PostType) {
   );
 }
 
+const getKey = (
+  pageIndex: number,
+  previousPageData: any,
+  repo: string,
+  pageSize: number
+) => {
+  if (previousPageData && !previousPageData.length) return null; // reached the end
+
+  return `/usuario/lancamentos?page=${
+    pageIndex + 1
+  }&pageSize=${pageSize}&categoriaNome`;
+};
+
 const Home = () => {
-  const {
-    response,
-    error,
-    isLoadingMore,
-    size,
-    setSize,
-    isReachingEnd,
-  } = usePaginateFetch('/usuario/lancamentos');
-
-  if (error) return <h1>Something went wrong!</h1>;
-  if (!response) return <h1>Loading...</h1>;
-
-  return (
-    <div className="container">
-      <h1>My Posts with useSWRInfinite</h1>
-      {response.map((post: any) => (
-        <Post post={post} key={post?.id} />
-      ))}
-      <button
-        disabled={isLoadingMore || isReachingEnd}
-        onClick={() => setSize(size + 1)}
-      >
-        {isLoadingMore
-          ? 'Loading...'
-          : isReachingEnd
-          ? 'No more posts'
-          : 'Load more'}
-      </button>
-    </div>
-  );
+  return <div>home</div>;
 };
 export default Home;

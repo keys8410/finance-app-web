@@ -4,8 +4,6 @@ import { useFetch } from '../../../hooks/useFetch';
 import { CategoriaType } from '../../../@types/categoria';
 import { DirectionalContainer } from '../../../styles/DirectionalContainer';
 
-const margin = { top: 30, right: 200, bottom: 30, left: 30 };
-
 const styles = {
   root: {
     position: 'relative',
@@ -34,70 +32,50 @@ const styles = {
   },
 };
 
-type GraficoType = {
-  id: string;
-  label: string;
-  value: number;
-  color: string;
-};
-
 export const Grafico = () => {
-  const [dataPie, setDataPie] = useState<GraficoType[]>([]);
   const { response, isLoading } = useFetch<CategoriaType[]>(
-    `/usuario/stats/categoria`
+    `usuario/stats/categoria`
   );
+  console.log('categoria =>', response);
 
-  useMemo(() => {
-    if (!isLoading && response) {
-      const data = response.map((x) => ({
-        id: x.nome,
-        label: x.nome,
-        value: x.porcentagem,
-        color: 'hsla(' + Math.random() * 360 + ', 100%, 50%, 1)',
-      }));
-
-      setDataPie(data);
-    }
-  }, [response]);
-
-  return (
-    <>
-      {isLoading ? (
-        'Carregando...'
-      ) : (
-        <>
-          <DirectionalContainer align="center" justify="center">
-            <div style={styles.root as {}}>
-              <ResponsivePie
-                margin={{ top: 20, bottom: 20 }}
-                data={dataPie}
-                colors={dataPie.map((x) => x.color)}
-                innerRadius={0.7}
-                sortByValue
-                enableRadialLabels={false}
-                sliceLabel="none"
-                isInteractive={false}
-              />
-              <div style={styles.overlay as {}}>
-                <span>100%</span>
-              </div>
+  if (isLoading && !response) return <p>Carregando...</p>;
+  else
+    return (
+      <>
+        <DirectionalContainer align="center" justify="center">
+          <div style={styles.root as {}}>
+            <ResponsivePie
+              margin={{ top: 20, bottom: 20 }}
+              data={response}
+              colors={response?.map((x) => x.color)}
+              innerRadius={0.7}
+              sortByValue
+              enableRadialLabels={false}
+              sliceLabel="none"
+              isInteractive={false}
+            />
+            <div style={styles.overlay as {}}>
+              <span>100%</span>
             </div>
-          </DirectionalContainer>
-
-          <div>
-            <ul>
-              {dataPie.map((categoria, index) => (
-                <li
-                  key={`categoriaGrafico-${index}`}
-                  style={{ background: categoria.color }}
-                >
-                  {categoria.label} - {categoria.value}
-                </li>
-              ))}
-            </ul>
           </div>
-        </>
-      )}
-    </>
-  );
+        </DirectionalContainer>
+
+        <div>
+          <ul>
+            {response?.map((categoria, index) => (
+              <li key={`categoriaGrafico-${index}`}>
+                {categoria.label} - {categoria.value}{' '}
+                <div
+                  style={{
+                    background: categoria.color,
+                    height: 10,
+                    width: 10,
+                  }}
+                ></div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </>
+    );
 };

@@ -38,7 +38,7 @@ const TransacaoList = () => {
     size,
     setSize,
     isReachingEnd,
-  } = usePaginateFetch<TransacaoType>(`/usuario/lancamentos`, 3, false);
+  } = usePaginateFetch<TransacaoType>(`/usuario/lancamentos`, 4, false);
 
   useEffect(() => {
     if (!isLoadingMore && size === 1 && !first) {
@@ -47,7 +47,7 @@ const TransacaoList = () => {
       goToChildren(0);
     }
   }, [response, size]);
-
+  console.log('error =>', error);
   if (error)
     return (
       <DirectionalContainer height align="center" justify="center">
@@ -57,52 +57,54 @@ const TransacaoList = () => {
   else
     return (
       <div>
-        <SnapList ref={snapList} direction="vertical" height="8rem">
-          {response?.map((transacao, index) => (
+        {!isLoadingMore && response && response.length > 0 && (
+          <SnapList ref={snapList} direction="vertical" height="8rem">
+            {response?.map((transacao, index) => (
+              <SnapItem
+                key={`transacao-${transacao.id}`}
+                margin={setMargin(index)}
+                height="2.5rem"
+                snapAlign="center"
+              >
+                <TransacaoItem
+                  onClick={() => goToChildren(index)}
+                  visible={visible === index}
+                  transacao={transacao}
+                />
+              </SnapItem>
+            ))}
             <SnapItem
-              key={`transacao-${transacao.id}`}
-              margin={setMargin(index)}
+              margin={{ top: '5px', bottom: '.5rem' }}
               height="2.5rem"
               snapAlign="center"
             >
-              <TransacaoItem
-                onClick={() => goToChildren(index)}
-                visible={visible === index}
-                transacao={transacao}
-              />
-            </SnapItem>
-          ))}
-          <SnapItem
-            margin={{ top: '5px', bottom: '.5rem' }}
-            height="2.5rem"
-            snapAlign="center"
-          >
-            <DirectionalContainer height align="center" justify="center">
-              {isLoadingMore ? (
-                'Carregando...'
-              ) : (
-                <>
-                  {isReachingEnd ? (
-                    'Sem mais lançamentos 😞'
-                  ) : (
-                    <button
-                      disabled={isLoadingMore || isReachingEnd}
-                      onClick={() => {
-                        setSize(size + 1);
+              <DirectionalContainer height align="center" justify="center">
+                {isLoadingMore ? (
+                  'Carregando...'
+                ) : (
+                  <>
+                    {isReachingEnd ? (
+                      'Sem mais lançamentos 😞'
+                    ) : (
+                      <button
+                        disabled={isLoadingMore || isReachingEnd}
+                        onClick={() => {
+                          setSize(size + 1);
 
-                        setTimeout(() => {
-                          goToChildren(size * PAGE_SIZE);
-                        }, 250);
-                      }}
-                    >
-                      Carregar mais
-                    </button>
-                  )}
-                </>
-              )}
-            </DirectionalContainer>
-          </SnapItem>
-        </SnapList>
+                          setTimeout(() => {
+                            goToChildren(size * PAGE_SIZE);
+                          }, 250);
+                        }}
+                      >
+                        Carregar mais
+                      </button>
+                    )}
+                  </>
+                )}
+              </DirectionalContainer>
+            </SnapItem>
+          </SnapList>
+        )}
       </div>
     );
 };
