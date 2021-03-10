@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
-import useSWR, { useSWRInfinite } from 'swr';
+import useSWR from 'swr';
 
 type FetchReturn<TResponse, TErrorResponse = any> = {
   response: TResponse;
