@@ -11,6 +11,7 @@ import {
   ErrorLabel,
   InputGroup,
 } from '../styles';
+import { TextLabel, Label, FocusedBg } from './style';
 
 type Props = InputHTMLAttributes<HTMLInputElement> &
   TextareaHTMLAttributes<HTMLTextAreaElement> & {
@@ -46,45 +47,74 @@ const InputField: React.FC<Props> = ({
     });
   }, [fieldName, registerField]);
   return (
-    <InputGroup>
-      {label && (
-        <label htmlFor={fieldName}>
-          {label} {required && <span style={{ color: 'red' }}>*</span>}
-        </label>
-      )}
+    <>
       {rows && rows > 0 ? (
-        <BasicTextAreaInput
-          disabled={disabled}
-          rows={rows}
-          id={fieldName}
-          ref={inputRef}
-          defaultValue={defaultValue}
-          onFocus={(e) => {
-            clearError();
-            // if (rest.onFocus) {
-            //   rest.onFocus(e);
-            // }
-          }}
-          {...rest}
-        />
+        <InputGroup>
+          {label && (
+            <label htmlFor={fieldName}>
+              {label} {required && <span style={{ color: 'red' }}>*</span>}
+            </label>
+          )}
+
+          <BasicTextAreaInput
+            disabled={disabled}
+            rows={rows}
+            id={fieldName}
+            ref={inputRef}
+            defaultValue={defaultValue}
+            onFocus={(e) => {
+              clearError();
+              // if (rest.onFocus) {
+              //   rest.onFocus(e);
+              // }
+            }}
+            {...rest}
+          />
+        </InputGroup>
       ) : (
-        <BasicInput
-          {...rest}
-          disabled={disabled}
-          id={fieldName}
-          ref={inputRef}
-          defaultValue={defaultValue}
-          onFocus={(e) => {
-            clearError();
-            if (rest.onFocus) {
-              rest.onFocus(e);
-            }
-          }}
-        />
+        <>
+          {label ? (
+            <Label htmlFor={fieldName}>
+              <input
+                {...rest}
+                disabled={disabled}
+                id={fieldName}
+                ref={inputRef}
+                defaultValue={defaultValue}
+                onFocus={(e) => {
+                  clearError();
+                  if (rest.onFocus) {
+                    rest.onFocus(e);
+                  }
+                }}
+                placeholder="&nbsp;"
+              />
+
+              <TextLabel>{label}</TextLabel>
+              <FocusedBg />
+
+              {required && <small style={{ color: 'red' }}>*</small>}
+            </Label>
+          ) : (
+            <BasicInput
+              {...rest}
+              disabled={disabled}
+              id={fieldName}
+              ref={inputRef}
+              defaultValue={defaultValue}
+              onFocus={(e) => {
+                clearError();
+                if (rest.onFocus) {
+                  rest.onFocus(e);
+                }
+              }}
+            />
+          )}
+        </>
       )}
 
       {error && <ErrorLabel>{error}</ErrorLabel>}
-    </InputGroup>
+    </>
   );
 };
 
