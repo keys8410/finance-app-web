@@ -1,4 +1,6 @@
 export type CategoriaType = {
-  nome: string;
-  porcentagem: number;
+  id: string;
+  label: string;
+  value: number;
+  color: string;
 };

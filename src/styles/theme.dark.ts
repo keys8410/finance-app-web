@@ -15,6 +15,9 @@ const theme: AppTheme = {
   colorIconActive: '#3A3A3A',
   colorSubtitleTransacao: '#C7C7C7',
   colorTitleTransacao: '#1b1b1b',
+
+  closeButtonModal: '#F6F5FA',
+  headerColor: '#111',
 };
 
 export default theme;

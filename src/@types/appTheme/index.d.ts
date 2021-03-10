@@ -15,4 +15,6 @@ export interface AppTheme extends DefaultTheme {
   backgroundIconActive: string;
   colorSubtitleTransacao: string;
   colorTitleTransacao: string;
+  closeButtonModal: string;
+  headerColor: string;
 }
