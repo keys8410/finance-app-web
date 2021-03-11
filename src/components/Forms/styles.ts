@@ -1,6 +1,6 @@
 import { Form } from '@unform/web';
 import styled from 'styled-components';
-import { AppTheme as Theme } from '../../@types/theme/AppTheme';
+import { AppTheme } from '../../@types/appTheme';
 
 export const ErrorLabel = styled.span`
   color: #d0342a;
@@ -15,48 +15,57 @@ export const Formulario = styled(Form)`
   align-items: flex-start;
 `;
 
-export const BasicInput = styled.input<{ theme: Theme }>`
-  height: 3rem;
-  border-radius: 7px;
-  padding: 7px 8px;
-  transition: 0.1s;
-  color: #3a3636;
-  background: #eff4f7;
-  border: 0.5px solid #eff4f7;
-
-  &:focus {
-    border: 0.5px solid #eee;
-  }
-`;
-
-export const BasicTextAreaInput = styled.textarea<{
-  theme: Theme;
-}>`
-  border-radius: 7px;
-  padding: 7px 8px;
+export const BasicInput = styled.input<{ theme: AppTheme }>`
+  border-radius: 5px;
+  padding: 11px 9px;
   transition: 0.1s;
   font-size: 0.9rem;
 
-  border: 0.5px solid #eff4f7;
-  color: #3a3636;
+  border: 1.5px solid #ddd;
+  color: ${({ theme }) => theme.inputColor};
   filter: brightness(1);
 
   &:focus {
-    border: 0.5px solid #eee;
+    border: 1.5px solid ${({ theme }) => theme.main + '88'};
   }
 
-  background: #eff4f7;
+  &:hover {
+    border: 1.5px solid #ccc;
+  }
+
+  background: transparent;
 `;
 
-export const InputGroup = styled.div`
+export const BasicTextAreaInput = styled.textarea<{ theme: AppTheme }>`
+  border-radius: 5px;
+  padding: 11px 9px;
+  transition: 0.1s;
+  font-size: 0.9rem;
+
+  border: 1.5px solid #ddd;
+  color: ${({ theme }) => theme.inputColor};
+  filter: brightness(1);
+
+  &:focus {
+    border: 1.5px solid ${({ theme }) => theme.main + '88'};
+  }
+
+  &:hover {
+    border: 1.5px solid #ccc;
+  }
+
+  background: transparent;
+`;
+
+export const InputGroup = styled.div<{ theme: AppTheme }>`
   display: flex;
   flex-direction: column;
   width: fill-available;
 
   & label {
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 500;
-    color: #333;
+    color: ${({ theme }) => theme.inputColor};
     margin-bottom: 0.8rem;
   }
   z-index: auto;

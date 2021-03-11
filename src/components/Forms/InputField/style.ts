@@ -20,12 +20,12 @@ export const FocusedBg = styled.span`
   background: transparent;
 `;
 
-export const TextLabel = styled.span`
+export const TextLabel = styled.span<{ theme: AppTheme }>`
   position: absolute;
   top: -14px;
   left: 2px;
   font-size: 16px;
-  color: #848484;
+  color: ${({ theme }) => theme.inputColor};
   font-weight: 500;
   transform-origin: 0 0;
   transform: translate3d(0, 0, 0);
@@ -36,49 +36,48 @@ export const TextLabel = styled.span`
 export const Label = styled.label<{ theme: AppTheme }>`
   position: relative;
   margin: auto;
+
+  overflow: hidden;
+`;
+
+export const Input = styled.input`
+  appearance: none;
   width: fill-available;
 
-  border-radius: 3px;
-  overflow: hidden;
+  border: 0;
+  font-family: inherit;
+  padding: 16px 12px 0 12px;
+  height: 56px;
+  font-size: 16px;
+  font-weight: 400;
+  background: transparent;
+  border-bottom: 1px solid #ddd;
+  color: #848484;
+  transition: all 0.15s ease;
 
-  & input {
-    appearance: none;
-    width: 100%;
-    border: 0;
-    font-family: inherit;
-    padding: 16px 12px 0 12px;
-    height: 56px;
-    font-size: 16px;
-    font-weight: 400;
+  &:hover {
     background: transparent;
-    box-shadow: inset 0 -1px 0 #848484;
-    color: #848484;
-    transition: all 0.15s ease;
+    border-bottom: 1px solid #ccc;
+  }
 
-    :hover {
-      background: transparent;
-      box-shadow: inset 0 -1px 0 #848484;
-    }
+  &:not(:placeholder-shown) + ${TextLabel} {
+    color: #222;
+    transform: translate3d(0, -13px, 0) scale(0.9);
+  }
 
-    :not(:placeholder-shown) + ${TextLabel} {
-      color: #222;
-      transform: translate3d(0, -13px, 0) scale(0.9);
-    }
+  &:focus {
+    background: transparent;
+    outline: none;
+    border-bottom: 1px solid ${({ theme }) => theme.main + '88'};
+  }
 
-    :focus {
-      background: transparent;
-      outline: none;
-      box-shadow: inset 0 -2px 0 ${({ theme }) => theme.main + '88'};
-    }
+  &:focus + ${TextLabel} {
+    color: ${({ theme }) => theme.main};
+    transform: translate3d(0, -12px, 0) scale(0.9);
+  }
 
-    :focus + ${TextLabel} {
-      color: ${({ theme }) => theme.main};
-      transform: translate3d(0, -12px, 0) scale(0.9);
-    }
-
-    :focus + ${FocusedBg} {
-      transform: scaleX(1);
-      transition: all 0.1s ease;
-    }
+  &:focus + ${FocusedBg} {
+    transform: scaleX(1);
+    transition: all 0.1s ease;
   }
 `;

@@ -11,7 +11,7 @@ import {
   ErrorLabel,
   InputGroup,
 } from '../styles';
-import { TextLabel, Label, FocusedBg } from './style';
+import { TextLabel, Label, FocusedBg, Input } from './style';
 
 type Props = InputHTMLAttributes<HTMLInputElement> &
   TextareaHTMLAttributes<HTMLTextAreaElement> & {
@@ -75,7 +75,7 @@ const InputField: React.FC<Props> = ({
         <>
           {label ? (
             <Label htmlFor={fieldName}>
-              <input
+              <Input
                 {...rest}
                 disabled={disabled}
                 id={fieldName}
