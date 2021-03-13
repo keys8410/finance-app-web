@@ -3,11 +3,40 @@ import { Form } from '@unform/web';
 import { ButtonStyled } from '../components/Button';
 import { ColTypes } from '../@types/directionalContainer';
 import { AppTheme } from '../@types/appTheme';
+import { GridTemplateType } from '../@types/gridTemplate';
 
 export const GlobalStyles = createGlobalStyle<{ theme: AppTheme }>`
     body {
-        background-color: ${({ theme }) => theme.background};
-        color: ${({ theme }) => theme.textColor};
+      background-color: ${({ theme }) => theme.background};
+      color: ${({ theme }) => theme.textColor};
+    }
+
+    .react-datepicker__input-container {
+      display: flex;
+      flex: 1;
+    }
+
+    .react-datepicker__input-container input {
+      flex: 1;
+    }
+
+    .react-select__control {
+      border: 1px solid #ddd !important;
+    }
+
+    .react-select__control--menu-is-open,
+    .react-select__control--is-focused {
+      border: 1px solid #51beff88 !important;
+      box-shadow: 0 0 0 1px #51beff44 !important;
+    }
+
+    .react-select__placeholder {
+      color: ${({ theme }) => theme.inputColor} !important;
+      font-size: 0.9rem !important;
+    }
+
+    .react-select__indicator-separator {
+      display:none !important;
     }
 `;
 
@@ -33,6 +62,12 @@ export const TwoColumnContainer = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
+`;
+
+export const GridTemplate = styled.section<GridTemplateType>`
+  display: grid;
+  grid-template-columns: repeat(${({ repeat }) => repeat}, 1fr);
+  grid-gap: ${({ gap }) => gap ?? '10px'};
 `;
 
 export const TableActionButtons = styled.div`
@@ -79,9 +114,8 @@ export const Row = styled.div`
 export const Forms = styled(Form)<{ marginT?: number }>`
   & label {
     margin-top: ${({ marginT }) => (marginT ? marginT + 'rem' : '0.6rem')};
-    font-size: 0.875rem;
+    font-size: 0.9rem;
     font-weight: 500;
-    color: #333;
     margin-bottom: 0.8rem;
   }
 
@@ -93,6 +127,8 @@ export const Forms = styled(Form)<{ marginT?: number }>`
   & ${ButtonStyled}:last-child {
     margin-right: 0rem;
   }
+
+  margin-right: 0.6rem;
 `;
 
 export const CardBordered = styled.div<{ theme: AppTheme; maxHeight?: number }>`

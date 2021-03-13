@@ -2,7 +2,7 @@ import { AppTheme } from '../@types/appTheme';
 
 const theme: AppTheme = {
   background: '#323232',
-  backgroundApp: '#D2E8FE',
+  backgroundApp: '#043a5b',
   main: '#1565c0',
   primary: '#FF698A',
   backgroundBlocks: '#fff',
@@ -18,6 +18,8 @@ const theme: AppTheme = {
 
   closeButtonModal: '#F6F5FA',
   headerColor: '#111',
+
+  inputColor: '#eee',
 };
 
 export default theme;

@@ -18,6 +18,8 @@ const theme: AppTheme = {
 
   closeButtonModal: '#938EA6',
   headerColor: '#333',
+
+  inputColor: '#666',
 };
 
 export default theme;
