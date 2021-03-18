@@ -1,9 +1,7 @@
 import { useField } from '@unform/core';
-import React, { useEffect, useRef, useState } from 'react';
-import InputField from '../InputField';
-import { ErrorLabel, InputGroup } from '../styles';
+import { useEffect, useRef, useState } from 'react';
+import { BasicInput, ErrorLabel, InputGroup, Required } from '../styles';
 import IntlCurrencyInput, { IntlCurrencyInputProps } from './IntlCurrencyInput';
-import { Container } from './styles';
 
 export const currencyConfig = {
   locale: 'pt-BR',
@@ -78,8 +76,7 @@ const InputFieldDecimal = ({
     <InputGroup>
       {label && (
         <label htmlFor={fieldName}>
-          {label} {required ? <span style={{ color: '#f00' }}>*</span> : ''}
-          &nbsp;
+          {label} {required && <Required />}
         </label>
       )}
       <IntlCurrencyInput
@@ -97,7 +94,7 @@ const InputFieldDecimal = ({
           setValor(value);
         }}
         defaultValue={defaultValue}
-        component={InputField}
+        component={BasicInput}
       />
       {error && <ErrorLabel>{error}</ErrorLabel>}
     </InputGroup>

@@ -9,7 +9,7 @@ import Select, {
 import ReactTooltip from 'react-tooltip';
 import { debounce } from '../../../utils/debounce';
 import { DirectionalContainer } from '../../../styles/DirectionalContainer';
-import { ErrorLabel, InputGroup } from '../styles';
+import { ErrorLabel, InputGroup, Required } from '../styles';
 
 type Props = {
   options: GroupedOptionsType<OptionTypeBase> | OptionsType<OptionTypeBase>;
@@ -159,7 +159,7 @@ const CreatableSelect = ({
     <InputGroup>
       {label && (
         <label htmlFor={fieldName}>
-          {label} {required && <span style={{ color: 'red' }}>*</span>}
+          {label} {required && <Required />}
         </label>
       )}
       <DirectionalContainer direction="row">

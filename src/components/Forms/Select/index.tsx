@@ -1,7 +1,7 @@
 import { useField } from '@unform/core';
 import React, { useEffect, useRef, useState } from 'react';
 import ReactSelect, { OptionTypeBase } from 'react-select';
-import { ErrorLabel, InputGroup } from '../styles';
+import { ErrorLabel, InputGroup, Required } from '../styles';
 
 export interface Option extends OptionTypeBase {
   value: any;
@@ -95,7 +95,7 @@ export default function SelectField({
     <InputGroup>
       {label && (
         <label htmlFor={fieldName}>
-          {label} {required && <span style={{ color: 'red' }}>*</span>}
+          {label} {required && <Required />}
         </label>
       )}
 

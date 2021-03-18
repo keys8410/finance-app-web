@@ -23,7 +23,7 @@ export const FocusedBg = styled.span`
 export const TextLabel = styled.span<{ theme: AppTheme }>`
   position: absolute;
   top: -14px;
-  left: 2px;
+  left: 0px;
   font-size: 16px;
   color: ${({ theme }) => theme.inputColor};
   font-weight: 500;
@@ -46,7 +46,7 @@ export const Input = styled.input`
 
   border: 0;
   font-family: inherit;
-  padding: 16px 12px 0 12px;
+  padding: 2rem 0 0 0;
   height: 56px;
   font-size: 16px;
   font-weight: 400;

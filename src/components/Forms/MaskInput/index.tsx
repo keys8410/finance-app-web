@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import ReactInputMask, { Props as InputProps } from 'react-input-mask';
 import { useField } from '@unform/core';
-import { BasicInput, ErrorLabel, InputGroup } from '../styles';
+import { BasicInput, ErrorLabel, InputGroup, Required } from '../styles';
 
 interface Props extends InputProps {
   name: string;
@@ -29,7 +29,7 @@ const InputMask: React.FC<Props> = ({ name, label, required, ...rest }) => {
     <InputGroup>
       {label && (
         <label htmlFor={fieldName}>
-          {label} {required && <span style={{ color: 'red' }}>*</span>}
+          {label} {required && <Required />}
         </label>
       )}
       <ReactInputMask ref={inputRef} defaultValue={defaultValue} {...rest}>

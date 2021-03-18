@@ -191,7 +191,7 @@ const IntlCurrencyInput = ({
   return (
     <InputComponent
       {...otherProps}
-      innerRef={defaultRef}
+      ref={defaultRef}
       value={maskedValue} // @ts-ignore
       defaultValue={defaultValue}
       onChange={handleChange}

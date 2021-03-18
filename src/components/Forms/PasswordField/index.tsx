@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, InputHTMLAttributes, useState } from 'react';
 import { useField } from '@unform/core';
-import { ErrorLabel, InputGroup } from '../styles';
+import { ErrorLabel, InputGroup, Required } from '../styles';
 import { BiHide, BiShow } from 'react-icons/bi';
 import { BorderlessInput, InputFake } from './styles';
 import { IconButton } from '../../Button';
@@ -34,7 +34,7 @@ const PasswordField: React.FC<Props> = ({ name, label, required, ...rest }) => {
     <InputGroup>
       {label && (
         <label htmlFor={fieldName}>
-          {label} {required && <span style={{ color: 'red' }}>*</span>}
+          {label} {required && <Required />}
         </label>
       )}
       <InputFake focused={focado} onClick={() => inputRef.current?.focus()}>

@@ -6,7 +6,6 @@ import { debounce } from '../../../../utils/debounce';
 
 const CategoriasSelect = ({ name, label, onChange, required }: Props) => {
   const [term, setTerm] = useState('');
-
   const { response, isLoading, error } = useFetch<CategoriaType[]>(
     `/categoria`
   );
@@ -14,15 +13,16 @@ const CategoriasSelect = ({ name, label, onChange, required }: Props) => {
   return (
     <SelectField
       name={name}
-      label={label ?? 'Etnias'}
+      label={label ?? 'Categoria'}
       required={required}
       placeholder="Selecione uma categoria"
       options={
-        response &&
-        response?.map((categoria) => ({
-          value: categoria.id,
-          display: categoria.nome,
-        }))
+        response
+          ? response?.map((categoria) => ({
+              value: categoria.id,
+              display: categoria.nome,
+            }))
+          : []
       }
       onInputChange={(value) => {
         debounce(() => {

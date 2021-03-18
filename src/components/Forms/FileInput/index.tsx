@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react';
 import { useField } from '@unform/core';
-import { ErrorLabel } from '../styles';
+import { ErrorLabel, Required } from '../styles';
 
 interface Props {
   name: string;
@@ -60,7 +60,7 @@ const ImageInput: React.FC<InputProps> = ({
     <>
       {label && (
         <label htmlFor={fieldName}>
-          {label} {required && <span style={{ color: 'red' }}>*</span>}
+          {label} {required && <Required />}
         </label>
       )}
       {preview && <img src={preview} alt="Preview" width="100" />}

@@ -10,6 +10,7 @@ import {
   BasicTextAreaInput,
   ErrorLabel,
   InputGroup,
+  Required,
 } from '../styles';
 import { TextLabel, Label, FocusedBg, Input } from './style';
 
@@ -52,7 +53,7 @@ const InputField: React.FC<Props> = ({
         <InputGroup>
           {label && (
             <label htmlFor={fieldName}>
-              {label} {required && <span style={{ color: 'red' }}>*</span>}
+              {label} {required && <Required />}
             </label>
           )}
 
@@ -90,10 +91,10 @@ const InputField: React.FC<Props> = ({
                 placeholder="&nbsp;"
               />
 
-              <TextLabel>{label}</TextLabel>
+              <TextLabel>
+                {label} {required && <Required />}
+              </TextLabel>
               <FocusedBg />
-
-              {required && <small style={{ color: 'red' }}>*</small>}
             </Label>
           ) : (
             <BasicInput

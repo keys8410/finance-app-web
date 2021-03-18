@@ -20,6 +20,7 @@ export const BasicInput = styled.input<{ theme: AppTheme }>`
   padding: 11px 9px;
   transition: 0.1s;
   font-size: 0.9rem;
+  width: fill-available;
 
   border: 1.5px solid #ddd;
   color: ${({ theme }) => theme.inputColor};
@@ -69,4 +70,11 @@ export const InputGroup = styled.div<{ theme: AppTheme }>`
     margin-bottom: 0.8rem;
   }
   z-index: auto;
+`;
+
+export const Required = styled.span`
+  &:before {
+    content: '*';
+    color: #d0342a;
+  }
 `;

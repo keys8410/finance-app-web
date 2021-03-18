@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, InputHTMLAttributes } from 'react';
 import { useField } from '@unform/core';
-import { ErrorLabel, InputGroup } from '../styles';
+import { ErrorLabel, InputGroup, Required } from '../styles';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -47,7 +47,7 @@ const CheckboxInput: React.FC<Props> = ({
     <InputGroup>
       {label && (
         <label htmlFor={fieldName}>
-          {label} {required && <span style={{ color: 'red' }}>*</span>}
+          {label} {required && <Required />}
         </label>
       )}
       {options.map((option, index) => (
