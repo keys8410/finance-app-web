@@ -10,6 +10,7 @@ type PropTypes = {
   content: string | React.ReactNode;
   style?: React.CSSProperties | undefined;
   onClick?: () => void;
+  bgColor?: string;
 };
 type Props = WithChildren<PropTypes>;
 
@@ -21,6 +22,7 @@ const Tooltip = ({
   place = 'top',
   content,
   style = {},
+  bgColor,
   onClick,
 }: Props) => {
   return (
@@ -29,8 +31,6 @@ const Tooltip = ({
         data-tip
         data-for={dataFor}
         style={{
-          width: '100%',
-          height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -40,7 +40,13 @@ const Tooltip = ({
       >
         {children}
       </a>
-      <ReactTooltip id={dataFor} type={type} effect={effect} place={place}>
+      <ReactTooltip
+        id={dataFor}
+        type={type}
+        effect={effect}
+        place={place}
+        backgroundColor={bgColor}
+      >
         <span>{content}</span>
       </ReactTooltip>
     </>
