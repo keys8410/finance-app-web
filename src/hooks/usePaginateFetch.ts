@@ -1,13 +1,25 @@
 import { toast } from 'react-toastify';
 import { useSWRInfinite } from 'swr';
 
+type UsePaginateFetchReturns<TResponse> = {
+  response: TResponse[];
+  error: any;
+  isLoading: boolean;
+  size: number;
+  setSize: (e: number) => void;
+  isReachingEnd: boolean;
+  isEmpty: boolean;
+  isRefreshing: boolean;
+  reload: () => Promise<any>;
+};
+
 const getKey = (
   pageIndex: number,
   previousPageData: any,
   path: string,
   pageSize: number
 ) => {
-  if (previousPageData && !previousPageData.length) return null; // reached the end
+  if (previousPageData && !previousPageData.length) return null;
 
   return `${path}?page=${pageIndex + 1}&pageSize=${pageSize}&categoriaNome`;
 };
@@ -16,7 +28,7 @@ export const usePaginateFetch = <TResponse = any, TErrorResponse = any>(
   path: string,
   pageSize: number,
   validateOnFocus?: boolean
-) => {
+): UsePaginateFetchReturns<TResponse> => {
   if (!path) {
     throw new Error('Path is required');
   }
@@ -31,7 +43,17 @@ export const usePaginateFetch = <TResponse = any, TErrorResponse = any>(
   if (error && error.response?.status === 401) {
     toast.warn('Sua sessão expirou, por favor entre novamente.');
 
-    return { error, size, setSize };
+    return {
+      response: [],
+      error,
+      isLoading: false,
+      size,
+      setSize,
+      isReachingEnd: false,
+      isEmpty: false,
+      isRefreshing: false,
+      reload: (): Promise<any> => mutate(response),
+    };
   }
 
   const response = (data ? [].concat(...data) : []) as TResponse[];
@@ -42,18 +64,20 @@ export const usePaginateFetch = <TResponse = any, TErrorResponse = any>(
     (size > 0 && data && typeof data[size - 1] === 'undefined');
   const isEmpty = data?.[0]?.length === 0;
   const isReachingEnd =
-    isEmpty || (data && data[data.length - 1]?.length < pageSize);
-  const isRefreshing = isValidating && data && data.length === size;
+    isEmpty || ((data && data[data.length - 1]?.length < pageSize) as boolean);
+  const isRefreshing = (isValidating &&
+    data &&
+    data.length === size) as boolean;
 
   return {
     response: response as TResponse[],
     error,
-    isLoadingMore,
+    isLoading: isLoadingMore as boolean,
     size,
     setSize,
     isReachingEnd,
     isEmpty,
     isRefreshing,
-    mutate,
+    reload: mutate,
   };
 };
