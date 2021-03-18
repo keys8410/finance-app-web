@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { AppTheme } from '../../../../@types/appTheme';
 
 const bounceInLeft = keyframes`
@@ -26,7 +26,7 @@ export const ContainerTransacaoItem = styled.div<{ visible: boolean }>`
   cursor: ${({ visible }) => (visible ? 'default' : 'pointer')};
 `;
 
-export const TitleTransacao = styled.p<{ theme: AppTheme }>`
+export const TitleTransacao = styled.p<{ theme: AppTheme; titulo?: boolean }>`
   margin-left: 1rem;
   font-weight: 700;
   color: ${({ theme }) => theme.colorTitleTransacao};
@@ -34,6 +34,18 @@ export const TitleTransacao = styled.p<{ theme: AppTheme }>`
   display: flex;
   align-items: center;
   height: 100%;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+  overflow: hidden;
+
+  ${({ titulo }) =>
+    titulo &&
+    css`
+      min-width: 10rem;
+      max-width: 10rem;
+    `}
 `;
 
 export const SubtitleTransacao = styled.span<{ theme: AppTheme }>`

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   SnapList,
   SnapItem,
@@ -11,15 +11,31 @@ import { usePaginateFetch } from '../../../../hooks/usePaginateFetch';
 import { DirectionalContainer } from '../../../../styles/DirectionalContainer';
 import TransacaoItem from '../Item';
 
-const PAGE_SIZE = 4;
-
 const setMargin = (index: number) => {
   if (index === 0) return { top: '1%', bottom: '10px' };
 
   return { top: '10px', bottom: '10px' };
 };
 
-const TransacaoList = () => {
+type Props = {
+  isLoading: boolean;
+  transacoes?: TransacaoType[];
+  size: number;
+  pageSize: number;
+  setSize: (size: number) => void;
+  isReachingEnd: boolean;
+  error: any;
+};
+
+const TransacaoList = ({
+  isLoading,
+  transacoes,
+  size,
+  setSize,
+  isReachingEnd,
+  error,
+  pageSize,
+}: Props) => {
   const [first, setFirst] = useState(false);
 
   const snapList = useRef(null);
@@ -31,23 +47,14 @@ const TransacaoList = () => {
   const goToChildren = useScroll({ ref: snapList });
   useDragToScroll({ ref: snapList });
 
-  const {
-    response,
-    error,
-    isLoadingMore,
-    size,
-    setSize,
-    isReachingEnd,
-  } = usePaginateFetch<TransacaoType>(`/usuario/lancamentos`, 4, false);
-
   useEffect(() => {
-    if (!isLoadingMore && size === 1 && !first) {
+    if (!isLoading && size === 1 && !first) {
       setFirst(true);
 
       goToChildren(0);
     }
-  }, [response, size]);
-  console.log('error =>', error);
+  }, [transacoes, size]);
+
   if (error)
     return (
       <DirectionalContainer height align="center" justify="center">
@@ -57,9 +64,9 @@ const TransacaoList = () => {
   else
     return (
       <div>
-        {!isLoadingMore && response && response.length > 0 && (
+        {!isLoading && transacoes && transacoes.length !== 0 ? (
           <SnapList ref={snapList} direction="vertical" height="8rem">
-            {response?.map((transacao, index) => (
+            {transacoes.map((transacao, index) => (
               <SnapItem
                 key={`transacao-${transacao.id}`}
                 margin={setMargin(index)}
@@ -79,7 +86,7 @@ const TransacaoList = () => {
               snapAlign="center"
             >
               <DirectionalContainer height align="center" justify="center">
-                {isLoadingMore ? (
+                {isLoading ? (
                   'Carregando...'
                 ) : (
                   <>
@@ -87,12 +94,12 @@ const TransacaoList = () => {
                       'Sem mais lançamentos 😞'
                     ) : (
                       <button
-                        disabled={isLoadingMore || isReachingEnd}
+                        disabled={isLoading || isReachingEnd}
                         onClick={() => {
                           setSize(size + 1);
 
                           setTimeout(() => {
-                            goToChildren(size * PAGE_SIZE);
+                            goToChildren(size * pageSize);
                           }, 250);
                         }}
                       >
@@ -104,6 +111,8 @@ const TransacaoList = () => {
               </DirectionalContainer>
             </SnapItem>
           </SnapList>
+        ) : (
+          'Sem mais lançamentos 😞'
         )}
       </div>
     );

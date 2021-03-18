@@ -1,7 +1,4 @@
 import { format } from 'date-fns';
-import React from 'react';
-import { Animated } from 'react-animated-css';
-import { isOptionDisabled } from 'react-select/src/builtins';
 import { TransacaoType } from '../../../../@types/transacoes';
 import { DirectionalContainer } from '../../../../styles/DirectionalContainer';
 import Icon from '../../../Utils/Icon';
@@ -24,7 +21,9 @@ const TransacaoItem = ({ onClick, visible, transacao }: Props) => (
         <DirectionalContainer direction="row" justify="flex-start">
           <Icon icon={transacao.categoria.blob} />
 
-          <TitleTransacao>{transacao.nome}</TitleTransacao>
+          <TitleTransacao titulo title={transacao.nome}>
+            {transacao.nome}
+          </TitleTransacao>
         </DirectionalContainer>
       </div>
 
@@ -40,7 +39,11 @@ const TransacaoItem = ({ onClick, visible, transacao }: Props) => (
 
       <div>
         <TitleTransacao>
-          {transacao.entrada ? '+' : '-'} {transacao.valor}
+          {!transacao.entrada ? '+' : '-'}{' '}
+          {new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+          }).format(transacao.valor)}
         </TitleTransacao>
       </div>
     </TransacaoContainer>
