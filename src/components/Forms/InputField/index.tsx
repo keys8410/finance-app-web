@@ -47,6 +47,7 @@ const InputField: React.FC<Props> = ({
       path: 'value',
     });
   }, [fieldName, registerField]);
+
   return (
     <>
       {rows && rows > 0 ? (
@@ -77,7 +78,6 @@ const InputField: React.FC<Props> = ({
           {label ? (
             <Label htmlFor={fieldName}>
               <Input
-                {...rest}
                 disabled={disabled}
                 id={fieldName}
                 ref={inputRef}
@@ -89,6 +89,7 @@ const InputField: React.FC<Props> = ({
                   }
                 }}
                 placeholder="&nbsp;"
+                {...rest}
               />
 
               <TextLabel>
@@ -98,7 +99,6 @@ const InputField: React.FC<Props> = ({
             </Label>
           ) : (
             <BasicInput
-              {...rest}
               disabled={disabled}
               id={fieldName}
               ref={inputRef}
@@ -109,6 +109,7 @@ const InputField: React.FC<Props> = ({
                   rest.onFocus(e);
                 }
               }}
+              {...rest}
             />
           )}
         </>
