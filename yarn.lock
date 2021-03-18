@@ -2267,6 +2267,13 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.4.tgz#15925414e0ad2cd765bfef58842f7e26a7accb24"
   integrity sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==
 
+"@types/react-bootstrap-date-picker@^4.0.6":
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/@types/react-bootstrap-date-picker/-/react-bootstrap-date-picker-4.0.6.tgz#bc2a08a63a77826650cf7d29c4c74088194ec52f"
+  integrity sha512-yLg6qAXaU1NCynxJU9bVhwG458D8iHDTwt00Cz0XBLEKN9HnkCCvTy6Us4ah0+kb/dqoTSuwDroKavkD3IktQw==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-datepicker@^3.1.2":
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/@types/react-datepicker/-/react-datepicker-3.1.5.tgz#653a8a80eb083ab2cf7d724d90d590018e030d1c"
@@ -9381,6 +9388,11 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
+numeral@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/numeral/-/numeral-2.0.6.tgz#4ad080936d443c2561aed9f2197efffe25f4e506"
+  integrity sha1-StCAk21EPCVhrtnyGX7//iX05QY=
+
 nwsapi@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.2.0.tgz#204879a9e3d068ff2a55139c2c772780681a38b7"
@@ -10985,6 +10997,11 @@ react-app-polyfill@^2.0.0:
     regenerator-runtime "^0.13.7"
     whatwg-fetch "^3.4.1"
 
+react-bootstrap-date-picker@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/react-bootstrap-date-picker/-/react-bootstrap-date-picker-5.1.0.tgz#5f87c6a875e411dbf46d2be74960756f113ebf23"
+  integrity sha1-X4fGqHXkEdv0bSvnSWB1bxE+vyM=
+
 react-datepicker@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-3.6.0.tgz#2707a1f0aaf8b1b4333281f19c5713e71fcea69e"
@@ -11254,6 +11271,13 @@ react-spring@9.0.0-rc.3:
     "@react-spring/three" "9.0.0-rc.3"
     "@react-spring/web" "9.0.0-rc.3"
     "@react-spring/zdog" "9.0.0-rc.3"
+
+react-switch@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/react-switch/-/react-switch-6.0.0.tgz#bd4a2dea08f211b8a32e55e8314fd44bc1ec947e"
+  integrity sha512-QV3/6eRK5/5epdQzIqvDAHRoGLbCv/wDpHUi6yBMXY1Xco5XGuIZxvB49PHoV1v/SpEgOCJLD/Zo43iic+aEIw==
+  dependencies:
+    prop-types "^15.7.2"
 
 react-toastify@^7.0.3:
   version "7.0.3"
@@ -14266,6 +14290,11 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+
+yup-locale-pt@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/yup-locale-pt/-/yup-locale-pt-0.0.8.tgz#2fc1dfed5884193dedc2a708160678c4cd31c0a3"
+  integrity sha512-8Y/sDpvgApcOtg61UE/01yz+MiSgxoUcs7Njv7CWh5Sw3ez+8avu+GJzotTd5atWJ5f9pcVMkVE4BUJYi8c+3Q==
 
 yup@^0.32.9:
   version "0.32.9"

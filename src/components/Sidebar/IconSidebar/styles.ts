@@ -9,7 +9,7 @@ const pulse = keyframes`
   }
   50% {
     transform:scale(1.1);
-    opacity: 0.75;
+    opacity: 0.35;
 
     background-color: #FF698A;
   }
@@ -35,7 +35,6 @@ export const WrapperIcon = styled.div<{ theme: AppTheme; active: boolean }>`
 
   & svg {
     position: absolute;
-    z-index: 1;
     stroke: ${({ theme, active }) =>
       active ? theme.colorIconActive : theme.colorIcon};
     height: 1.45rem;
@@ -52,11 +51,9 @@ export const WrapperIcon = styled.div<{ theme: AppTheme; active: boolean }>`
         width: 0.75rem;
         height: 0.75rem;
         border-radius: 25%;
-        z-index: 0;
         position: relative;
         top: 0.5rem;
         left: 0.35rem;
-
         transition: 0.2s ease-in-out;
         transition: animation 0.45s ease-in-out;
         animation: ${pulse} 2s infinite;

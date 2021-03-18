@@ -1,7 +1,6 @@
-import React, { useMemo, useState } from 'react';
 import { ResponsivePie } from '@nivo/pie';
 import { useFetch } from '../../../hooks/useFetch';
-import { CategoriaType } from '../../../@types/categoria';
+import { CategoriaStatsType } from '../../../@types/categoria';
 import { DirectionalContainer } from '../../../styles/DirectionalContainer';
 
 const styles = {
@@ -33,49 +32,55 @@ const styles = {
 };
 
 export const Grafico = () => {
-  const { response, isLoading } = useFetch<CategoriaType[]>(
+  const { response, isLoading } = useFetch<CategoriaStatsType[]>(
     `usuario/stats/categoria`
   );
-  console.log('categoria =>', response);
+  console.log('categoria =>', isLoading);
 
-  if (isLoading && !response) return <p>Carregando...</p>;
-  else
-    return (
-      <>
-        <DirectionalContainer align="center" justify="center">
-          <div style={styles.root as {}}>
-            <ResponsivePie
-              margin={{ top: 20, bottom: 20 }}
-              data={response}
-              colors={response?.map((x) => x.color)}
-              innerRadius={0.7}
-              sortByValue
-              enableRadialLabels={false}
-              sliceLabel="none"
-              isInteractive={false}
-            />
-            <div style={styles.overlay as {}}>
-              <span>100%</span>
+  return (
+    <>
+      {isLoading ? (
+        <p>Carregando...</p>
+      ) : response ? (
+        <>
+          <DirectionalContainer align="center" justify="center">
+            <div style={styles.root as {}}>
+              <ResponsivePie
+                margin={{ top: 20, bottom: 20 }}
+                data={response}
+                colors={response && response?.map((x) => x.color)}
+                innerRadius={0.7}
+                sortByValue
+                enableRadialLabels={false}
+                sliceLabel="none"
+                isInteractive={false}
+              />
+              <div style={styles.overlay as {}}>
+                <span>100%</span>
+              </div>
             </div>
-          </div>
-        </DirectionalContainer>
+          </DirectionalContainer>
 
-        <div>
-          <ul>
-            {response?.map((categoria, index) => (
-              <li key={`categoriaGrafico-${index}`}>
-                {categoria.label} - {categoria.value}{' '}
-                <div
-                  style={{
-                    background: categoria.color,
-                    height: 10,
-                    width: 10,
-                  }}
-                ></div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </>
-    );
+          <div>
+            <ul>
+              {response?.map((categoria, index) => (
+                <li key={`categoriaGrafico-${index}`}>
+                  {categoria.label} - {categoria.value}{' '}
+                  <div
+                    style={{
+                      background: categoria.color,
+                      height: 10,
+                      width: 10,
+                    }}
+                  ></div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </>
+      ) : (
+        'Cadastre um lançamento 🥘'
+      )}
+    </>
+  );
 };

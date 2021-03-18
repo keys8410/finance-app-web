@@ -9,7 +9,7 @@ import { usePersistedState } from '../../hooks/usePersistedState';
 
 const ThemeToggleContext = createContext<ThemeToggleContextType>({
   scheme: 'light',
-  setColorSchema: (schema) => {},
+  setColorSchema: () => {},
   toggleColorSchema: () => {},
 });
 
@@ -24,10 +24,9 @@ export default function ThemeToggleProvider({
 }: PropsWithChildren<{ initialSchema: 'light' | 'dark' }>) {
   const [schema, setSchema] = usePersistedState('colorSchema', initialSchema);
 
-  const toggle = useCallback(
-    () => setSchema(schema === 'light' ? 'dark' : 'light'),
-    [schema]
-  );
+  const toggle = useCallback(() => {
+    setSchema(schema === 'light' ? 'dark' : 'light');
+  }, [schema, setSchema]);
 
   return (
     <ThemeToggleContext.Provider

@@ -1,5 +1,4 @@
 import { Composition } from 'atomic-layout';
-import React from 'react';
 import Transacoes from '../../components/Transacoes';
 import Title from '../../components/Utils/Title';
 import { CardBordered } from '../../styles/globalStyles';

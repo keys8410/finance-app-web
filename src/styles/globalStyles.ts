@@ -38,6 +38,69 @@ export const GlobalStyles = createGlobalStyle<{ theme: AppTheme }>`
     .react-select__indicator-separator {
       display:none !important;
     }
+
+    .react-datepicker {
+      border: 1px solid #ddd !important;
+    }
+
+    .react-datepicker__month-container {
+      color: #444;
+      font-size: .95rem;
+      width: 260px;
+      font-family: 'Work Sans', sans-serif;
+    }
+
+    .react-datepicker__month {
+      padding: .5rem 0;
+    }
+
+    .react-datepicker__month-text {
+      display: inline-block;
+      width: 5rem;
+      margin: 0.5rem;
+      font-size: 1rem;
+      padding: 0.2rem ;
+      &:hover {
+        background-color: #534cea;
+      }
+    }
+
+    .react-datepicker__day-names {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 .3rem;
+    }
+
+    .react-datepicker__day-names,
+    .react-datepicker__week {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 .5rem;
+    }
+
+    .react-datepicker__day-name, 
+    .react-datepicker__day, 
+    .react-datepicker__time-name  {
+      width:2.5rem;
+    }
+
+    .react-datepicker__day--selected, 
+    .react-datepicker__day--in-selecting-range, 
+    .react-datepicker__day--in-range, 
+    .react-datepicker__month-text--selected, 
+    .react-datepicker__month-text--in-selecting-range, 
+    .react-datepicker__month-text--in-range, 
+    .react-datepicker__quarter-text--selected, 
+    .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__quarter-text--in-range, 
+    .react-datepicker__year-text--selected, 
+    .react-datepicker__year-text--in-selecting-range, 
+    .react-datepicker__year-text--in-range {
+      background-color: ${({ theme }) => theme.main};
+
+      &:hover{
+        background-color: ${({ theme }) => theme.main + '99'}
+      }
+    }
 `;
 
 export const InlineContainer = styled.div<{ spaceBetween?: boolean }>`
@@ -52,21 +115,10 @@ export const InlineContainer = styled.div<{ spaceBetween?: boolean }>`
       : undefined}
 `;
 
-export const FourColumnContainer = styled.section`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 10px;
-`;
-
-export const TwoColumnContainer = styled.section`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
-`;
-
 export const GridTemplate = styled.section<GridTemplateType>`
   display: grid;
-  grid-template-columns: repeat(${({ repeat }) => repeat}, 1fr);
+  grid-template-columns: ${({ customColumns, repeat }) =>
+    customColumns ?? `repeat(${repeat}, 1fr)`};
   grid-gap: ${({ gap }) => gap ?? '10px'};
 `;
 

@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux';
 import { DirectionalContainer } from '../styles/DirectionalContainer';
 import { useAuth } from '../contexts/authProvider';
 import Modal from '../components/Modal';
+import ThemeToggleButton from '../components/Utils/ThemeToggleButton';
 
 const areasMobile = `
 sidebar 
@@ -44,7 +45,7 @@ const Pages = () => {
         <Composition
           template={areasMobile}
           templateMd={areasDesktop}
-          gap={10}
+          gap={15}
           gapMd={25}
           templateCols="1fr"
           templateColsMd="auto 1fr auto"
@@ -70,7 +71,11 @@ const Pages = () => {
                   <Title isTitle>{titulo}</Title>
                 </DirectionalContainer>
               </Areas.Titulo>
-              <Areas.Usuario>{user?.nome}</Areas.Usuario>
+              <Areas.Usuario>
+                <div>
+                  {user?.nome} <ThemeToggleButton />
+                </div>
+              </Areas.Usuario>
               <Areas.App>
                 <CommonRoutes />
               </Areas.App>

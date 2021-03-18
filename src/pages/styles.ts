@@ -18,7 +18,7 @@ export const ContainerPages = styled.div<{ isMobile: boolean }>`
 export const CompositionContainer = styled.div<{ theme: AppTheme }>`
   border-radius: 2.75rem;
   border: 0.55rem solid ${({ theme }) => theme.backgroundBlocks};
-  padding: 1.8rem 1.5rem;
+  padding: 1.5rem 1.3rem;
 
   background: ${({ theme }) => theme.backgroundApp};
 `;

@@ -13,8 +13,10 @@
     "axios": "^0.21.1",
     "date-fns": "^2.17.0",
     "normalize.css": "^8.0.1",
+    "numeral": "^2.0.6",
     "react": "^17.0.1",
     "react-animated-css": "^1.2.1",
+    "react-bootstrap-date-picker": "^5.1.0",
     "react-datepicker": "^3.6.0",
     "react-dom": "^17.0.1",
     "react-icons": "^4.2.0",
@@ -25,6 +27,7 @@
     "react-scripts": "4.0.3",
     "react-select": "^4.1.0",
     "react-snaplist-carousel": "^4.3.0",
+    "react-switch": "^6.0.0",
     "react-toastify": "^7.0.3",
     "react-tooltip": "^4.2.15",
     "redux": "^4.0.5",
@@ -33,7 +36,8 @@
     "styled-components": "^5.2.1",
     "swr": "^0.4.2",
     "web-vitals": "^1.0.1",
-    "yup": "^0.32.9"
+    "yup": "^0.32.9",
+    "yup-locale-pt": "^0.0.8"
   },
   "devDependencies": {
     "@iconify-icons/typcn": "^1.1.0",
@@ -44,6 +48,7 @@
     "@types/jest": "^26.0.15",
     "@types/node": "14.14.17",
     "@types/react": "17.0.0",
+    "@types/react-bootstrap-date-picker": "^4.0.6",
     "@types/react-datepicker": "^3.1.2",
     "@types/react-dom": "17.0.0",
     "@types/react-input-mask": "^3.0.0",

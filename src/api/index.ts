@@ -52,12 +52,11 @@ export function formatError(error: AxiosError) {
       if (error.response.data.errors) {
         toast.error('Não foi possivel realizar a operação');
       } else {
-        for (const key of Object.keys(error.response.data)) {
-          for (const errorMessage of error.response.data[key]) {
-            toast.error(errorMessage);
-          }
-        }
+        Object.values(error.response.data).map((error) =>
+          toast.error(error as string)
+        );
       }
+
       return error.response.data;
     }
     if (error.response.status === 401) {
