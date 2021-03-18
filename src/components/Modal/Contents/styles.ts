@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 type ModalBodyTypes = {
+  lancamento?: boolean;
   quitMission?: boolean;
   infosUser?: boolean;
 };
@@ -19,6 +20,12 @@ export const Modalbody = styled.div<ModalBodyTypes>`
       max-width: 20.5rem;
     `}
 
+  ${({ lancamento }) =>
+    lancamento &&
+    css`
+      width: 30rem;
+    `}
+
   ${({ infosUser }) =>
     infosUser &&
     css`
@@ -28,6 +35,7 @@ export const Modalbody = styled.div<ModalBodyTypes>`
 
     @media(max-width:768px) {
     padding: 0.3rem;
-    padding-right: 0.8rem;
+    padding-right: 2.3rem;
+    padding-bottom: 0.8rem;
   }
 `;

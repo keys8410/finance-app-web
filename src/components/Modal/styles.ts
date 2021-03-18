@@ -1,4 +1,4 @@
-import styled, { keyframes, css } from 'styled-components';
+import styled from 'styled-components';
 import { AppTheme } from '../../@types/appTheme';
 
 export const ModalContainer = styled.div`
@@ -13,7 +13,7 @@ export const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(210, 232, 254, 0.65);
 
   @media (min-width: 376px) {
     padding: 0.5rem;
@@ -21,12 +21,10 @@ export const ModalContainer = styled.div`
 `;
 
 export const ModalBody = styled.div`
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 8px 32px 0 #33333333;
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
+  background: white;
+  box-shadow: 0 3px 8px 0 #44444422;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.6);
 
   border-radius: 0.8rem;
   min-width: 22rem;

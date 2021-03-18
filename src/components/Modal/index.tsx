@@ -1,9 +1,8 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { Animated } from 'react-animated-css';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { ModalActions } from '../../store/modules/modal/actions/handle';
-import { DirectionalContainer } from '../../styles/DirectionalContainer';
 import { handleKeyboardEventIfScrollExists } from '../../utils/keyboardEventUtils';
 import { ModalContainer, ModalBody, CloseModal, ModalHeader } from './styles';
 
@@ -20,13 +19,6 @@ const Modal = () => {
     }
   }, [dispatch, enabledToClose]);
 
-  const handleOutsideClick = (e: {
-    target: HTMLInputElement;
-    currentTarget: HTMLInputElement;
-  }) => {
-    if (e.target === e.currentTarget) return closeModal();
-  };
-
   handleKeyboardEventIfScrollExists(() => closeModal(), opened);
 
   if (!opened) return null;
@@ -39,11 +31,7 @@ const Modal = () => {
         animationInDuration={350}
         isVisible={opened}
       >
-        <ModalContainer
-          onClick={(e: React.MouseEvent<HTMLElement>) => {
-            handleOutsideClick(e as any);
-          }}
-        >
+        <ModalContainer>
           <ModalBody>
             <ModalHeader>
               <p>{title}</p>
