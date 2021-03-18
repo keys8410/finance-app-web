@@ -1,4 +1,5 @@
 export type GridTemplateType = {
   gap?: string;
-  repeat: number;
+  repeat?: number;
+  customColumns?: string;
 };
