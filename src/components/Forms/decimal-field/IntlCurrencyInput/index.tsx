@@ -22,7 +22,7 @@ const defaultConfig = {
 };
 
 export type IntlCurrencyInputProps = InputHTMLAttributes<any> & {
-  defaultValue?: number;
+  defaultValue?: string;
   max?: number;
   component?: any;
   defaultRef?: any;
@@ -172,7 +172,7 @@ const IntlCurrencyInput = ({
     onFocus && onFocus(event, event.key, event.keyCode);
 
   useEffect(() => {
-    const currentValue = defaultValue || 0;
+    const currentValue = parseFloat((defaultValue as string) ?? '0');
     const [, maskedValue] = calculateValues(
       parseFloat(
         currentValue.toFixed(2).replace(/[.]/g, '').replace(/[,]/, '.')
