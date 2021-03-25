@@ -9,3 +9,10 @@ export type CriarLancamentoPayload = {
   onSuccess?: SuccessCallback;
   onFailed?: FailedCallback;
 };
+
+export type EditarLancamentoPayload = {
+  idLancamento: number;
+  data: LancamentoType;
+  onSuccess?: SuccessCallback;
+  onFailed?: FailedCallback;
+};
