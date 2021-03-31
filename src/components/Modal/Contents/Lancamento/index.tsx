@@ -1,5 +1,5 @@
 import { FormHandles } from '@unform/core';
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { Forms, GridTemplate } from '../../../../styles/globalStyles';
 import InputField from '../../../Forms/InputField';
 import { Modalbody } from '../styles';
@@ -15,14 +15,29 @@ import { toast } from 'react-toastify';
 import { ModalActions } from '../../../../store/modules/modal/actions/handle';
 import { Button } from '../../../Button';
 import SwitchButton from '../../../Forms/SwitchButton';
+import { useFetch } from '../../../../hooks/useFetch';
+import { EditarLancamentoActions } from '../../../../store/modules/lancamento/actions/editar';
 
 type Props = {
   reload: () => void;
+  idLancamento?: number;
 };
 
-const Lancamento = ({ reload }: Props) => {
+const Lancamento = ({ reload, idLancamento }: Props) => {
   const formLancamento = useRef<FormHandles>(null);
+
   const dispatch = useDispatch();
+
+  const { response, isLoading } = useFetch<LancamentoType>(
+    idLancamento ? `/lancamento/${idLancamento}` : undefined
+  );
+
+  useEffect(() => {
+    if (!isLoading && response) {
+      formLancamento.current?.setData(response);
+      console.table(formLancamento.current?.getData());
+    }
+  }, [response, isLoading]);
 
   const closeModal = useCallback(() => {
     dispatch(ModalActions.close());
@@ -30,25 +45,38 @@ const Lancamento = ({ reload }: Props) => {
 
   const handleSubmit = useCallback(
     async (data: LancamentoType) => {
-      console.log(data);
-
       try {
         formLancamento.current?.setErrors({});
         await schema.validate(data, {
           abortEarly: false,
         });
 
-        dispatch(
-          CriarLancamentoActions.request({
-            data,
-            onSuccess: () => {
-              closeModal();
+        if (idLancamento) {
+          dispatch(
+            EditarLancamentoActions.request({
+              idLancamento: idLancamento ?? 0,
+              data,
+              onSuccess: () => {
+                reload();
+                closeModal();
 
-              toast.success('Novo lançamento adicionado!');
-              reload();
-            },
-          })
-        );
+                toast.success('Lançamento editado com sucesso!');
+              },
+            })
+          );
+        } else {
+          dispatch(
+            CriarLancamentoActions.request({
+              data,
+              onSuccess: () => {
+                reload();
+
+                toast.success('Novo lançamento adicionado!');
+                closeModal();
+              },
+            })
+          );
+        }
       } catch (error) {
         const validationErrors: any = {};
         if (error instanceof Yup.ValidationError) {
@@ -64,7 +92,12 @@ const Lancamento = ({ reload }: Props) => {
 
   return (
     <Modalbody lancamento>
-      <Forms marginT={1} ref={formLancamento} onSubmit={handleSubmit}>
+      <Forms
+        marginT={1}
+        ref={formLancamento}
+        initialData={response}
+        onSubmit={handleSubmit}
+      >
         <InputField
           name="nome"
           label="Título"
@@ -78,6 +111,7 @@ const Lancamento = ({ reload }: Props) => {
           label="Descrição"
           placeholder="Adicione uma descrição"
         />
+
         <GridTemplate customColumns="1fr auto">
           <CategoriasSelect name="categoria" required />
           <SwitchButton name="entrada" label="Gastou?" />
