@@ -1,7 +1,11 @@
 import React from 'react';
 import { DirectionalTypes } from '../../@types/directionalContainer';
+import { WithChildren } from '../../@types/withChildren';
 import { DirectionalContainerStyled } from './styles';
 
+type Props = DirectionalTypes & {
+  style?: React.CSSProperties;
+};
 /**
  * @param direction default direction is column >
  *
@@ -17,18 +21,14 @@ import { DirectionalContainerStyled } from './styles';
  *
  * @param height height receives a boolean, but it is not necessary to put height={boolean} > if true, height receives 100% of parent
  */
-
-type Props = DirectionalTypes & {
-  style?: React.CSSProperties;
-};
-export const DirectionalContainer: React.FC<Props> = ({
+export const DirectionalContainer = ({
   direction,
   justify,
   align,
   height,
   children,
   style,
-}) => {
+}: WithChildren<Props>) => {
   return (
     <DirectionalContainerStyled
       direction={direction}
