@@ -1,5 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
 import { AppTheme } from '../../../../@types/appTheme';
+import { manusearCor } from '../../../../utils/colorUtils';
 
 const bounceInLeft = keyframes`
   0% {
@@ -20,32 +21,29 @@ const bounceInLeft = keyframes`
 export const ContainerTransacaoItem = styled.div<{ visible: boolean }>`
   height: 100%;
   width: 100%;
-  padding: 0 0.5rem;
-  background: ${({ visible }) => (visible ? '#f5f5f5' : '#fff')};
+  padding: 0 0.3rem;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  border: 1px solid #fff;
   border-radius: 0.5rem;
   cursor: ${({ visible }) => (visible ? 'default' : 'pointer')};
+
+  transition: all 0.15s ease-in-out;
+  ${({ visible }) =>
+    visible &&
+    css`
+      border: 1px solid #eee;
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    `};
 `;
 
-export const TitleTransacao = styled.p<{ theme: AppTheme; titulo?: boolean }>`
-  margin-left: 1rem;
+export const TitleTransacao = styled.p<{ theme: AppTheme }>`
+  margin-left: 0.25rem;
   font-weight: 700;
   color: ${({ theme }) => theme.colorTitleTransacao};
 
   display: flex;
   align-items: center;
   height: 100%;
-
-  text-overflow: ellipsis;
-
-  white-space: nowrap;
-  overflow: hidden;
-
-  ${({ titulo }) =>
-    titulo &&
-    css`
-      min-width: 10rem;
-      max-width: 10rem;
-    `}
 `;
 
 export const SubtitleTransacao = styled.span<{ theme: AppTheme }>`
@@ -58,12 +56,9 @@ export const SubtitleTransacao = styled.span<{ theme: AppTheme }>`
 `;
 
 export const TransacaoContainer = styled.section`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr auto;
-  grid-gap: 0.8rem;
   height: 100%;
 
-  animation: ${bounceInLeft} 1.2s;
+  animation: ${bounceInLeft} 1s;
   animation-fill-mode: both;
 
   & > div {
@@ -73,4 +68,17 @@ export const TransacaoContainer = styled.section`
   }
 `;
 
-export const TransacaoContent = styled.div``;
+export const ContainerTransacao = styled.div`
+  width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media (min-width: 768px) {
+    width: 250px;
+  }
+`;
+
+export const IconAction = styled.div`
+  cursor: pointer;
+`;

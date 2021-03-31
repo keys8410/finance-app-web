@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import { HiArrowCircleUp } from 'react-icons/hi';
 import {
   SnapList,
   SnapItem,
@@ -7,9 +8,10 @@ import {
   useDragToScroll,
 } from 'react-snaplist-carousel';
 import { TransacaoType } from '../../../../@types/transacoes';
-import { usePaginateFetch } from '../../../../hooks/usePaginateFetch';
 import { DirectionalContainer } from '../../../../styles/DirectionalContainer';
+import { GridTemplate } from '../../../../styles/globalStyles';
 import TransacaoItem from '../Item';
+import { IconAction } from '../Item/styles';
 
 const setMargin = (index: number) => {
   if (index === 0) return { top: '1%', bottom: '10px' };
@@ -22,9 +24,11 @@ type Props = {
   transacoes?: TransacaoType[];
   size: number;
   pageSize: number;
-  setSize: (size: number) => void;
   isReachingEnd: boolean;
   error: any;
+  setSize: (e: number) => void;
+  openModal: (e: number) => void;
+  handleDelete: (e: number) => void;
 };
 
 const TransacaoList = ({
@@ -35,86 +39,83 @@ const TransacaoList = ({
   isReachingEnd,
   error,
   pageSize,
+  openModal,
+  handleDelete,
 }: Props) => {
-  const [first, setFirst] = useState(false);
-
   const snapList = useRef(null);
   const visible = useVisibleElements(
-    { debounce: 10, ref: snapList },
+    { debounce: 5, ref: snapList },
     ([element]) => element
   );
-
   const goToChildren = useScroll({ ref: snapList });
   useDragToScroll({ ref: snapList });
 
   useEffect(() => {
-    if (!isLoading && size === 1 && !first) {
-      setFirst(true);
+    goToChildren(0);
+  }, []);
 
-      goToChildren(0);
-    }
-  }, [transacoes, size]);
-
-  if (error)
-    return (
-      <DirectionalContainer height align="center" justify="center">
-        <h1>Erro ao carregar os lançamentos do usuário.</h1>
-      </DirectionalContainer>
-    );
-  else
-    return (
-      <div>
-        {!isLoading && transacoes && transacoes.length !== 0 ? (
-          <SnapList ref={snapList} direction="vertical" height="8rem">
-            {transacoes.map((transacao, index) => (
-              <SnapItem
-                key={`transacao-${transacao.id}`}
-                margin={setMargin(index)}
-                height="2.5rem"
-                snapAlign="center"
-              >
-                <TransacaoItem
-                  onClick={() => goToChildren(index)}
-                  visible={visible === index}
-                  transacao={transacao}
-                />
-              </SnapItem>
-            ))}
+  return (
+    <div>
+      {transacoes && transacoes.length !== 0 ? (
+        <SnapList ref={snapList} direction="vertical" height="8rem">
+          {transacoes.map((transacao, index) => (
             <SnapItem
-              margin={{ top: '5px', bottom: '.5rem' }}
-              height="2.5rem"
+              key={`transacao-${transacao.id}`}
+              margin={setMargin(index)}
+              height="2.65rem"
               snapAlign="center"
             >
-              <DirectionalContainer height align="center" justify="center">
-                {isLoading ? (
-                  'Carregando...'
-                ) : (
-                  <>
-                    {isReachingEnd ? (
-                      'Sem mais lançamentos 😞'
-                    ) : (
-                      <button
-                        disabled={isLoading || isReachingEnd}
-                        onClick={() => {
-                          setSize(size + 1);
-
-                          setTimeout(() => {
-                            goToChildren(size * pageSize);
-                          }, 250);
-                        }}
-                      >
-                        Carregar mais
-                      </button>
-                    )}
-                  </>
-                )}
-              </DirectionalContainer>
+              <TransacaoItem
+                onClick={() => goToChildren(index)}
+                openModal={openModal}
+                handleDelete={handleDelete}
+                visible={visible === index}
+                transacao={transacao}
+              />
             </SnapItem>
-          </SnapList>
-        ) : (
-          'Sem mais lançamentos 😞'
-        )}
-      </div>
-    );
+          ))}
+          <SnapItem
+            margin={{ top: '5px', bottom: '.5rem' }}
+            height="2.5rem"
+            snapAlign="center"
+          >
+            <GridTemplate
+              repeat={2}
+              style={{ placeItems: 'center', width: '100%' }}
+            >
+              {isLoading ? (
+                'Carregando...'
+              ) : (
+                <>
+                  {isReachingEnd ? (
+                    'Sem mais lançamentos 😞'
+                  ) : (
+                    <button
+                      disabled={isLoading || isReachingEnd}
+                      onClick={() => {
+                        setSize(size + 1);
+
+                        setTimeout(() => {
+                          goToChildren(size * pageSize);
+                        }, 200);
+                      }}
+                    >
+                      Carregar mais
+                    </button>
+                  )}
+                </>
+              )}
+
+              <IconAction onClick={() => goToChildren(0)}>
+                <HiArrowCircleUp size={20} color="#333" />
+              </IconAction>
+            </GridTemplate>
+          </SnapItem>
+        </SnapList>
+      ) : (
+        'Sem mais lançamentos 😞'
+      )}
+    </div>
+  );
 };
 export default TransacaoList;
