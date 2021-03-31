@@ -1,9 +1,11 @@
+import { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 import { useSWRInfinite } from 'swr';
+import { formatError } from '../api';
 
 type UsePaginateFetchReturns<TResponse> = {
   response: TResponse[];
-  error: any;
+  error: AxiosError;
   isLoading: boolean;
   size: number;
   setSize: (e: number) => void;
@@ -64,7 +66,9 @@ export const usePaginateFetch = <TResponse = any, TErrorResponse = any>(
     (size > 0 && data && typeof data[size - 1] === 'undefined');
   const isEmpty = data?.[0]?.length === 0;
   const isReachingEnd =
-    isEmpty || ((data && data[data.length - 1]?.length < pageSize) as boolean);
+    isEmpty ||
+    ((data && data[data.length - 1]?.length < pageSize) as boolean) ||
+    !!error;
   const isRefreshing = (isValidating &&
     data &&
     data.length === size) as boolean;
