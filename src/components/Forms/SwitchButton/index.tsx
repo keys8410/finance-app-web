@@ -2,10 +2,8 @@ import React, { useEffect, useRef, InputHTMLAttributes, useState } from 'react';
 import { useField } from '@unform/core';
 import { ErrorLabel, InputGroup, Required } from '../styles';
 import Switch from 'react-switch';
-import { Direction } from 'react-toastify/dist/utils';
 import { DirectionalContainer } from '../../../styles/DirectionalContainer';
 import { manusearCor } from '../../../utils/colorUtils';
-import Tooltip from '../../Utils/Tooltip';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -14,16 +12,18 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const SwitchButton = ({ name, label, required, disabled, ...rest }: Props) => {
-  const [checked, setChecked] = useState(false);
-
   const checkRef = useRef(null);
   const {
     fieldName,
-    defaultValue = rest.defaultValue,
+    defaultValue,
     registerField,
     error,
     clearError,
   } = useField(name);
+
+  console.log(defaultValue);
+
+  const [checked, setChecked] = useState(defaultValue ?? false);
 
   useEffect(() => {
     registerField({
@@ -31,6 +31,11 @@ const SwitchButton = ({ name, label, required, disabled, ...rest }: Props) => {
       ref: checkRef.current,
       getValue: (ref) => {
         return ref.props.checked;
+      },
+      setValue: (_, value) => {
+        if (value) {
+          setChecked(value);
+        }
       },
     });
   }, [fieldName, registerField]);
