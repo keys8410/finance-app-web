@@ -16,3 +16,34 @@ export async function urlToFile(
   const buffer = await response.arrayBuffer();
   return new File([buffer], filename, { type: mimeType });
 }
+
+type NumberFormatPartTypes =
+  | 'compact'
+  | 'currency'
+  | 'decimal'
+  | 'exponentInteger'
+  | 'exponentMinusSign'
+  | 'exponentSeparator'
+  | 'fraction'
+  | 'group'
+  | 'infinity'
+  | 'integer'
+  | 'literal'
+  | 'minusSign'
+  | 'nan'
+  | 'plusSign'
+  | 'percentSign'
+  | 'unit'
+  | 'unknown';
+
+export function formatNumberToValue(
+  value: number,
+  locale?: string,
+  currency?: string,
+  style?: NumberFormatPartTypes
+) {
+  return new Intl.NumberFormat(locale ?? 'pt-BR', {
+    style: style ?? 'currency',
+    currency: currency ?? 'BRL',
+  }).format(value);
+}

@@ -5,7 +5,7 @@ type Agrupamento<TElement = any> = {
 
 export function groupBy<T = any>(
   colecao: T[],
-  propriedade: string
+  propriedade: keyof T
 ): Agrupamento<T>[] {
   const agrupado: any[] = [];
   colecao.forEach(function (objeto: any) {
