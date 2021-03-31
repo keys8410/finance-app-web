@@ -1,8 +1,10 @@
 import { Composition } from 'atomic-layout';
+import { CategoriaStatsType } from '../../@types/categoria';
 import Transacoes from '../../components/Transacoes';
 import Title from '../../components/Utils/Title';
-import { CardBordered } from '../../styles/globalStyles';
-import { Grafico } from './Grafico';
+import { useFetch } from '../../hooks/useFetch';
+import { CardBordered, CardBorderedTitle } from '../../styles/globalStyles';
+import { Grafico } from '../../components/Grafico';
 
 const areasMobile = `
 transacoes
@@ -20,51 +22,60 @@ transacoes transacoes estatisticas
 `;
 
 const Overview = () => {
+  const {
+    response: categorias,
+    isLoading: loadingCategorias,
+    reload: reloadCategorias,
+  } = useFetch<CategoriaStatsType[]>(`usuario/stats/categoria`);
+
   return (
-    <div style={{ height: '100%' }}>
-      <Composition
-        template={areasMobile}
-        templateMd={areasDesktop}
-        gap={15}
-        gapMd={25}
-        templateCols="1fr"
-        templateColsMd="repeat(3, 1fr)"
-        heightMd="100%"
-        alignItems="end"
-      >
-        {(Areas) => (
-          <>
-            <Areas.Entrada>
-              <CardBordered>Entradas</CardBordered>
-            </Areas.Entrada>
+    <Composition
+      template={areasMobile}
+      templateMd={areasDesktop}
+      gap={15}
+      gapMd={25}
+      templateCols="1fr"
+      templateColsMd="repeat(3, 1fr)"
+      heightMd="100%"
+      alignItems="end"
+    >
+      {(Areas) => (
+        <>
+          <Areas.Entrada>
+            <CardBordered>Entradas</CardBordered>
+          </Areas.Entrada>
 
-            <Areas.Saida>
-              <CardBordered>Saidas</CardBordered>
-            </Areas.Saida>
+          <Areas.Saida>
+            <CardBordered>Saidas</CardBordered>
+          </Areas.Saida>
 
-            <Areas.Cartoes>
-              <CardBordered>Cartões</CardBordered>
-            </Areas.Cartoes>
+          <Areas.Cartoes>
+            <CardBordered>Cartões</CardBordered>
+          </Areas.Cartoes>
 
-            <Areas.Transacoes>
-              <Transacoes />
-            </Areas.Transacoes>
+          <Areas.Transacoes>
+            <Transacoes reloadCategorias={reloadCategorias} />
+          </Areas.Transacoes>
 
-            <Areas.Noticias>
-              <CardBordered>Noticias</CardBordered>
-            </Areas.Noticias>
+          <Areas.Noticias>
+            <CardBordered>Noticias</CardBordered>
+          </Areas.Noticias>
 
-            <Areas.Estatisticas>
-              <CardBordered>
+          <Areas.Estatisticas>
+            <CardBordered padding={0.5}>
+              <CardBorderedTitle>
                 <Title>Estatísticas por Categoria</Title>
+              </CardBorderedTitle>
 
-                <Grafico />
-              </CardBordered>
-            </Areas.Estatisticas>
-          </>
-        )}
-      </Composition>
-    </div>
+              <Grafico
+                categorias={categorias ?? []}
+                loading={loadingCategorias}
+              />
+            </CardBordered>
+          </Areas.Estatisticas>
+        </>
+      )}
+    </Composition>
   );
 };
 
