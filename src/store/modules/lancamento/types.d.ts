@@ -16,3 +16,9 @@ export type EditarLancamentoPayload = {
   onSuccess?: SuccessCallback;
   onFailed?: FailedCallback;
 };
+
+export type DeletarLancamentoPayload = {
+  idLancamento: number;
+  onSuccess?: SuccessCallback;
+  onFailed?: FailedCallback;
+};
