@@ -1,5 +1,5 @@
 export type LancamentoType = {
-  id?: numberl;
+  id?: number;
   nome: string;
   descricao: string;
   valor: string;

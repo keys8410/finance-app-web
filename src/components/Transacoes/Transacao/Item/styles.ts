@@ -1,6 +1,4 @@
 import styled, { css, keyframes } from 'styled-components';
-import { AppTheme } from '../../../../@types/appTheme';
-import { manusearCor } from '../../../../utils/colorUtils';
 
 const bounceInLeft = keyframes`
   0% {
@@ -23,32 +21,31 @@ export const ContainerTransacaoItem = styled.div<{ visible: boolean }>`
   width: 100%;
   padding: 0 0.3rem;
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  border: 1px solid #fff;
-  border-radius: 0.5rem;
-  cursor: ${({ visible }) => (visible ? 'default' : 'pointer')};
 
   transition: all 0.15s ease-in-out;
-  ${({ visible }) =>
-    visible &&
-    css`
-      border: 1px solid #eee;
-      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-    `};
+
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 10%), 0px 4px 5px 0px rgb(0 0 0 / 5%),
+    0px 1px 10px 0px rgb(0 0 0 / 4%);
+
+  border: 1px solid ${({ theme }) => theme.palette.components.transacao.border};
+  border-radius: 0.5rem;
+  cursor: ${({ visible }) => (visible ? 'default' : 'pointer')};
 `;
 
-export const TitleTransacao = styled.p<{ theme: AppTheme }>`
+export const TitleTransacao = styled.p`
   margin-left: 0.25rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.colorTitleTransacao};
+  color: ${({ theme }) => theme.palette.text.primary};
 
   display: flex;
   align-items: center;
   height: 100%;
 `;
 
-export const SubtitleTransacao = styled.span<{ theme: AppTheme }>`
+export const SubtitleTransacao = styled.span`
   font-weight: 400;
-  color: ${({ theme }) => theme.colorSubtitleTransacao};
+  color: ${({ theme }) => theme.palette.text.secondary};
 
   display: flex;
   align-items: center;

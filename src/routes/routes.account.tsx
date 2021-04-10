@@ -8,9 +8,9 @@ import Login from '../pages/account/login';
 import Page404 from '../pages/account/page404';
 import Page500 from '../pages/account/page500';
 import UnauthorizedAccess from '../pages/account/unauthorized-access';
-import { GlobalStyles } from '../styles/globalStyles';
-import dark from '../styles/theme.dark';
-import light from '../styles/theme.light';
+import { GlobalStyles } from '../styles/global';
+import dark from '../styles/theme/dark';
+import light from '../styles/theme/light';
 
 type Props = {
   onlyAuthenticated?: boolean;

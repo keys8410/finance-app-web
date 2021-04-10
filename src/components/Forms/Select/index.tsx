@@ -51,8 +51,6 @@ export default function SelectField({
     defaultValue ?? null
   );
 
-  console.log(defaultValue);
-
   useEffect(() => {
     if (selectedValue && selectRef.current) {
       const optionSelected = options?.find((x) => x.value === selectedValue);

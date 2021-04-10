@@ -3,8 +3,8 @@ import { CategoriaStatsType } from '../../@types/categoria';
 import Transacoes from '../../components/Transacoes';
 import Title from '../../components/Utils/Title';
 import { useFetch } from '../../hooks/useFetch';
-import { CardBordered, CardBorderedTitle } from '../../styles/globalStyles';
-import { Grafico } from '../../components/Grafico';
+import { CardBordered, CardBorderedTitle } from '../../styles/global';
+import { Grafico } from '../../components/Graficos';
 
 const areasMobile = `
 transacoes
@@ -26,7 +26,7 @@ const Overview = () => {
     response: categorias,
     isLoading: loadingCategorias,
     reload: reloadCategorias,
-  } = useFetch<CategoriaStatsType[]>(`usuario/stats/categoria`);
+  } = useFetch<CategoriaStatsType[]>(`/usuario/stats/categoria`);
 
   return (
     <Composition
@@ -69,6 +69,7 @@ const Overview = () => {
 
               <Grafico
                 categorias={categorias ?? []}
+                reloadCategorias={reloadCategorias}
                 loading={loadingCategorias}
               />
             </CardBordered>

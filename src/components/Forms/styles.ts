@@ -1,9 +1,8 @@
 import { Form } from '@unform/web';
 import styled from 'styled-components';
-import { AppTheme } from '../../@types/appTheme';
 
 export const ErrorLabel = styled.span`
-  color: #d0342a;
+  color: ${({ theme }) => theme.palette.error.main};
   font-size: 0.875rem;
   margin: 0.3rem 0;
 `;
@@ -15,7 +14,7 @@ export const Formulario = styled(Form)`
   align-items: flex-start;
 `;
 
-export const BasicInput = styled.input<{ theme: AppTheme }>`
+export const BasicInput = styled.input`
   border-radius: 5px;
   padding: 11px 9px;
   transition: 0.1s;
@@ -23,11 +22,11 @@ export const BasicInput = styled.input<{ theme: AppTheme }>`
   width: fill-available;
 
   border: 1.5px solid #ddd;
-  color: ${({ theme }) => theme.inputColor};
+  color: ${({ theme }) => theme.typography.input};
   filter: brightness(1);
 
   &:focus {
-    border: 1.5px solid ${({ theme }) => theme.main + '88'};
+    border: 1.5px solid ${({ theme }) => theme.palette.commom.main + '88'};
   }
 
   &:hover {
@@ -37,18 +36,18 @@ export const BasicInput = styled.input<{ theme: AppTheme }>`
   background: transparent;
 `;
 
-export const BasicTextAreaInput = styled.textarea<{ theme: AppTheme }>`
+export const BasicTextAreaInput = styled.textarea`
   border-radius: 5px;
   padding: 11px 9px;
   transition: 0.1s;
   font-size: 0.9rem;
 
   border: 1.5px solid #ddd;
-  color: ${({ theme }) => theme.inputColor};
+  color: ${({ theme }) => theme.typography.input};
   filter: brightness(1);
 
   &:focus {
-    border: 1.5px solid ${({ theme }) => theme.main + '88'};
+    border: 1.5px solid ${({ theme }) => theme.palette.commom.main + '88'};
   }
 
   &:hover {
@@ -58,7 +57,7 @@ export const BasicTextAreaInput = styled.textarea<{ theme: AppTheme }>`
   background: transparent;
 `;
 
-export const InputGroup = styled.div<{ theme: AppTheme }>`
+export const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
   width: fill-available;
@@ -66,7 +65,7 @@ export const InputGroup = styled.div<{ theme: AppTheme }>`
   & label {
     font-size: 1rem;
     font-weight: 500;
-    color: ${({ theme }) => theme.inputColor};
+    color: ${({ theme }) => theme.typography.input};
     margin-bottom: 0.8rem;
   }
   z-index: auto;
@@ -75,6 +74,6 @@ export const InputGroup = styled.div<{ theme: AppTheme }>`
 export const Required = styled.span`
   &:before {
     content: '*';
-    color: #d0342a;
+    color: ${({ theme }) => theme.palette.error.main};
   }
 `;

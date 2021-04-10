@@ -1,8 +1,9 @@
 export type CategoriaStatsType = {
-  id: string;
-  label: string;
-  value: number;
-  color: string;
+  id: number;
+  nome: string;
+  porcentagem: string;
+  cor: string;
+  corId: number;
 };
 
 export type CategoriaType = {

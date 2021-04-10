@@ -1,9 +1,7 @@
 import styled, { css } from 'styled-components';
-import { AppTheme as Theme } from '../../../@types/theme/AppTheme';
 
 type Props = {
   color?: string;
-  theme: Theme;
   bold?: boolean;
   capitalize?: boolean;
   marginBottom?: number;
@@ -11,7 +9,7 @@ type Props = {
 };
 export const DefaultTitle = styled.p<Props>`
   font-size: 1.1rem;
-  color: ${({ color, theme }) => color ?? theme.textColor};
+  color: ${({ color, theme }) => color ?? theme.typography.color};
   font-weight: ${({ bold }) => (bold ? 'normal' : 580)};
 
   line-height: 1.2;

@@ -1,8 +1,6 @@
 import styled, { css } from 'styled-components';
-import { AppTheme as Theme } from '../../../@types/theme/AppTheme';
 
 type IconContentType = {
-  theme: Theme;
   maxSize?: boolean;
   minSize?: boolean;
   bgColor?: string;
@@ -21,7 +19,7 @@ export const SubIconContent = styled.div<{ subIcon?: any }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid ${({ theme }) => theme.main + '88'};
+  border: 1px solid ${({ theme }) => theme.palette.commom.main + '88'};
 
   border-radius: 50%;
 
@@ -35,7 +33,7 @@ export const SubIconContent = styled.div<{ subIcon?: any }>`
   }
 
   &:hover {
-    border: 1px solid ${({ theme }) => theme.main};
+    border: 1px solid ${({ theme }) => theme.palette.commom.main};
   }
 `;
 

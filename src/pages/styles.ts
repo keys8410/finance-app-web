@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { AppTheme } from '../@types/theme/AppTheme';
 
 export const ContainerPages = styled.div<{ isMobile: boolean }>`
   height: 100vh;
@@ -15,10 +14,11 @@ export const ContainerPages = styled.div<{ isMobile: boolean }>`
   }
 `;
 
-export const CompositionContainer = styled.div<{ theme: AppTheme }>`
+export const CompositionContainer = styled.div`
   border-radius: 2.75rem;
-  border: 0.55rem solid ${({ theme }) => theme.backgroundBlocks};
+  border: 0.55rem solid
+    ${({ theme }) => theme.palette.components.composition.border};
   padding: 1.5rem 1.3rem;
 
-  background: ${({ theme }) => theme.backgroundApp};
+  background: ${({ theme }) => theme.palette.background.app};
 `;

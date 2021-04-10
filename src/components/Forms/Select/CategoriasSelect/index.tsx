@@ -7,7 +7,7 @@ import { debounce } from '../../../../utils/debounce';
 const CategoriasSelect = ({ name, label, onChange, required }: Props) => {
   const [term, setTerm] = useState('');
   const { response, isLoading, error } = useFetch<CategoriaType[]>(
-    `/categoria`
+    `/categorias`
   );
 
   return (

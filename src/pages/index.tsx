@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import navigation from './../components/Sidebar/navigation';
+import navigation from '../layout/Sidebar/navigation';
 import { Composition, useMediaQuery } from 'atomic-layout';
 import { CompositionContainer, ContainerPages } from './styles';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../layout/Sidebar';
 import CommonRoutes from '../routes/routes.common';
 import Title from '../components/Utils/Title';
 import { useTypedSelector } from '../hooks/useTypedSelector';
@@ -12,7 +12,7 @@ import { useDispatch } from 'react-redux';
 import { DirectionalContainer } from '../styles/DirectionalContainer';
 import { useAuth } from '../contexts/authProvider';
 import Modal from '../components/Modal';
-import ThemeToggleButton from '../components/Utils/ThemeToggleButton';
+import ThemeToggleButton from '../layout/ThemeToggleButton';
 
 const areasMobile = `
 sidebar 

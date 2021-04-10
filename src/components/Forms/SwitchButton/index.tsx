@@ -21,8 +21,6 @@ const SwitchButton = ({ name, label, required, disabled, ...rest }: Props) => {
     clearError,
   } = useField(name);
 
-  console.log(defaultValue);
-
   const [checked, setChecked] = useState(defaultValue ?? false);
 
   useEffect(() => {

@@ -8,8 +8,7 @@ import {
   useDragToScroll,
 } from 'react-snaplist-carousel';
 import { TransacaoType } from '../../../../@types/transacoes';
-import { DirectionalContainer } from '../../../../styles/DirectionalContainer';
-import { GridTemplate } from '../../../../styles/globalStyles';
+import { GridTemplate } from '../../../../styles/global';
 import TransacaoItem from '../Item';
 import { IconAction } from '../Item/styles';
 

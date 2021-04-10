@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { AppTheme } from '../../../@types/appTheme';
 
 export const InputContainer = styled.div`
   margin-bottom: 1.5rem;
@@ -20,12 +19,12 @@ export const FocusedBg = styled.span`
   background: transparent;
 `;
 
-export const TextLabel = styled.span<{ theme: AppTheme }>`
+export const TextLabel = styled.span`
   position: absolute;
   top: -14px;
   left: 0px;
   font-size: 16px;
-  color: ${({ theme }) => theme.inputColor};
+  color: ${({ theme }) => theme.typography.input};
   font-weight: 500;
   transform-origin: 0 0;
   transform: translate3d(0, 0, 0);
@@ -33,7 +32,7 @@ export const TextLabel = styled.span<{ theme: AppTheme }>`
   pointer-events: none;
 `;
 
-export const Label = styled.label<{ theme: AppTheme }>`
+export const Label = styled.label`
   position: relative;
   margin: auto;
 
@@ -68,11 +67,11 @@ export const Input = styled.input`
   &:focus {
     background: transparent;
     outline: none;
-    border-bottom: 1px solid ${({ theme }) => theme.main + '88'};
+    border-bottom: 1px solid ${({ theme }) => theme.palette.commom.main + '88'};
   }
 
   &:focus + ${TextLabel} {
-    color: ${({ theme }) => theme.main};
+    color: ${({ theme }) => theme.palette.commom.main};
     transform: translate3d(0, -12px, 0) scale(0.9);
   }
 

@@ -1,5 +1,5 @@
 import { useField } from '@unform/core';
-import { format } from 'date-fns/esm';
+import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDatePicker, { registerLocale } from 'react-datepicker';
@@ -75,9 +75,9 @@ export default function DateField({
           ref={datepickerRef}
           selected={date}
           dateFormat="dd/MM/yyyy"
+          locale="pt-BR"
           showMonthDropdown
           showYearDropdown
-          locale="pt-BR"
           customInput={
             <ReactInputMask
               className="customInputMask"

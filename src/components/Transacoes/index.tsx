@@ -1,13 +1,13 @@
 import { useCallback } from 'react';
+import { HiPlus, HiPlusCircle } from 'react-icons/hi';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { TransacaoType } from '../../@types/transacoes';
 import { usePaginateFetch } from '../../hooks/usePaginateFetch';
-import { useGetQueryParam } from '../../hooks/useQueryParams';
 import { DeletarLancamentoActions } from '../../store/modules/lancamento/actions/deletar';
 import { ModalActions } from '../../store/modules/modal/actions/handle';
 import { DirectionalContainer } from '../../styles/DirectionalContainer';
-import { CardBordered, CardBorderedContent } from '../../styles/globalStyles';
+import { CardBordered, CardBorderedContent } from '../../styles/global';
 import Lancamento from '../Modal/Contents/Lancamento';
 import Subtitle from '../Utils/Subtitle';
 import Title from '../Utils/Title';
@@ -21,8 +21,6 @@ type Props = {
 
 const Transacoes = ({ reloadCategorias }: Props) => {
   const dispatch = useDispatch();
-
-  const history = useHistory();
 
   const {
     response,
@@ -83,14 +81,10 @@ const Transacoes = ({ reloadCategorias }: Props) => {
           <div
             style={{ cursor: 'pointer' }}
             onClick={() => {
-              history.push(`/overview`, { update: false });
-
               openModal();
             }}
           >
-            <Subtitle color="red" bold>
-              Ver mais
-            </Subtitle>
+            <HiPlus size={20} style={{ margin: 0, padding: 0 }} />
           </div>
         </DirectionalContainer>
 
