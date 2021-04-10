@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { AppTheme } from '../../@types/appTheme';
 
 export const ModalContainer = styled.div`
   position: fixed;
@@ -40,7 +39,7 @@ export const Content = styled.div`
   justify-content: center;
 `;
 
-export const CloseModal = styled.button<{ theme: AppTheme }>`
+export const CloseModal = styled.button`
   cursor: pointer;
 
   background: transparent;
@@ -57,8 +56,9 @@ export const CloseModal = styled.button<{ theme: AppTheme }>`
     content: '';
     position: absolute;
     height: 1rem;
-    background: ${({ theme }) => theme.closeButtonModal};
-    border: 1.5px solid ${({ theme }) => theme.closeButtonModal};
+    background: ${({ theme }) => theme.palette.components.modal.closeButton};
+    border: 1.5px solid
+      ${({ theme }) => theme.palette.components.modal.closeButton};
     border-radius: 20%;
   }
 
@@ -71,7 +71,7 @@ export const CloseModal = styled.button<{ theme: AppTheme }>`
   }
 `;
 
-export const ModalHeader = styled.header<{ theme: AppTheme }>`
+export const ModalHeader = styled.header`
   padding: 1rem 0.5rem 0rem 0.8rem;
   height: 100%;
 
@@ -81,7 +81,7 @@ export const ModalHeader = styled.header<{ theme: AppTheme }>`
   justify-content: space-between;
 
   & p {
-    color: ${({ theme }) => theme.headerColor};
+    color: ${({ theme }) => theme.palette.components.modal.header};
     font-weight: 500;
     font-size: 1.05rem;
   }

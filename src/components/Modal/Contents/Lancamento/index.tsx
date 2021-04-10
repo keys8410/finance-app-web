@@ -1,10 +1,10 @@
 import { FormHandles } from '@unform/core';
 import { useCallback, useEffect, useRef } from 'react';
-import { Forms, GridTemplate } from '../../../../styles/globalStyles';
+import { Forms, GridTemplate } from '../../../../styles/global';
 import InputField from '../../../Forms/InputField';
 import { Modalbody } from '../styles';
 import CategoriasSelect from '../../../Forms/Select/CategoriasSelect';
-import InputFieldDecimal from '../../../Forms/decimal-field';
+import InputFieldDecimal from '../../../Forms/DecimalField';
 import DateField from '../../../Forms/DatePicker';
 import { schema } from './lancamento.schema';
 import { LancamentoType } from '../../../../@types/lancamento';
@@ -35,7 +35,6 @@ const Lancamento = ({ reload, idLancamento }: Props) => {
   useEffect(() => {
     if (!isLoading && response) {
       formLancamento.current?.setData(response);
-      console.table(formLancamento.current?.getData());
     }
   }, [response, isLoading]);
 
