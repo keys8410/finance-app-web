@@ -1,16 +1,20 @@
-import styled, { createGlobalStyle, css } from 'styled-components';
+import styled, {
+  createGlobalStyle,
+  css,
+  DefaultTheme,
+} from 'styled-components';
 import { Form } from '@unform/web';
 import { ButtonStyled } from '../components/Button';
 import { ColTypes } from '../@types/directionalContainer';
-import { AppTheme } from '../@types/appTheme';
+
 import { GridTemplateType } from '../@types/gridTemplate';
 
-export const GlobalStyles = createGlobalStyle<{ theme: AppTheme }>`
-    body {
-      background-color: ${({ theme }) => theme.background};
-      color: ${({ theme }) => theme.textColor};
-    }
-
+export const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>`
+ html,
+ body{
+  color:${({ theme }) => theme.typography.color};
+  background:${({ theme }) => theme.palette.background.body}
+ }
     .react-datepicker__input-container {
       display: flex;
       flex: 1;
@@ -31,7 +35,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: AppTheme }>`
     }
 
     .react-select__placeholder {
-      color: ${({ theme }) => theme.inputColor} !important;
+      color: ${({ theme }) => theme.typography.input} !important;
       font-size: 0.9rem !important;
     }
 
@@ -95,24 +99,12 @@ export const GlobalStyles = createGlobalStyle<{ theme: AppTheme }>`
     .react-datepicker__year-text--selected, 
     .react-datepicker__year-text--in-selecting-range, 
     .react-datepicker__year-text--in-range {
-      background-color: ${({ theme }) => theme.main};
+      background-color: ${({ theme }) => theme.palette.commom.main};
 
       &:hover{
-        background-color: ${({ theme }) => theme.main + '99'}
+        background-color: ${({ theme }) => theme.palette.commom.main + '99'}
       }
     }
-`;
-
-export const InlineContainer = styled.div<{ spaceBetween?: boolean }>`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  ${({ spaceBetween }) =>
-    spaceBetween
-      ? css`
-          justify-content: space-between;
-        `
-      : undefined}
 `;
 
 export const GridTemplate = styled.section<GridTemplateType>`
@@ -120,13 +112,6 @@ export const GridTemplate = styled.section<GridTemplateType>`
   grid-template-columns: ${({ customColumns, repeat }) =>
     customColumns ?? `repeat(${repeat}, 1fr)`};
   grid-gap: ${({ gap }) => gap ?? '10px'};
-`;
-
-export const TableActionButtons = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const Col = styled.div<ColTypes>`
@@ -184,7 +169,7 @@ export const Forms = styled(Form)<{ marginT?: number }>`
 `;
 
 type CardBorderedType = {
-  theme: AppTheme;
+  theme: DefaultTheme;
   maxHeight?: number;
   padding?: number;
 };
@@ -203,7 +188,7 @@ export const CardBordered = styled.div<CardBorderedType>`
   width: 100%;
   height: 100%;
   transition: height 0.3s ease-in-out;
-  background: ${({ theme }) => theme.backgroundBlocks};
+  background: ${({ theme }) => theme.palette.components.card.background};
 
   max-height: ${({ maxHeight }) => (maxHeight ? maxHeight + 'rem' : '100%')};
 
@@ -212,4 +197,8 @@ export const CardBordered = styled.div<CardBorderedType>`
     css`
       padding: ${padding}rem;
     `}
+
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 8%), 0px 4px 5px 0px rgb(0 0 0 / 5%),
+    0px 1px 10px 0px rgb(0 0 0 / 4%);
 `;

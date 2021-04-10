@@ -7,20 +7,25 @@ import { ThemeProvider } from 'styled-components';
 import { SWRConfig } from 'swr';
 import { swrConfiguration } from './api';
 import AuthProvider from './contexts/authProvider';
-import ThemeToggleProvider from './contexts/ThemeToggleProvider';
 import ModulesRoutes from './routes/routes.account';
+
 import store from './store';
-import { GlobalStyles } from './styles/globalStyles';
-import light from './styles/theme.light';
+
+import ThemeToggleProvider from './contexts/ThemeToggleProvider';
+import { CSSReset } from './styles/reset';
+import { GlobalStyles } from './styles/global';
+
+import light from './styles/theme/light';
 
 export default function App() {
   return (
     <ReduxProvider store={store}>
       <ThemeToggleProvider initialSchema="light">
-        <AuthProvider>
-          <SWRConfig value={swrConfiguration}>
-            <ThemeProvider theme={light}>
+        <ThemeProvider theme={light}>
+          <AuthProvider>
+            <SWRConfig value={swrConfiguration}>
               <BrowserRouter>
+                <CSSReset />
                 <GlobalStyles />
                 <ModulesRoutes onlyAuthenticated />
                 <ToastContainer
@@ -28,9 +33,9 @@ export default function App() {
                   toastStyle={{ zIndex: 9999999 }}
                 />
               </BrowserRouter>
-            </ThemeProvider>
-          </SWRConfig>
-        </AuthProvider>
+            </SWRConfig>
+          </AuthProvider>
+        </ThemeProvider>
       </ThemeToggleProvider>
     </ReduxProvider>
   );
