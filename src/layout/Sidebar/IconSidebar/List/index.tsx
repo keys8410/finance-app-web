@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import IconSidebar from '..';
@@ -6,16 +6,12 @@ import { TituloActions } from '../../../../store/modules/titulo/actions/handle';
 import navigation from '../../navigation';
 import { ContainerListIconSidebar } from './styles';
 
-const ListIconSidebar = () => {
+type Props = {
+  onClose?: () => void;
+};
+const ListIconSidebar = ({ onClose }: Props) => {
   const history = useHistory();
-  const [actuallyUrl, setActuallyUrl] = useState(history.location.pathname);
   const dispatch = useDispatch();
-
-  const setActiveUrl = (to: string) => {
-    history.push(`${to}`);
-
-    setActuallyUrl(to);
-  };
 
   const changeTitulo = useCallback(
     (titulo: string) => {
@@ -26,15 +22,23 @@ const ListIconSidebar = () => {
 
   return (
     <div>
-      {navigation.map((nav) => (
+      {navigation.map((nav, index) => (
         <ContainerListIconSidebar
-          key={`icon-to-${nav.to}`}
+          key={`icon-to-${nav.to}-${index}`}
           onClick={() => {
-            setActiveUrl(nav.to);
+            if (onClose) {
+              onClose();
+            }
+
+            history.push(nav.to);
             changeTitulo(nav.name);
           }}
         >
-          <IconSidebar icon={nav.icon} active={actuallyUrl === nav.to} />
+          <IconSidebar
+            icon={nav.icon}
+            title={nav.name}
+            active={history.location.pathname === nav.to}
+          />
         </ContainerListIconSidebar>
       ))}
     </div>

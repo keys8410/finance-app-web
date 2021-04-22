@@ -9,4 +9,13 @@ export const CompositionContainer = styled.div`
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 8%), 0px 4px 5px 0px rgb(0 0 0 / 5%),
     0px 1px 10px 0px rgb(0 0 0 / 4%);
+
+  transition: padding 0.2s ease-in-out;
+  transition: height 0.2s ease-in-out;
+`;
+
+export const CompositionContainerSidebar = styled(CompositionContainer)`
+  display: grid;
+
+  grid-template-rows: auto 1fr;
 `;

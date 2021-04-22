@@ -32,8 +32,6 @@ export const WrapperIcon = styled.div<{ active: boolean }>`
       ? theme.palette.components.icon.active
       : theme.palette.components.icon.background};
 
-  transition: 0.2s ease-in-out;
-
   & svg {
     position: absolute;
     stroke: ${({ theme, active }) =>
@@ -60,4 +58,43 @@ export const WrapperIcon = styled.div<{ active: boolean }>`
         animation: ${pulse} 2s infinite;
       `}
   }
+`;
+
+export const WrapperIconWithText = styled.div<{ active: boolean }>`
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+
+  & span {
+    margin-left: 0.8rem;
+  }
+
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+  width: 100%;
+
+  @media (max-width: 768px) {
+    ${({ active }) =>
+      active
+        ? css`
+            cursor: default;
+            background: ${({ theme }) =>
+              theme.palette.type == 'light'
+                ? 'rgba(0, 0, 0, 0.05)'
+                : 'rgba(255, 255, 255, 0.16)'};
+          `
+        : css`
+            &:hover {
+              background: ${({ theme }) =>
+                theme.palette.type == 'light'
+                  ? 'rgba(0, 0, 0, 0.025)'
+                  : 'rgba(255, 255, 255, 0.08)'};
+            }
+          `};
+
+    padding: 0.4rem 1.5rem;
+  }
+
+  transition: background 0.2s ease-in-out;
 `;
