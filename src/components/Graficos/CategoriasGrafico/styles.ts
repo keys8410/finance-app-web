@@ -39,8 +39,6 @@ export const Li = styled.li<{ dotColor: string }>`
   & svg:hover {
     transform: scale(1.35) rotate(90deg);
   }
-
-  transition: all 0.3s ease-in-out;
 `;
 
 export const Ul = styled.ul`

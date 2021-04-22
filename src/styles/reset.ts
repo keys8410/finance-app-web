@@ -464,7 +464,6 @@ textarea {
   user-select: none;
 
 
-  transition: all .3s ease-in-out;
 }
 
 .simplebar-track.simplebar-vertical .simplebar-scrollbar:before,

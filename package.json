@@ -39,6 +39,7 @@
     "simplebar-react": "^2.3.0",
     "styled-components": "^5.2.1",
     "swr": "^0.4.2",
+    "victory": "^35.5.1",
     "web-vitals": "^1.0.1",
     "yup": "^0.32.9",
     "yup-locale-pt": "^0.0.8"
@@ -62,6 +63,7 @@
     "@types/react-select": "^3.1.2",
     "@types/react-tooltip": "^4.2.4",
     "@types/styled-components": "5.1.7",
+    "@types/victory": "^33.1.4",
     "@typescript-eslint/eslint-plugin": "4.11.1",
     "@typescript-eslint/parser": "4.11.1",
     "babel-eslint": "^10.0.0",

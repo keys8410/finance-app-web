@@ -36,7 +36,6 @@ const TransacaoList = ({
   size,
   setSize,
   isReachingEnd,
-  error,
   pageSize,
   openModal,
   handleDelete,
@@ -56,12 +55,12 @@ const TransacaoList = ({
   return (
     <div>
       {transacoes && transacoes.length !== 0 ? (
-        <SnapList ref={snapList} direction="vertical" height="8rem">
+        <SnapList ref={snapList} direction="vertical" height="10rem">
           {transacoes.map((transacao, index) => (
             <SnapItem
               key={`transacao-${transacao.id}`}
               margin={setMargin(index)}
-              height="2.65rem"
+              height="3.65rem"
               snapAlign="center"
             >
               <TransacaoItem
@@ -75,7 +74,7 @@ const TransacaoList = ({
           ))}
           <SnapItem
             margin={{ top: '5px', bottom: '.5rem' }}
-            height="2.5rem"
+            height="3rem"
             snapAlign="center"
           >
             <GridTemplate

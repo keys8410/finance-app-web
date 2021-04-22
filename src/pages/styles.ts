@@ -21,4 +21,8 @@ export const CompositionContainer = styled.div`
   padding: 1.5rem 1.3rem;
 
   background: ${({ theme }) => theme.palette.background.app};
+  box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 12%), 0px 4px 5px 0px rgb(0 0 0 / 6%),
+    0px 1px 10px 0px rgb(0 0 0 / 5%);
+
+  transition: all 0.3s ease-in-out;
 `;

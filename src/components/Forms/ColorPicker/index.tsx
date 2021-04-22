@@ -11,13 +11,7 @@ type Props = SketchPickerProps & {
 const ColorPicker = ({ name, label, width }: Props) => {
   const colorRef = useRef(null);
 
-  const {
-    fieldName,
-    defaultValue,
-    registerField,
-    error,
-    clearError,
-  } = useField(name);
+  const { fieldName, defaultValue, registerField } = useField(name);
 
   const [background, setBackground] = useState(defaultValue ?? '#fb1');
 

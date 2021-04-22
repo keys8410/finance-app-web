@@ -63,6 +63,8 @@ export const TransacaoContainer = styled.section`
     align-items: center;
     justify-content: center;
   }
+
+  transition: all 0.3s ease-in-out;
 `;
 
 export const ContainerTransacao = styled.div`

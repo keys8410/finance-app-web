@@ -42,7 +42,7 @@ const SwitchButton = ({ name, label, required, disabled, ...rest }: Props) => {
     <InputGroup>
       {label && (
         <label htmlFor={fieldName}>
-          {label} {checked ? '👍' : '👎'} {required && <Required />}
+          {label} {required && <Required />}
         </label>
       )}
 
@@ -54,6 +54,7 @@ const SwitchButton = ({ name, label, required, disabled, ...rest }: Props) => {
           onColor={manusearCor('#51beff', 10)}
           offColor={manusearCor('#777777', 30)}
           disabled={disabled}
+          height={20}
           id={fieldName}
           ref={checkRef}
           defaultValue={defaultValue}

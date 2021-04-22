@@ -13,6 +13,7 @@ export const SubIconContent = styled.div<{ subIcon?: any }>`
   position: absolute;
   bottom: 0px;
   left: 1.5rem;
+
   width: 1.1rem;
   height: 1.1rem;
 
@@ -23,12 +24,14 @@ export const SubIconContent = styled.div<{ subIcon?: any }>`
 
   border-radius: 50%;
 
-  background: #fff;
+  background: ${({ theme }) =>
+    theme.palette.type === 'light' ? '#eee' : '#61616199'};
 
   transition: border 0.15s ease-in-out;
 
   & svg {
-    color: #333;
+    color: ${({ theme }) =>
+      theme.palette.type === 'light' ? '#333' : '#f5f5f5'};
     size: 1px;
   }
 

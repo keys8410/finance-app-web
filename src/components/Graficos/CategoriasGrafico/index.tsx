@@ -8,6 +8,7 @@ type Props = {
   openModal: (categoriaId: number, corId?: number) => void;
 };
 const CategoriasGrafico = ({ categorias, openModal }: Props) => {
+  console.log(categorias);
   return (
     <CardCategorias>
       <Ul>

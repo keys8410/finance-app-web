@@ -22,7 +22,7 @@ function* criarLancamento({
       categoria: data.categoria,
       valor: data.valor.toString().replace('.', '').replace(',', '.'),
       data: data.data,
-      entrada: data.entrada,
+      gastou: data.gastou,
     };
 
     const response: any = yield call(api.post, `/lancamento`, postData);
@@ -53,7 +53,7 @@ function* editarLancamento({
       categoria: data.categoria,
       valor: data.valor.toString().replace('.', '').replace(',', '.'),
       data: data.data,
-      entrada: data.entrada,
+      gastou: data.gastou,
     };
 
     const response: any = yield call(

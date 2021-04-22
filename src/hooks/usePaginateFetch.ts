@@ -1,7 +1,6 @@
 import { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 import { useSWRInfinite } from 'swr';
-import { formatError } from '../api';
 
 type UsePaginateFetchReturns<TResponse> = {
   response: TResponse[];

@@ -24,11 +24,11 @@ import {
 } from './styles';
 
 const areasMobile = `
-transacao id valor
+transacao valor
 `;
 
 const areasDesktop = `
-transacao data id valor
+transacao data valor
 `;
 
 type Props = {
@@ -73,8 +73,8 @@ const TransacaoItem = ({
         template={areasMobile}
         templateMd={areasDesktop}
         gap={8}
-        templateCols="repeat(3, 1fr)"
-        templateColsMd="1fr 0.5fr 0.5fr 9rem"
+        templateCols="repeat(2, 1fr)"
+        templateColsMd="1fr .5fr 9rem"
         as={TransacaoContainer}
         alignContent="center center"
       >
@@ -85,7 +85,7 @@ const TransacaoItem = ({
                 <Icon
                   icon={transacao.categoria.blob}
                   subIcon={
-                    !transacao.entrada ? (
+                    !transacao.gastou ? (
                       <HiDownload size={13} />
                     ) : (
                       <HiUpload size={13} />
@@ -104,15 +104,11 @@ const TransacaoItem = ({
               </SubtitleTransacao>
             </Areas.Data>
 
-            <Areas.Id>
-              <SubtitleTransacao>ID: {transacao.id}</SubtitleTransacao>
-            </Areas.Id>
-
             <Areas.Valor title="Clique editar/deletar">
               <TitleTransacao
                 title={
                   !showHandler
-                    ? (transacao.entrada ? 'Você poupou ' : 'Você gastou ') +
+                    ? (transacao.gastou ? 'Você poupou ' : 'Você gastou ') +
                       formatNumberToValue(transacao.valor)
                     : ''
                 }
@@ -143,7 +139,7 @@ const TransacaoItem = ({
                     </DirectionalContainer>
                   ) : (
                     <>
-                      {transacao.entrada ? (
+                      {transacao.gastou ? (
                         <HiMinusSm size={14} color="#ff3333" />
                       ) : (
                         <HiPlusSm size={14} color="#33bb00" />

@@ -5,5 +5,5 @@ export type LancamentoType = {
   valor: string;
   categoria: number;
   data: string;
-  entrada: boolean;
+  gastou: boolean;
 };

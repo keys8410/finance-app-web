@@ -1,5 +1,6 @@
 import { DefaultTheme } from 'styled-components';
 import grey from './grey';
+import { darken } from 'polished';
 
 const dark: DefaultTheme = {
   palette: {
@@ -19,8 +20,8 @@ const dark: DefaultTheme = {
       main: '#d0342a',
     },
     background: {
-      body: grey.A400, //  grey[800]
-      app: grey.A300,
+      body: grey.A400,
+      app: darken(0.75, '#F4F4F4'),
     },
     components: {
       icon: {

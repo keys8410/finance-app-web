@@ -113,14 +113,16 @@ const Lancamento = ({ reload, idLancamento }: Props) => {
 
         <GridTemplate customColumns="1fr auto">
           <CategoriasSelect name="categoria" required />
-          <SwitchButton name="entrada" label="Gastou?" />
+          <SwitchButton name="gastou" label="Gastou?" />
         </GridTemplate>
 
         <DateField name="data" label="Data" required />
 
         <InputFieldDecimal name="valor" label="Valor do Lançamento" required />
 
-        <Button>Enviar</Button>
+        <Button style={{ marginTop: 16 }} fullWidth>
+          Enviar
+        </Button>
       </Forms>
     </Modalbody>
   );

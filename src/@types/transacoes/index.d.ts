@@ -8,7 +8,7 @@ export type TransacaoType = {
   nome: string;
   descricao: string;
   valor: number;
-  entrada: boolean;
+  gastou: boolean;
   data: Date;
   categoria: CategoriaTransacao;
 };

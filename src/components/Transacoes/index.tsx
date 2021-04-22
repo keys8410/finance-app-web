@@ -70,7 +70,7 @@ const Transacoes = ({ reloadCategorias }: Props) => {
   );
 
   return (
-    <CardBordered maxHeight={13.5}>
+    <CardBordered maxHeight={15.5}>
       <CardBorderedContent>
         <DirectionalContainer
           direction="row"

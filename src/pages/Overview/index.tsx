@@ -42,15 +42,21 @@ const Overview = () => {
       {(Areas) => (
         <>
           <Areas.Entrada>
-            <CardBordered>Entradas</CardBordered>
+            <CardBordered>
+              <CardBorderedTitle>Entradas</CardBorderedTitle>
+            </CardBordered>
           </Areas.Entrada>
 
           <Areas.Saida>
-            <CardBordered>Saidas</CardBordered>
+            <CardBordered>
+              <CardBorderedTitle>Saidas</CardBorderedTitle>
+            </CardBordered>
           </Areas.Saida>
 
           <Areas.Cartoes>
-            <CardBordered>Cartões</CardBordered>
+            <CardBordered>
+              <CardBorderedTitle>Cartões</CardBorderedTitle>
+            </CardBordered>
           </Areas.Cartoes>
 
           <Areas.Transacoes>
@@ -58,7 +64,9 @@ const Overview = () => {
           </Areas.Transacoes>
 
           <Areas.Noticias>
-            <CardBordered>Noticias</CardBordered>
+            <CardBordered>
+              <CardBorderedTitle>Noticias</CardBorderedTitle>
+            </CardBordered>
           </Areas.Noticias>
 
           <Areas.Estatisticas>
