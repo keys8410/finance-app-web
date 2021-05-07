@@ -12,7 +12,6 @@ import {
 import { TransacaoType } from '../../../../@types/transacoes';
 import { DirectionalContainer } from '../../../../styles/DirectionalContainer';
 import { formatNumberToValue } from '../../../../utils/stringUtils';
-import { Button } from '../../../Button';
 import Icon from '../../../Utils/Icon';
 import {
   ContainerTransacaoItem,
@@ -66,6 +65,7 @@ const TransacaoItem = ({
     <ContainerTransacaoItem
       visible={visible}
       onClick={onClick}
+      onMouseOver={handleOnMouse}
       onMouseEnter={handleOnMouse}
       onMouseLeave={() => setShowHandler(false)}
     >

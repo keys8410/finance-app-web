@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
-import { HiPlus, HiPlusCircle } from 'react-icons/hi';
+import { HiPlus } from 'react-icons/hi';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
 import { TransacaoType } from '../../@types/transacoes';
 import { usePaginateFetch } from '../../hooks/usePaginateFetch';
 import { DeletarLancamentoActions } from '../../store/modules/lancamento/actions/deletar';
@@ -9,17 +8,16 @@ import { ModalActions } from '../../store/modules/modal/actions/handle';
 import { DirectionalContainer } from '../../styles/DirectionalContainer';
 import { CardBordered, CardBorderedContent } from '../../styles/global';
 import Lancamento from '../Modal/Contents/Lancamento';
-import Subtitle from '../Utils/Subtitle';
 import Title from '../Utils/Title';
 import TransacaoList from './Transacao/List';
 
 const PAGE_SIZE = 4;
 
 type Props = {
-  reloadCategorias: () => void;
+  reloads: () => void;
 };
 
-const Transacoes = ({ reloadCategorias }: Props) => {
+const Transacoes = ({ reloads }: Props) => {
   const dispatch = useDispatch();
 
   const {
@@ -44,7 +42,7 @@ const Transacoes = ({ reloadCategorias }: Props) => {
               idLancamento={idLancamento}
               reload={() => {
                 reload();
-                reloadCategorias();
+                reloads();
               }}
             />
           ),
@@ -61,7 +59,7 @@ const Transacoes = ({ reloadCategorias }: Props) => {
           idLancamento,
           onSuccess: () => {
             reload();
-            reloadCategorias();
+            reloads();
           },
         })
       );

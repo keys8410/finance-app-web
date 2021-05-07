@@ -8,6 +8,7 @@ import {
   useDragToScroll,
 } from 'react-snaplist-carousel';
 import { TransacaoType } from '../../../../@types/transacoes';
+import { useThemeToggle } from '../../../../contexts/ThemeToggleProvider';
 import { GridTemplate } from '../../../../styles/global';
 import TransacaoItem from '../Item';
 import { IconAction } from '../Item/styles';
@@ -40,6 +41,8 @@ const TransacaoList = ({
   openModal,
   handleDelete,
 }: Props) => {
+  const { scheme } = useThemeToggle();
+
   const snapList = useRef(null);
   const visible = useVisibleElements(
     { debounce: 5, ref: snapList },
@@ -105,7 +108,10 @@ const TransacaoList = ({
               )}
 
               <IconAction onClick={() => goToChildren(0)}>
-                <HiArrowCircleUp size={20} color="#333" />
+                <HiArrowCircleUp
+                  size={20}
+                  color={scheme === 'dark' ? 'white' : '#333'}
+                />
               </IconAction>
             </GridTemplate>
           </SnapItem>

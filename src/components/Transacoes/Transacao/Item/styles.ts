@@ -20,17 +20,25 @@ export const ContainerTransacaoItem = styled.div<{ visible: boolean }>`
   height: 100%;
   width: 100%;
   padding: 0 0.3rem;
-  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 
   transition: all 0.15s ease-in-out;
-
-  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 10%), 0px 4px 5px 0px rgb(0 0 0 / 5%),
-    0px 1px 10px 0px rgb(0 0 0 / 4%);
 
   border: 1px solid ${({ theme }) => theme.palette.components.transacao.border};
   border-radius: 0.5rem;
   cursor: ${({ visible }) => (visible ? 'default' : 'pointer')};
+
+  ${({ theme }) =>
+    theme.palette.type == 'dark'
+      ? css`
+          transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+          box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 10%),
+            0px 4px 5px 0px rgb(0 0 0 / 5%), 0px 1px 10px 0px rgb(0 0 0 / 4%);
+        `
+      : css`
+          transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+          box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 5%),
+            0px 4px 5px 0px rgb(0 0 0 / 5%), 0px 1px 10px 0px rgb(0 0 0 / 4%);
+        `}
 `;
 
 export const TitleTransacao = styled.p`
