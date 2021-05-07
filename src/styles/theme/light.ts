@@ -64,6 +64,3 @@ const light: DefaultTheme = {
 };
 
 export default light;
-
-/**
- */

@@ -8,6 +8,7 @@ import { ButtonStyled } from '../components/Button';
 import { ColTypes } from '../@types/directionalContainer';
 
 import { GridTemplateType } from '../@types/gridTemplate';
+import { WithChildren } from '../@types/withChildren';
 
 export const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>`
  html,
@@ -169,12 +170,19 @@ export const Forms = styled(Form)<{ marginT?: number }>`
 `;
 
 type CardBorderedType = {
-  theme: DefaultTheme;
   maxHeight?: number;
   padding?: number;
 };
 
-export const CardBorderedTitle = styled.div`
+export const CardBorderedTitle = styled.div<{ header?: boolean }>`
+  ${({ header }) =>
+    header &&
+    css`
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    `}
+
   padding: 1.3rem;
 `;
 
@@ -183,7 +191,19 @@ export const CardBorderedContent = styled.div`
   padding-bottom: 1rem;
 `;
 
-export const CardBordered = styled.div<CardBorderedType>`
+export const CardBordered = ({
+  children,
+  padding,
+  maxHeight,
+}: WithChildren<CardBorderedType>) => {
+  return (
+    <CardBorderedStyled maxHeight={maxHeight} padding={padding}>
+      <div>{children}</div>
+    </CardBorderedStyled>
+  );
+};
+
+export const CardBorderedStyled = styled.div<CardBorderedType>`
   border-radius: 1.3rem;
   width: 100%;
   height: 100%;
