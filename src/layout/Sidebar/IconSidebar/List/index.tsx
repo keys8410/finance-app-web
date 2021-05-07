@@ -1,9 +1,11 @@
 import React, { useCallback } from 'react';
+import { HiOutlineLogout } from 'react-icons/hi';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import IconSidebar from '..';
+import { useAuth } from '../../../../contexts/authProvider';
 import { TituloActions } from '../../../../store/modules/titulo/actions/handle';
-import navigation from '../../navigation';
+import navigation from '../../router';
 import { ContainerListIconSidebar } from './styles';
 
 type Props = {
@@ -12,6 +14,7 @@ type Props = {
 const ListIconSidebar = ({ onClose }: Props) => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const { sair } = useAuth();
 
   const changeTitulo = useCallback(
     (titulo: string) => {
@@ -41,6 +44,10 @@ const ListIconSidebar = ({ onClose }: Props) => {
           />
         </ContainerListIconSidebar>
       ))}
+
+      <ContainerListIconSidebar onClick={sair}>
+        <IconSidebar icon={<HiOutlineLogout />} title="Sair" active={false} />
+      </ContainerListIconSidebar>
     </div>
   );
 };

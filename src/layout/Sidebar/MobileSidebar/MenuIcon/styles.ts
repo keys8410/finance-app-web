@@ -27,7 +27,7 @@ export const MenuButton = styled.button<{ active: boolean }>`
   align-items: center;
   justify-content: center;
   border: none;
-  transition: 0.1s;
+  transition: 0.15s;
   cursor: pointer;
 
   &:after {

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import navigation from '../layout/Sidebar/navigation';
+import navigation from '../layout/Sidebar/router';
 import { Composition, useMediaQuery } from 'atomic-layout';
 import { CompositionContainer, ContainerPages } from './styles';
 import Sidebar from '../layout/Sidebar';
@@ -52,9 +52,10 @@ const Pages = () => {
           templateRowsMd="auto 1fr"
           maxWidth="98%"
           minHeightMd="20rem"
-          maxWidthMd="75%"
-          minWidthMd="75%"
+          maxWidthMd="80%"
+          minWidthMd="80%"
           as={CompositionContainer}
+          justifyItems="stretch"
         >
           {(Areas) => (
             <>
@@ -71,11 +72,13 @@ const Pages = () => {
                   <Title isTitle>{titulo}</Title>
                 </DirectionalContainer>
               </Areas.Titulo>
+
               <Areas.Usuario>
                 <div>
                   {user?.nome} <ThemeToggleButton />
                 </div>
               </Areas.Usuario>
+
               <Areas.App>
                 <CommonRoutes />
               </Areas.App>
