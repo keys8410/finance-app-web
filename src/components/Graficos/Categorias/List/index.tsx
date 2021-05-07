@@ -1,13 +1,12 @@
-import React, { useCallback } from 'react';
 import { HiChevronRight } from 'react-icons/hi';
-import { CategoriaStatsType } from '../../../@types/categoria';
+import { CategoriaStatsType } from '../../../../@types/categoria';
 import { CardCategorias, Ul, Li } from './styles';
 
 type Props = {
   categorias: CategoriaStatsType[];
   openModal: (categoriaId: number, corId?: number) => void;
 };
-const CategoriasGrafico = ({ categorias, openModal }: Props) => {
+const ListGrafico = ({ categorias, openModal }: Props) => {
   console.log(categorias);
   return (
     <CardCategorias>
@@ -25,4 +24,4 @@ const CategoriasGrafico = ({ categorias, openModal }: Props) => {
   );
 };
 
-export default CategoriasGrafico;
+export default ListGrafico;
