@@ -24,8 +24,6 @@ export default function DateField({
   label,
   required,
   onChange,
-  hidden,
-  icon,
   ...rest
 }: DatePickerProps) {
   const datepickerRef = useRef(null);

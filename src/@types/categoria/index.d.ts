@@ -12,3 +12,8 @@ export type CategoriaType = {
   blob: string;
   cor: string;
 };
+
+export type DataStatsType = {
+  periodo: string;
+  total?: string;
+};

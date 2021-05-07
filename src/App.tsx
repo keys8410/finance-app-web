@@ -2,7 +2,6 @@ import React from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { ThemeProvider } from 'styled-components';
 import { SWRConfig } from 'swr';
 import { swrConfiguration } from './api';
@@ -12,10 +11,12 @@ import ModulesRoutes from './routes/routes.account';
 import store from './store';
 
 import ThemeToggleProvider from './contexts/ThemeToggleProvider';
+
 import { CSSReset } from './styles/reset';
 import { GlobalStyles } from './styles/global';
-
 import light from './styles/theme/light';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
   return (

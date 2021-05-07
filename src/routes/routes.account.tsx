@@ -1,14 +1,16 @@
 import { Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { useAuth } from '../contexts/authProvider';
 import { useThemeToggle } from '../contexts/ThemeToggleProvider';
 import Pages from '../pages';
 import Login from '../pages/account/login';
+import SignUp from '../pages/account/signUp';
 import Page404 from '../pages/account/page404';
 import Page500 from '../pages/account/page500';
 import { GlobalStyles } from '../styles/global';
+import { CSSReset } from '../styles/reset';
 import dark from '../styles/theme/dark';
 import light from '../styles/theme/light';
+import { useAuth } from '../contexts/authProvider';
 
 type Props = {
   onlyAuthenticated?: boolean;
@@ -25,12 +27,16 @@ export default function ModulesRoutes({ onlyAuthenticated = false }: Props) {
 
   return (
     <ThemeProvider theme={scheme === 'light' ? light : dark}>
-      <GlobalStyles />
       <Switch>
         <Route
           exact
           path="/login"
           render={(props: any) => <Login {...props} />}
+        />
+        <Route
+          exact
+          path="/cadastrar"
+          render={(props: any) => <SignUp {...props} />}
         />
         <Route
           exact
@@ -42,7 +48,10 @@ export default function ModulesRoutes({ onlyAuthenticated = false }: Props) {
           path="/500"
           render={(props: any) => <Page500 {...props} />}
         />
-        <Route path="/" render={(props: any) => <Pages {...props} />} />
+        <Route exact path="/" render={(props: any) => <Pages {...props} />} />
+
+        <GlobalStyles />
+        <CSSReset />
       </Switch>
     </ThemeProvider>
   );

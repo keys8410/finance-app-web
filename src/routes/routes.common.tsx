@@ -6,7 +6,6 @@ export default function CommonRoutes() {
   return (
     <>
       <Route exact path="/" render={(props: any) => <Home {...props} />} />
-
       <Route exact path="/user" render={(props: any) => <p {...props}></p>} />
       <Route
         exact

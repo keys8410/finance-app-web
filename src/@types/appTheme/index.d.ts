@@ -43,6 +43,10 @@ declare module 'styled-components' {
   }
 }
 
+export interface CommomLogin {
+  inside: string;
+  outside: string;
+}
 export interface Icon {
   background: string;
   active: string;
