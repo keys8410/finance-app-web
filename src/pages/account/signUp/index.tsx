@@ -1,10 +1,5 @@
-import FormLogin from './form-login';
-import {
-  AsideTitle,
-  AsideSubtitle,
-  MainSubtitle,
-  ToggleContainer,
-} from './styles';
+import FormLogin from './form-cadastro';
+import { AsideTitle, AsideSubtitle, MainSubtitle } from './styles';
 
 import LoginAside from '../../../assets/svg/login-aside.svg';
 import AccountLayout from '../../../layout/AccountLayout';
@@ -12,7 +7,7 @@ import { DirectionalContainer } from '../../../styles/DirectionalContainer';
 import LoginSvg from '../../../assets/svg/login.svg';
 import { useHistory } from 'react-router';
 
-const Login = () => {
+const SignUp = () => {
   const history = useHistory();
 
   return (
@@ -44,12 +39,12 @@ const Login = () => {
         <FormLogin />
 
         <MainSubtitle bold>
-          Ainda não possui uma conta?{' '}
-          <span onClick={() => history.push('/cadastrar')}>Crie uma!</span>
+          Já possui uma conta?{' '}
+          <span onClick={() => history.push('/login')}>Faça login!</span>
         </MainSubtitle>
       </DirectionalContainer>
     </AccountLayout>
   );
 };
 
-export default Login;
+export default SignUp;

@@ -38,6 +38,7 @@ const FormLogin = () => {
   return (
     <div style={{ width: '70%' }}>
       <Forms marginT={1} ref={formRef} onSubmit={handleSubmit}>
+        <InputField label="Nome" name="nome" />
         <InputField label="E-mail" name="email" />
         <InputField type="password" label="Senha" name="password" />
 
