@@ -106,6 +106,14 @@ export default function SelectField({
         defaultValue={
           options && options?.find((opt) => opt.value === defaultValue)
         }
+        theme={(theme) => ({
+          ...theme,
+          colors: {
+            ...theme.colors,
+            primary25: '#51beff44',
+            primary: '#51beff',
+          },
+        })}
         placeholder={placeholder}
         loadingMessage={() => 'Carregando...'}
         options={options}
