@@ -1,3 +1,4 @@
+import { darken, lighten } from 'polished';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { LoadingIcon } from '../Forms/SubmitButton/styles';
@@ -16,7 +17,8 @@ export const ButtonStyled = styled.button<ButtonProps>`
   transition: 0.15s;
   cursor: pointer;
   outline: none !important;
-  background: ${({ bgColor: color }) => color ?? '#929292'};
+  background: ${({ bgColor: color, theme }) =>
+    color ?? lighten(0.015, theme.palette.commom.main)};
   color: #fff;
   white-space: nowrap;
   font-weight: bold;
@@ -29,7 +31,7 @@ export const ButtonStyled = styled.button<ButtonProps>`
   justify-content: center;
 
   &:hover:enabled {
-    background: green;
+    background: ${({ theme }) => darken(0.1, theme.palette.commom.main)};
   }
 
   &:active:enabled {
