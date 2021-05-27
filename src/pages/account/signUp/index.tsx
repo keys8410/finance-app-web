@@ -18,7 +18,7 @@ const SignUp = () => {
 
           <img src={LoginAside} width="90%" />
 
-          <AsideSubtitle>
+          <AsideSubtitle style={{ maxWidth: 525 }}>
             O caminho está a sua frente. Você já deu seu primeiro passo rumo à
             transformação financeira e nós te guiaremos nessa jornada.
           </AsideSubtitle>

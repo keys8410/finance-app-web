@@ -1,12 +1,16 @@
 import * as Yup from 'yup';
 
 export const loginSchema = Yup.object().shape({
+  nome: Yup.string()
+    .required('O Nome é obrigatório.')
+    .min(2, 'Nome é muito curto.')
+    .max(255, 'O e-mail digitado é muito longo.'),
   email: Yup.string()
-    .min(2, 'E-mail muito curto')
+    .min(2, 'E-mail muito curto.')
     .email('O e-mail digitado é inválido.')
-    .max(350, 'O e-mail digitado é muito longo.')
+    .max(255, 'O e-mail digitado é muito longo.')
     .required('O e-mail é obrigatório.'),
-  password: Yup.string()
+  senha: Yup.string()
     .min(2, 'Senha muito curta.')
     .required('A senha é obrigatória.'),
 });
