@@ -1,5 +1,5 @@
 import { FormHandles } from '@unform/core';
-import { useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import * as Yup from 'yup';
 import InputField from '../../../../components/Forms/InputField';
 import SubmitButton from '../../../../components/Forms/SubmitButton';
@@ -7,6 +7,7 @@ import { useAuth } from '../../../../contexts/authProvider';
 import { Forms } from '../../../../styles/global';
 import { loginSchema } from './form-login.schema';
 import { DirectionalContainer } from '../../../../styles/DirectionalContainer';
+import { ResetSenha } from '../styles';
 
 type DataForm = {
   email?: string;
@@ -17,7 +18,7 @@ const FormLogin = () => {
   const formRef = useRef<FormHandles>(null);
   const { entrar, loading } = useAuth();
 
-  async function handleSubmit(data: DataForm) {
+  const handleSubmit = useCallback(async (data: DataForm) => {
     try {
       formRef.current?.setErrors({});
       await loginSchema.validate(data, {
@@ -33,7 +34,7 @@ const FormLogin = () => {
         formRef.current?.setErrors(validationErrors);
       }
     }
-  }
+  }, []);
 
   return (
     <div style={{ width: '70%' }}>
@@ -49,7 +50,8 @@ const FormLogin = () => {
           >
             Entrar
           </SubmitButton>
-          <button>Esqueceu sua senha?</button>
+
+          <ResetSenha>Esqueceu sua senha? Recupere!</ResetSenha>
         </DirectionalContainer>
       </Forms>
     </div>
