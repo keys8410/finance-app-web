@@ -121,7 +121,6 @@ export default function SelectField({
         getOptionValue={(option: Option) => option.value}
         errorActive={!!error}
         isLoading={isLoading}
-        isClearable={true}
         styles={{ container: (styles) => ({ ...styles, width: '100%' }) }}
         onChange={(value: any, triggeredAction: any) => {
           if (triggeredAction?.action === 'clear') {

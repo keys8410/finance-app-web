@@ -3,31 +3,25 @@ import { ThemeProvider } from 'styled-components';
 import { useThemeToggle } from '../contexts/ThemeToggleProvider';
 import Pages from '../pages';
 import Login from '../pages/account/login';
-import SignUp from '../pages/account/signUp';
 import Page404 from '../pages/account/page404';
 import Page500 from '../pages/account/page500';
 import { GlobalStyles } from '../styles/global';
-import { CSSReset } from '../styles/reset';
 import dark from '../styles/theme/dark';
 import light from '../styles/theme/light';
 import { useAuth } from '../contexts/authProvider';
+import SignUp from '../pages/account/signUp';
+import Modal from '../components/Modal';
 
 type Props = {
   onlyAuthenticated?: boolean;
 };
 
-export default function ModulesRoutes({ onlyAuthenticated = false }: Props) {
+const ModulesRoutes = ({ onlyAuthenticated = false }: Props) => {
   const { scheme } = useThemeToggle();
-  const { hydrating, loading, authenticated, user } = useAuth();
+  const { hydrating, loading, authenticated } = useAuth();
   if (onlyAuthenticated && (!hydrating || !loading) && !authenticated) {
     return (
-      <Route exact path="*" render={(props: any) => <Login {...props} />} />
-    );
-  }
-
-  return (
-    <ThemeProvider theme={scheme === 'light' ? light : dark}>
-      <Switch>
+      <>
         <Route
           exact
           path="/login"
@@ -37,6 +31,19 @@ export default function ModulesRoutes({ onlyAuthenticated = false }: Props) {
           exact
           path="/cadastrar"
           render={(props: any) => <SignUp {...props} />}
+        />
+      </>
+    );
+  }
+  return (
+    <ThemeProvider theme={scheme === 'light' ? light : dark}>
+      <GlobalStyles />
+
+      <Switch>
+        <Route
+          exact
+          path="/login"
+          render={(props: any) => <Login {...props} />}
         />
         <Route
           exact
@@ -48,11 +55,10 @@ export default function ModulesRoutes({ onlyAuthenticated = false }: Props) {
           path="/500"
           render={(props: any) => <Page500 {...props} />}
         />
-        <Route exact path="/" render={(props: any) => <Pages {...props} />} />
-
-        <GlobalStyles />
-        <CSSReset />
+        <Route path="/" render={(props: any) => <Pages {...props} />} />
       </Switch>
     </ThemeProvider>
   );
-}
+};
+
+export default ModulesRoutes;

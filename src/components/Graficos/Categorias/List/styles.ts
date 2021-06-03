@@ -10,7 +10,7 @@ export const CardCategorias = styled.div`
     0px 1px 10px 0px rgb(0 0 0 / 5%);
 `;
 
-export const Li = styled.li<{ dotColor: string }>`
+export const Li = styled.li<{ dotColor?: string }>`
   font-weight: 500;
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -25,7 +25,8 @@ export const Li = styled.li<{ dotColor: string }>`
     width: 0.65rem;
     height: 0.65rem;
     border-radius: 50%;
-    background-color: ${({ dotColor }) => dotColor};
+    background-color: ${({ dotColor, theme }) =>
+      dotColor ?? theme.palette.commom.main};
     margin-right: 1rem;
   }
 

@@ -7,7 +7,6 @@ type Props = {
   openModal: (categoriaId: number, corId?: number) => void;
 };
 const ListGrafico = ({ categorias, openModal }: Props) => {
-  console.log(categorias);
   return (
     <CardCategorias>
       <Ul>

@@ -5,9 +5,10 @@ import Title from '../../components/Utils/Title';
 import { useFetch } from '../../hooks/useFetch';
 import { CardBordered, CardBorderedTitle } from '../../styles/global';
 import GraficoCategorias from '../../components/Graficos/Categorias';
-import DataGrafico from '../../components/Graficos/Data';
+import DataGrafico from '../../components/Graficos/Datas';
 import { useCallback } from 'react';
-import { format } from 'date-fns';
+import { eachDayOfInterval, format } from 'date-fns';
+import { useGetCategoriaStats } from '../../hooks/useGetCategoriasStats';
 
 const BASE_DAYS = 6;
 
@@ -23,26 +24,34 @@ entrada saida estatisticas
 transacoes transacoes estatisticas
 `;
 
-const formatedDates = (periodo: [string, string]) => {
+const FormatedDates = () => {
+  const date = new Date();
+
+  const arrayDate = eachDayOfInterval({
+    start: date.setDate(date.getDate() - BASE_DAYS),
+    end: new Date(),
+  });
+
   return (
     <span>
-      {periodo[0]} - {periodo[1]}
+      {format(new Date(arrayDate[0]), 'dd/MM/yyyy')} -{' '}
+      {format(new Date(arrayDate[arrayDate.length - 1]), 'dd/MM/yyyy')}
     </span>
   );
 };
 const Overview = () => {
   const {
-    response: categorias,
-    isLoading: loadingCategorias,
-    reload: reloadCategorias,
-  } = useFetch<CategoriaStatsType[]>(`/usuario/stats/categoria`);
+    categorias,
+    loadingCategorias,
+    reloadCategorias,
+  } = useGetCategoriaStats();
 
   const {
     response: entradasData,
     isLoading: isLoadingEntradasData,
     reload: reloadEntradas,
   } = useFetch<DataStatsType[]>(
-    `/usuario/stats/data?dias=${BASE_DAYS}&gastou=true`
+    `/usuario/stats/data?dias=${BASE_DAYS}&gastou=false`
   );
 
   const {
@@ -50,7 +59,7 @@ const Overview = () => {
     isLoading: isLoadingSaidasData,
     reload: reloadSaidas,
   } = useFetch<DataStatsType[]>(
-    `/usuario/stats/data?dias=${BASE_DAYS}&gastou=false`
+    `/usuario/stats/data?dias=${BASE_DAYS}&gastou=true`
   );
 
   const allReloads = useCallback(() => {
@@ -66,25 +75,20 @@ const Overview = () => {
       gap={15}
       gapMd={25}
       templateCols="1fr"
-      templateColsMd="repeat(3, 1fr)"
+      templateColsMd="1.5fr 1.5fr 1.2fr"
     >
       {(Areas) => (
         <>
           <Areas.Entrada>
             <CardBordered>
               <CardBorderedTitle header>
-                Entradas:
-                {isLoadingSaidasData
-                  ? '...'
-                  : formatedDates([
-                      entradasData[0].periodo,
-                      entradasData[entradasData.length - 1].periodo,
-                    ])}
+                Entradas
+                <FormatedDates />
               </CardBorderedTitle>
               <DataGrafico
                 isLoading={isLoadingEntradasData}
                 elements={entradasData}
-                gastou={true}
+                gastou={false}
               />
             </CardBordered>
           </Areas.Entrada>
@@ -92,18 +96,13 @@ const Overview = () => {
           <Areas.Saida>
             <CardBordered>
               <CardBorderedTitle header>
-                Saídas:
-                {isLoadingSaidasData
-                  ? '...'
-                  : formatedDates([
-                      saidasData[0].periodo,
-                      saidasData[saidasData.length - 1].periodo,
-                    ])}
+                Saídas
+                <FormatedDates />
               </CardBorderedTitle>
               <DataGrafico
                 isLoading={isLoadingSaidasData}
                 elements={saidasData}
-                gastou={false}
+                gastou={true}
               />
             </CardBordered>
           </Areas.Saida>

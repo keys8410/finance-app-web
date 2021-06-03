@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   PropsWithChildren,
   useCallback,
@@ -8,10 +8,12 @@ import React, {
 } from 'react';
 import { useDispatch } from 'react-redux';
 import { AuthContextType, AuthProviderUser } from '../../@types/authProvider';
+import { IProfileUser } from '../../@types/domain';
 import {
   SuccessCallback,
   FailedCallback,
 } from '../../@types/requests/requests-methods';
+import api from '../../api';
 import { usePersistedState } from '../../hooks/usePersistedState';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { LoginActions } from '../../store/modules/account/actions/tryLogin';
@@ -25,6 +27,7 @@ const AuthContext = createContext<AuthContextType>({
   loading: false,
   user: null,
   hydrating: false,
+  reloadUser: () => {},
 });
 
 export const useAuth = () => {
@@ -68,51 +71,63 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
     null
   );
 
-  function entrar(nomeUsuario: string, senha: string) {
+  const entrar = (nomeUsuario: string, senha: string) => {
     setIsLoading(true);
     login(
       nomeUsuario,
       senha,
-      (data) => {
-        setUsuario(data.usuario as AuthProviderUser);
+      (data: { usuario: AuthProviderUser; token: string }) => {
+        setUsuario(data.usuario);
         setToken(data.token);
         setIsLoading(false);
-        window.location.replace(`${window.origin}`);
+        window.location.replace(`${window.origin}/overview`);
       },
       (error) => {
         setIsLoading(false);
       }
     );
-  }
+  };
 
-  function sair() {
+  const sair = () => {
+    window.location.replace(`${window.origin}/login`);
     setIsLoading(true);
     setUsuario(null);
     setToken(null);
     setIsLoading(false);
-  }
+  };
 
   useEffect(() => {
     setHydrating(false);
   }, []);
 
+  const reloadUser = async () => {
+    const { data: user } = await api.get<IProfileUser>(`/auth/profile`);
+
+    setUsuario({
+      ...usuario,
+      nome: user.nome,
+      email: user.email,
+      apelido: user.apelido,
+    } as AuthProviderUser);
+  };
+
   if (hydrating) {
     return <Hydrating />;
-  }
-
-  return (
-    <AuthContext.Provider
-      value={{
-        user: usuario,
-        token,
-        authenticated: !!usuario && !!token,
-        entrar,
-        sair,
-        loading: isLoading,
-        hydrating,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
+  } else
+    return (
+      <AuthContext.Provider
+        value={{
+          user: usuario,
+          token,
+          authenticated: !!usuario && !!token,
+          entrar,
+          sair,
+          loading: isLoading,
+          hydrating,
+          reloadUser,
+        }}
+      >
+        {children}
+      </AuthContext.Provider>
+    );
 }

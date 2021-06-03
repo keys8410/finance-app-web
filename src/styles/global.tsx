@@ -9,24 +9,35 @@ import { ColTypes } from '../@types/directionalContainer';
 
 import { GridTemplateType } from '../@types/gridTemplate';
 import { WithChildren } from '../@types/withChildren';
+import grey from './theme/grey';
+import { lighten } from 'polished';
+
+const HEAT_MAP_COLOR = '#197AE7';
 
 export const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>`
- html,
- body{
-  color:${({ theme }) => theme.typography.color};
-  background:${({ theme }) => theme.palette.background.body}
- }
-    .react-datepicker__input-container {
-      display: flex;
-      flex: 1;
-    }
+    html,
+    body {
+      color:${({ theme }) => theme.typography.color};
+      background:${({ theme }) => theme.palette.background.body};
 
-    .react-datepicker__input-container input {
-      flex: 1;
+
+      background-image: linear-gradient(135deg, ${({ theme }) =>
+        theme.palette.background.body} 0%,  ${({ theme }) =>
+  theme.palette.type == 'light' ? '#c6c8e9' : '#4d4d4d'} 100%);
     }
 
     .react-select__control {
+      background: transparent !important;
       border: 1px solid #ddd !important;
+    }
+
+    .react-select__menu {
+      background: ${({ theme }) =>
+        theme.palette.components.modal.background}!important;
+    }
+
+    .react-select__single-value {
+      color: ${({ theme }) => theme.typography.input} !important;
     }
 
     .react-select__control--menu-is-open,
@@ -41,7 +52,16 @@ export const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>`
     }
 
     .react-select__indicator-separator {
-      display:none !important;
+      display: none !important;
+    }
+
+    .react-datepicker__input-container {
+      display: flex;
+      flex: 1;
+    }
+
+    .react-datepicker__input-container input {
+      flex: 1;
     }
 
     .react-datepicker {
@@ -105,6 +125,48 @@ export const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>`
       &:hover{
         background-color: ${({ theme }) => theme.palette.commom.main + '99'}
       }
+    }
+
+    .react-calendar-heatmap .color-empty {
+      fill: ${({ theme }) =>
+        theme.palette.type == 'dark' ? lighten(0.05, grey[900]) : grey.A200}
+    }
+
+    .react-calendar-heatmap text{
+      fill:${({ theme }) => theme.typography.color};
+      font-size: .45rem !important;
+      margin-top: 1rem !important;
+    }
+
+    .react-calendar-heatmap .color-scale-1 {
+      fill: ${lighten(0.26, `${HEAT_MAP_COLOR}`)};
+    }
+    .react-calendar-heatmap .color-scale-2 {
+      fill: ${lighten(0.23, `${HEAT_MAP_COLOR}`)};
+    }
+    .react-calendar-heatmap .color-scale-3 {
+      fill: ${lighten(0.2, `${HEAT_MAP_COLOR}`)};
+    }
+    .react-calendar-heatmap .color-scale-4 {
+      fill: ${lighten(0.17, `${HEAT_MAP_COLOR}`)};
+    }
+    .react-calendar-heatmap .color-scale-5 {
+      fill: ${lighten(0.14, `${HEAT_MAP_COLOR}`)};
+    }
+    .react-calendar-heatmap .color-scale-6 {
+      fill: ${lighten(0.11, `${HEAT_MAP_COLOR}`)};
+    }
+    .react-calendar-heatmap .color-scale-7 {
+      fill: ${lighten(0.08, `${HEAT_MAP_COLOR}`)};
+    }
+    .react-calendar-heatmap .color-scale-8 {
+      fill: ${lighten(0.05, `${HEAT_MAP_COLOR}`)};
+    }
+    .react-calendar-heatmap .color-scale-9 {
+      fill: ${lighten(0.02, `${HEAT_MAP_COLOR}`)};
+    }
+    .react-calendar-heatmap .color-scale-10 {
+      fill: ${HEAT_MAP_COLOR};
     }
 `;
 

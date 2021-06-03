@@ -8,6 +8,7 @@ import { Forms } from '../../../../styles/global';
 import { loginSchema } from './form-login.schema';
 import { DirectionalContainer } from '../../../../styles/DirectionalContainer';
 import { ResetSenha } from '../styles';
+import ResetPassword from '../../../../components/ResetPass';
 
 type DataForm = {
   email?: string;
@@ -51,7 +52,7 @@ const FormLogin = () => {
             Entrar
           </SubmitButton>
 
-          <ResetSenha>Esqueceu sua senha? Recupere!</ResetSenha>
+          <ResetPassword />
         </DirectionalContainer>
       </Forms>
     </div>

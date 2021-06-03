@@ -4,6 +4,7 @@ type ModalBodyTypes = {
   lancamento?: boolean;
   quitMission?: boolean;
   infosUser?: boolean;
+  heatMap?: boolean;
 };
 
 export const ModalFooter = styled.div`
@@ -31,6 +32,14 @@ export const Modalbody = styled.div<ModalBodyTypes>`
     css`
       width: 100%;
       max-width: 56rem;
+    `}
+
+    ${({ heatMap }) =>
+    heatMap &&
+    css`
+      width: 100%;
+      min-width: 30rem;
+      padding-right: 1.1rem;
     `}
 
     @media(max-width:768px) {

@@ -4,6 +4,7 @@ import { VictoryPie } from 'victory';
 import { CategoriaStatsType } from '../../../@types/categoria';
 import { useThemeToggle } from '../../../contexts/ThemeToggleProvider';
 import { ModalActions } from '../../../store/modules/modal/actions/handle';
+import { DirectionalContainer } from '../../../styles/DirectionalContainer';
 import CorCategoria from '../../Modal/Contents/CorCategoria';
 import ListGrafico from './List';
 

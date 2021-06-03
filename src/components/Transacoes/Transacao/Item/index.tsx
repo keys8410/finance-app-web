@@ -74,7 +74,7 @@ const TransacaoItem = ({
         templateMd={areasDesktop}
         gap={8}
         templateCols="repeat(2, 1fr)"
-        templateColsMd="1fr .5fr 9rem"
+        templateColsMd="repeat(3, 1fr)"
         as={TransacaoContainer}
         alignContent="center center"
       >
@@ -113,7 +113,7 @@ const TransacaoItem = ({
                     : ''
                 }
               >
-                <ContainerTransacao style={{ width: 100 }}>
+                <ContainerTransacao style={{ width: 150 }}>
                   {showHandler ? (
                     <DirectionalContainer
                       direction="row"

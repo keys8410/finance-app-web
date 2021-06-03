@@ -60,6 +60,8 @@ export interface Block {
 export interface Modal {
   header: string;
   closeButton: string;
+  background: string;
+  outside: string;
 }
 
 export interface Categoria {

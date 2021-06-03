@@ -13,10 +13,6 @@ const MobileSidebar = () => {
   const [open, setOpen] = useState(false);
 
   const handleClose = useCallback(() => {
-    setOpen(true);
-  }, []);
-
-  const handleOpen = useCallback(() => {
     setOpen(false);
   }, []);
 
@@ -24,17 +20,17 @@ const MobileSidebar = () => {
     <CompositionContainer>
       <DirectionalContainer direction="row">
         <DirectionalContainer direction="row" justify="flex-start">
-          <MobileMenuButton onClick={handleOpen}>
+          <MobileMenuButton onClick={() => setOpen(!open)}>
             <MenuButton active={!open} />
           </MobileMenuButton>
 
-          {user?.nome}
+          {user?.apelido ?? user?.nome}
         </DirectionalContainer>
 
         <ThemeToggleButton />
       </DirectionalContainer>
 
-      <MobileMenuDropdown opened={open}>
+      <MobileMenuDropdown opened={!open}>
         <ListIconSidebar onClose={handleClose} />
       </MobileMenuDropdown>
     </CompositionContainer>

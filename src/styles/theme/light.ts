@@ -19,7 +19,7 @@ const light: DefaultTheme = {
       main: '#d0342a',
     },
     background: {
-      body: '#A1DBFF',
+      body: `#A1DBFF`,
       app: '#D2E8FE',
     },
     components: {
@@ -32,8 +32,10 @@ const light: DefaultTheme = {
         inside: grey[100],
       },
       modal: {
-        header: grey[500],
+        header: grey[700],
         closeButton: grey[500],
+        background: grey[50],
+        outside: 'rgba(210, 232, 254, 0.65)',
       },
       card: {
         categoria: {

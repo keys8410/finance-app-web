@@ -11,6 +11,7 @@ import { SignUpActions } from '../../../../store/modules/account/actions/signUp'
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router';
 import { ResetSenha } from '../../login/styles';
+import ResetPassword from '../../../../components/ResetPass';
 
 type DataForm = {
   nome: string;
@@ -68,7 +69,8 @@ const FormLogin = () => {
           >
             Criar Conta
           </SubmitButton>
-          <ResetSenha>Esqueceu sua senha? Recupere!</ResetSenha>
+
+          <ResetPassword />
         </DirectionalContainer>
       </Forms>
     </div>

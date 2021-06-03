@@ -121,7 +121,7 @@ const Lancamento = ({ reload, idLancamento }: Props) => {
         <InputFieldDecimal name="valor" label="Valor do Lançamento" required />
 
         <Button style={{ marginTop: 16 }} fullWidth>
-          Enviar
+          Salvar
         </Button>
       </Forms>
     </Modalbody>

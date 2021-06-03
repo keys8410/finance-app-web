@@ -21,7 +21,7 @@ export const ButtonStyled = styled.button<ButtonProps>`
     color ?? lighten(0.015, theme.palette.commom.main)};
   color: #fff;
   white-space: nowrap;
-  font-weight: bold;
+  font-weight: 600;
   border-radius: 6.5px;
   max-width: 10.125rem;
   font-size: 0.9rem;
@@ -29,6 +29,8 @@ export const ButtonStyled = styled.button<ButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  letter-spacing: 0.8px;
 
   &:hover:enabled {
     background: ${({ theme }) => darken(0.1, theme.palette.commom.main)};

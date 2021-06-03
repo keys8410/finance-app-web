@@ -21,9 +21,9 @@ export const FocusedBg = styled.span`
 
 export const TextLabel = styled.span`
   position: absolute;
-  top: -14px;
+  top: -10px;
   left: 0px;
-  font-size: 16px;
+  font-size: 1rem;
   color: ${({ theme }) => theme.typography.input};
   font-weight: 500;
   transform-origin: 0 0;
@@ -47,11 +47,11 @@ export const Input = styled.input`
   font-family: inherit;
   padding: 2rem 0 0 0;
   height: 56px;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
   background: transparent;
   border-bottom: 1px solid #ddd;
-  color: #848484;
+  color: ${({ theme }) => theme.typography.input};
   transition: all 0.15s ease;
 
   &:hover {
@@ -60,7 +60,7 @@ export const Input = styled.input`
   }
 
   &:not(:placeholder-shown) + ${TextLabel} {
-    color: #222;
+    color: ${({ theme }) => theme.typography.input};
     transform: translate3d(0, -13px, 0) scale(0.9);
   }
 

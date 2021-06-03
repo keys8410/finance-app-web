@@ -25,9 +25,9 @@ const ListIconSidebar = ({ onClose }: Props) => {
 
   return (
     <div>
-      {navigation.map((nav, index) => (
+      {navigation.map((nav) => (
         <ContainerListIconSidebar
-          key={`icon-to-${nav.to}-${index}`}
+          key={`icon-to-${nav.to}`}
           onClick={() => {
             if (onClose) {
               onClose();

@@ -12,7 +12,7 @@ export const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(210, 232, 254, 0.65);
+  background: ${({ theme }) => theme.palette.components.modal.outside};
 
   @media (min-width: 376px) {
     padding: 0.5rem;
@@ -20,12 +20,11 @@ export const ModalContainer = styled.div`
 `;
 
 export const ModalBody = styled.div`
-  background: white;
+  background: ${({ theme }) => theme.palette.components.modal.background};
   box-shadow: 0 3px 8px 0 #44444422;
-  border-radius: 10px;
+  border-radius: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.6);
 
-  border-radius: 0.8rem;
   min-width: 22rem;
 
   max-height: 96vh;

@@ -4,6 +4,7 @@ import titulo from './titulo';
 import modal from './modal';
 import lancamento from './lancamento';
 import corCategoria from './corCategoria';
+import usuario from './usuario';
 
 export default combineReducers({
   account,
@@ -11,4 +12,5 @@ export default combineReducers({
   modal,
   corCategoria,
   lancamento,
+  usuario,
 });

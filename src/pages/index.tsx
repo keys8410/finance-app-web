@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import navigation from '../layout/Sidebar/router';
 import { Composition, useMediaQuery } from 'atomic-layout';
 import { CompositionContainer, ContainerPages } from './styles';
-import Sidebar from '../layout/Sidebar';
 import CommonRoutes from '../routes/routes.common';
 import Title from '../components/Utils/Title';
 import { useTypedSelector } from '../hooks/useTypedSelector';
@@ -13,6 +12,8 @@ import { DirectionalContainer } from '../styles/DirectionalContainer';
 import { useAuth } from '../contexts/authProvider';
 import Modal from '../components/Modal';
 import ThemeToggleButton from '../layout/ThemeToggleButton';
+import MobileSidebar from '../layout/Sidebar/MobileSidebar';
+import DesktopSidebar from '../layout/Sidebar/DesktopSidebar';
 
 const areasMobile = `
 sidebar 
@@ -52,15 +53,15 @@ const Pages = () => {
           templateRowsMd="auto 1fr"
           maxWidth="98%"
           minHeightMd="20rem"
-          maxWidthMd="80%"
-          minWidthMd="80%"
+          maxWidthMd="91%"
+          minWidthMd="91%"
           as={CompositionContainer}
           justifyItems="stretch"
         >
           {(Areas) => (
             <>
               <Areas.Sidebar>
-                <Sidebar />
+                {isMobile ? <MobileSidebar /> : <DesktopSidebar />}
               </Areas.Sidebar>
               <Areas.Titulo>
                 <DirectionalContainer
@@ -74,9 +75,9 @@ const Pages = () => {
               </Areas.Titulo>
 
               <Areas.Usuario>
-                <div>
-                  {user?.nome} <ThemeToggleButton />
-                </div>
+                <DirectionalContainer direction="row">
+                  {user?.apelido ?? user?.nome} <ThemeToggleButton />
+                </DirectionalContainer>
               </Areas.Usuario>
 
               <Areas.App>
@@ -86,7 +87,6 @@ const Pages = () => {
           )}
         </Composition>
       </ContainerPages>
-      <Modal />
     </>
   );
 };

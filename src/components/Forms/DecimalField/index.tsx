@@ -60,7 +60,7 @@ const InputFieldDecimal = ({
         );
         ref.value = value;
       },
-      clearValue(ref, value) {
+      clearValue(ref) {
         // ref.value = value;
         setValor(0);
         ref.value = '0,00';

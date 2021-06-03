@@ -60,7 +60,7 @@ const CorCategoria = ({ reload, colors, categoriaId, corId }: Props) => {
       <Forms onSubmit={handleSubmit} initialData={{ cor: colors }}>
         <ColorPicker name="cor" label="Seletor de Cores" width="305px" />
         <Button style={{ marginTop: 16 }} fullWidth>
-          Enviar
+          Salvar
         </Button>
       </Forms>
     </>

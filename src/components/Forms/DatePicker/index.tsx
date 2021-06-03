@@ -4,9 +4,8 @@ import { ptBR } from 'date-fns/locale';
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import ReactInputMask from 'react-input-mask';
 import { ErrorLabel, InputGroup, Required } from '../styles';
-import './styles.css';
+import { CustomInputMask } from './styles';
 
 interface DatePickerProps {
   name: string;
@@ -76,13 +75,7 @@ export default function DateField({
           locale="pt-BR"
           showMonthDropdown
           showYearDropdown
-          customInput={
-            <ReactInputMask
-              className="customInputMask"
-              mask="99/99/9999"
-              style={{ width: '100%', color: '#444' }}
-            />
-          }
+          customInput={<CustomInputMask mask="99/99/9999" />}
           onChange={(e) => {
             if (e) {
               setDate(e as Date);

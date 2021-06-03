@@ -1,4 +1,3 @@
-import { lighten } from 'polished';
 import styled, { keyframes } from 'styled-components';
 
 export const Aside = styled.aside`
@@ -18,13 +17,15 @@ export const Aside = styled.aside`
     top: 50%;
     right: 43.5%;
   }
+
+  background: #f4f4f4;
 `;
 
 export const Main = styled.main`
   padding: 2rem;
   background: white;
 
-  border-radius: 1.25rem;
+  border-radius: 0 1.25rem 1.25rem 0;
   @media (max-width: 768px) {
     border-radius: 0 0 1.25rem 1.25rem;
   }
@@ -38,7 +39,8 @@ export const ContainerLayout = styled.div<{ isMobile: boolean }>`
   place-items: center;
   height: 100vh;
   width: 100%;
-  background: #f4f4f4;
+
+  background: ${({ theme }) => theme.palette.background.app};
 `;
 
 export const CompositionContainer = styled.div`

@@ -2,6 +2,9 @@ export interface AuthProviderUser {
   id: string;
   nome: string;
   email: string;
+  apelido: string;
+  dataNascimento: Date;
+  ativo: boolean;
 }
 
 export type AuthContextType = {
@@ -12,4 +15,5 @@ export type AuthContextType = {
   hydrating: boolean;
   entrar(usuario: string, senha: string): void;
   sair(): void;
+  reloadUser: () => void;
 };

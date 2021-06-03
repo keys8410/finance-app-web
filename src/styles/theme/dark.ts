@@ -1,6 +1,6 @@
 import { DefaultTheme } from 'styled-components';
 import grey from './grey';
-import { darken } from 'polished';
+import { darken, lighten, transparentize } from 'polished';
 
 const dark: DefaultTheme = {
   palette: {
@@ -8,7 +8,7 @@ const dark: DefaultTheme = {
     commom: {
       black: '#000',
       white: '#fff',
-      main: '#1565c0',
+      main: darken(0.15, '#51beff'),
     },
     primary: {
       main: '#FF698A',
@@ -17,7 +17,7 @@ const dark: DefaultTheme = {
       main: '#FFDD6A',
     },
     error: {
-      main: '#d0342a',
+      main: lighten(0.15, '#d0342a'),
     },
     background: {
       body: grey.A400,
@@ -33,8 +33,10 @@ const dark: DefaultTheme = {
         inside: grey.A100,
       },
       modal: {
-        header: grey[500],
+        header: grey[100],
         closeButton: grey[500],
+        background: grey[800],
+        outside: transparentize(0.4, grey[800]),
       },
       card: {
         categoria: {
@@ -60,7 +62,7 @@ const dark: DefaultTheme = {
   },
   typography: {
     color: grey[100],
-    input: '#111',
+    input: grey[100],
   },
 };
 

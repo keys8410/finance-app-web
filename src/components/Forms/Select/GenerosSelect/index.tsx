@@ -14,7 +14,7 @@ const GenerosSelect = ({ name, label, onChange, required }: Props) => {
   return (
     <SelectField
       name={name}
-      label={label ?? 'Gêneros'}
+      label={label ?? 'Gênero'}
       required={required}
       placeholder="Selecione um gênero"
       options={

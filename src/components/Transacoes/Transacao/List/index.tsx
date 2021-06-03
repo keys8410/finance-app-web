@@ -10,6 +10,7 @@ import {
 import { TransacaoType } from '../../../../@types/transacoes';
 import { useThemeToggle } from '../../../../contexts/ThemeToggleProvider';
 import { GridTemplate } from '../../../../styles/global';
+import { Button } from '../../../Button';
 import TransacaoItem from '../Item';
 import { IconAction } from '../Item/styles';
 
@@ -91,7 +92,7 @@ const TransacaoList = ({
                   {isReachingEnd ? (
                     'Sem mais lançamentos 😞'
                   ) : (
-                    <button
+                    <Button
                       disabled={isLoading || isReachingEnd}
                       onClick={() => {
                         setSize(size + 1);
@@ -102,14 +103,14 @@ const TransacaoList = ({
                       }}
                     >
                       Carregar mais
-                    </button>
+                    </Button>
                   )}
                 </>
               )}
 
               <IconAction onClick={() => goToChildren(0)}>
                 <HiArrowCircleUp
-                  size={20}
+                  size={26}
                   color={scheme === 'dark' ? 'white' : '#333'}
                 />
               </IconAction>

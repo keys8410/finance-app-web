@@ -17,6 +17,8 @@ import { GlobalStyles } from './styles/global';
 import light from './styles/theme/light';
 
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-calendar-heatmap/dist/styles.css';
+import Modal from './components/Modal';
 
 export default function App() {
   return (
@@ -28,6 +30,8 @@ export default function App() {
               <BrowserRouter>
                 <CSSReset />
                 <GlobalStyles />
+                <Modal />
+
                 <ModulesRoutes onlyAuthenticated />
                 <ToastContainer
                   style={{ zIndex: 99999999 }}

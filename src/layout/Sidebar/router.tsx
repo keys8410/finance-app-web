@@ -7,11 +7,13 @@ import {
 } from 'react-icons/hi';
 
 export default [
-  {
+  /**
+  *  {
     icon: <HiOutlineHome />,
     name: 'Home',
     to: '/',
   },
+  */
   {
     icon: <HiOutlineUser />,
     name: 'Meu Perfil',
