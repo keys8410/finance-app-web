@@ -2,6 +2,7 @@ import {
   FailedCallback,
   SuccessCallback,
 } from '../../../@types/requests/requests-methods';
+import { ChangePass } from '../../../components/Modal/Contents/TrocarSenha';
 
 export type TryLoginPayload = {
   login: string;
@@ -17,6 +18,12 @@ type SignUp = {
 };
 export type SignUpPayload = {
   data: SignUp;
+  onSuccess?: SuccessCallback;
+  onFailed?: FailedCallback;
+};
+
+export type ChangePasswordPayload = {
+  data: ChangePass;
   onSuccess?: SuccessCallback;
   onFailed?: FailedCallback;
 };

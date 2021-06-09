@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const ImageProfile = styled.img`
+  cursor: pointer;
+
   border-radius: 1.2rem;
 
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;

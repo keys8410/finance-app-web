@@ -8,7 +8,6 @@ const ResetPassword = () => {
   const dispatch = useDispatch();
 
   const openModal = useCallback(() => {
-    console.log('abriu senha');
     dispatch(
       ModalActions.setContent({
         opened: true,

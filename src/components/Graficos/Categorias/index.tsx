@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import ReactApexChart from 'react-apexcharts';
 import { useDispatch } from 'react-redux';
 import { VictoryPie } from 'victory';
 import { CategoriaStatsType } from '../../../@types/categoria';
@@ -53,26 +54,57 @@ const GraficoCategorias = ({
         <p>Carregando...</p>
       ) : categorias ? (
         <>
-          <VictoryPie
-            animate={{
-              duration: 400,
-            }}
-            style={{
-              labels: {
-                fill: scheme === 'dark' ? 'white' : 'black',
-                fontSize: 16,
-                fontWeight: 'bold',
+          <ReactApexChart
+            options={{
+              colors: categorias.map((x) => x.cor),
+              chart: {
+                type: 'donut',
+                width: '100%',
+              },
+              labels: categorias.map((x) => x.nome),
+              dataLabels: {
+                enabled: true,
+                offsetY: -20,
+                style: {
+                  fontSize: '12px',
+                  colors: ['white'],
+                },
+              },
+              legend: {
+                labels: { colors: scheme == 'light' ? 'black' : 'white' },
+                formatter: (x) => x.toUpperCase(),
+                position: 'bottom',
+              },
+              plotOptions: {
+                pie: {
+                  expandOnClick: false,
+                  donut: {
+                    labels: {
+                      show: true,
+                      name: {
+                        show: true,
+                        formatter: (x) => x.toUpperCase(),
+                      },
+                      value: {
+                        show: true,
+                        formatter: (x) => x + '%',
+                        color: scheme == 'light' ? 'black' : 'white',
+                      },
+                    },
+                  },
+                },
+              },
+              tooltip: {
+                theme: scheme == 'light' ? 'light' : 'dark',
               },
             }}
-            innerRadius={95}
-            data={categorias.map((x) => ({
-              x: x.porcentagem,
-              y: x.porcentagem,
-            }))}
-            colorScale={categorias ? categorias.map((x) => x.cor) : []}
+            series={categorias.map((x) => +x.porcentagem)}
+            type="donut"
           />
 
-          <ListGrafico categorias={categorias} openModal={openModal} />
+          {/**
+           *    <ListGrafico categorias={categorias} openModal={openModal} />
+           */}
         </>
       ) : (
         'Cadastre um lançamento 🥘'

@@ -1,6 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { all, call, put, takeLeading } from 'redux-saga/effects';
 import api, { formatError } from '../../../api';
+import { ChangePassActions } from './actions/changePassword';
 import { ResetPassActions } from './actions/resetPassword';
 import { SignUpActions } from './actions/signUp';
 import { LoginActions } from './actions/tryLogin';
@@ -71,8 +72,30 @@ function* resetPass({
   }
 }
 
+function* changePass({
+  payload,
+}: PayloadAction<ResetPasswordPayload>): Generator<any> {
+  const { data, onSuccess, onFailed } = payload;
+
+  try {
+    const response: any = yield call(api.patch, `/auth/change-pass`, data);
+
+    yield put(LoginActions.success(response.data));
+    if (onSuccess) {
+      onSuccess(response.data);
+    }
+  } catch (errors) {
+    const allErrors = formatError(errors);
+    yield put(LoginActions.failed(allErrors));
+    if (onFailed) {
+      onFailed(allErrors);
+    }
+  }
+}
+
 export default all([
   takeLeading(LoginActions.request.type, tryLogin),
   takeLeading(SignUpActions.request.type, signUp),
   takeLeading(ResetPassActions.request.type, resetPass),
+  takeLeading(ChangePassActions.request.type, changePass),
 ]);

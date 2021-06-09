@@ -21,9 +21,11 @@ type Props = InputHTMLAttributes<HTMLInputElement> &
     required?: boolean;
     disabled?: boolean;
     rows?: number;
+    onChange?: (e: string) => void;
   };
 
 const InputField: React.FC<Props> = ({
+  onChange,
   name,
   label,
   required,
@@ -70,6 +72,7 @@ const InputField: React.FC<Props> = ({
               //   rest.onFocus(e);
               // }
             }}
+            onChange={onChange}
             {...rest}
           />
         </InputGroup>
@@ -79,6 +82,7 @@ const InputField: React.FC<Props> = ({
             <Label htmlFor={fieldName}>
               <Input
                 disabled={disabled}
+                onChange={onChange}
                 id={fieldName}
                 ref={inputRef}
                 defaultValue={defaultValue}
@@ -99,6 +103,7 @@ const InputField: React.FC<Props> = ({
             </Label>
           ) : (
             <BasicInput
+              onChange={onChange}
               disabled={disabled}
               id={fieldName}
               ref={inputRef}

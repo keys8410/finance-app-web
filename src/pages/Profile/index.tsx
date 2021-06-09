@@ -9,10 +9,28 @@ import FormProfile from './form-profile';
 import md5 from 'md5';
 import { ImageProfile } from './styles';
 import { DirectionalContainer } from '../../styles/DirectionalContainer';
+import Tooltip from '../../components/Utils/Tooltip';
+import { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { ModalActions } from '../../store/modules/modal/actions/handle';
+import TrocarSenha from '../../components/Modal/Contents/TrocarSenha';
 
 const Profile = () => {
   const { user } = useAuth();
   const isMobile = useMediaQuery({ maxWidth: 768 });
+
+  const dispatch = useDispatch();
+
+  const openModal = useCallback(() => {
+    dispatch(
+      ModalActions.setContent({
+        opened: true,
+        enabledToClose: true,
+        title: `Alterar Senha`,
+        content: <TrocarSenha />,
+      })
+    );
+  }, [dispatch]);
 
   return (
     <CardBordered>
@@ -25,11 +43,19 @@ const Profile = () => {
             height
             align={isMobile ? 'center' : 'flex-start'}
           >
-            <ImageProfile
-              src={`https://www.gravatar.com/avatar/${md5(
-                user?.email ?? ''
-              )}?d=retro&s=${isMobile ? 280 : 350}`}
-            />
+            <Tooltip
+              dataFor="imagemPerfil"
+              place="bottom"
+              content={<p>Clique para alterar a senha</p>}
+              onClick={openModal}
+            >
+              <ImageProfile
+                onClick={openModal}
+                src={`https://www.gravatar.com/avatar/${md5(
+                  user?.email ?? ''
+                )}?d=retro&s=${isMobile ? 280 : 350}`}
+              />
+            </Tooltip>
           </DirectionalContainer>
 
           <FormProfile />

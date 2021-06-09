@@ -58,8 +58,8 @@ const ResetarSenha = () => {
   return (
     <Modalbody heatMap>
       <h1 style={{ marginBottom: 8 }}>
-        Utilize o email cadastrado na plataforma. <br />
-        Para resetar a sua senha.
+        Utilize o email cadastrado na plataforma <br />
+        para resetar a sua senha.
       </h1>
       <Forms marginT={1} ref={formRef} onSubmit={handleSubmit}>
         <InputField label="E-mail" name="email" />

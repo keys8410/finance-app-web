@@ -11,6 +11,7 @@ import light from '../styles/theme/light';
 import { useAuth } from '../contexts/authProvider';
 import SignUp from '../pages/account/signUp';
 import Modal from '../components/Modal';
+import { CSSReset } from '../styles/reset';
 
 type Props = {
   onlyAuthenticated?: boolean;
@@ -37,6 +38,7 @@ const ModulesRoutes = ({ onlyAuthenticated = false }: Props) => {
   }
   return (
     <ThemeProvider theme={scheme === 'light' ? light : dark}>
+      <CSSReset />
       <GlobalStyles />
 
       <Switch>

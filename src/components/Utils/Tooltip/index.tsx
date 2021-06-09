@@ -2,7 +2,7 @@ import React from 'react';
 import ReactTooltip, { Effect, Place, Type } from 'react-tooltip';
 import { WithChildren } from '../../../@types/withChildren';
 
-type PropTypes = {
+type Props = {
   dataFor: any;
   type?: Type;
   effect?: Effect;
@@ -12,7 +12,6 @@ type PropTypes = {
   onClick?: () => void;
   bgColor?: string;
 };
-type Props = WithChildren<PropTypes>;
 
 const Tooltip = ({
   children,
@@ -24,7 +23,7 @@ const Tooltip = ({
   style = {},
   bgColor,
   onClick,
-}: Props) => {
+}: WithChildren<Props>) => {
   return (
     <>
       <a

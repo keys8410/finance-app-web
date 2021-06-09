@@ -87,6 +87,7 @@ const Pages = () => {
           )}
         </Composition>
       </ContainerPages>
+      <Modal />
     </>
   );
 };

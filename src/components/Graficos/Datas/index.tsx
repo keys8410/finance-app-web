@@ -74,7 +74,7 @@ const DataGrafico = ({ isLoading, elements, gastou }: Props) => {
             },
             noData: { text: 'Sem dado.' },
             tooltip: {
-              enabled: false,
+              theme: scheme == 'light' ? 'light' : 'dark',
             },
           }}
           series={[

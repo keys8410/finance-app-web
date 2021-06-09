@@ -21,7 +21,7 @@ saida
 
 const areasDesktop = `
 entrada saida estatisticas
-transacoes transacoes estatisticas
+transacoes transacoes transacoes
 `;
 
 const FormatedDates = () => {
@@ -131,15 +131,3 @@ const Overview = () => {
 };
 
 export default Overview;
-
-/**
- *   <CardBordered>
-              <CardBordered padding={0.5}>
-                <CardBorderedTitle>
-                  <Title>Estatísticas por Categoria</Title>
-                </CardBorderedTitle>
-
-                <DataGrafico entradas={responseEntrada ?? []} />
-              </CardBordered>
-            </CardBordered>
- */

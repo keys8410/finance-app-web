@@ -1,4 +1,4 @@
-import { Composition } from 'atomic-layout';
+import { Composition, useMediaQuery } from 'atomic-layout';
 import { format } from 'date-fns';
 import { useCallback, useEffect, useState } from 'react';
 import {
@@ -27,7 +27,7 @@ transacao valor
 `;
 
 const areasDesktop = `
-transacao data valor
+transacao data valor action
 `;
 
 type Props = {
@@ -46,6 +46,7 @@ const TransacaoItem = ({
   handleDelete,
 }: Props) => {
   const [showHandler, setShowHandler] = useState(false);
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   useEffect(() => {
     if (!visible) {
@@ -85,7 +86,7 @@ const TransacaoItem = ({
                 <Icon
                   icon={transacao.categoria.blob}
                   subIcon={
-                    !transacao.gastou ? (
+                    transacao.gastou ? (
                       <HiDownload size={13} />
                     ) : (
                       <HiUpload size={13} />
@@ -114,7 +115,7 @@ const TransacaoItem = ({
                 }
               >
                 <ContainerTransacao style={{ width: 150 }}>
-                  {showHandler ? (
+                  {isMobile && showHandler ? (
                     <DirectionalContainer
                       direction="row"
                       justify="space-around"
@@ -150,6 +151,29 @@ const TransacaoItem = ({
                 </ContainerTransacao>
               </TitleTransacao>
             </Areas.Valor>
+            <Areas.Action>
+              <ContainerTransacao style={{ width: 150 }}>
+                <DirectionalContainer direction="row" justify="space-around">
+                  <IconAction
+                    onClick={() => {
+                      setShowHandler(false);
+
+                      openModal(transacao.id);
+                    }}
+                    title="Clique para editar"
+                  >
+                    <HiOutlinePencilAlt size={20} color="#ffaa33" />
+                  </IconAction>
+
+                  <IconAction
+                    onClick={() => handleDelete(transacao.id)}
+                    title="Clique para editar"
+                  >
+                    <HiOutlineTrash size={20} color="#ff3333" />
+                  </IconAction>
+                </DirectionalContainer>
+              </ContainerTransacao>
+            </Areas.Action>
           </>
         )}
       </Composition>
